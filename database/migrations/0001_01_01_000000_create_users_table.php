@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(App\Models\Role::class)->constrained()->onUpdate('cascade')->onDelete('restrict');
             $table->string('name');
-            $table->string('email')->unique();
             $table->string('username')->unique()->nullable();
+            $table->string('email')->unique();
             $table->string('bio')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

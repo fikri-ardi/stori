@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Post extends Model
@@ -55,5 +56,21 @@ class Post extends Model
     public function claps(): MorphMany
     {
         return $this->morphMany(Clap::class, 'clappable');
+    }
+
+    /**
+     * The tags that belong to the post.
+     */
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * Get all of the post's comments.
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }
