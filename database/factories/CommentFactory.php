@@ -17,7 +17,10 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'post_id' => \App\Models\Post::inRandomOrder()->first()->id,
+            'parent_id' => \App\Models\Comment::inRandomOrder()->first()->id ?? null,
+            'body' => $this->faker->realText(80),
         ];
     }
 }

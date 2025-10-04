@@ -74,6 +74,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all posts authored by the user.
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    /**
      *  A user can have many visitors (polymorphic relation) 
      */
     public function visitors(): MorphMany
