@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ClapSeeder extends Seeder
 {
@@ -12,19 +15,20 @@ class ClapSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = \App\Models\User::all();
-        $clappableTypes = [
-            \App\Models\Post::class,
-            \App\Models\Comment::class,
+        $users = User::all();
+        $clappableModels = [
+            Post::class,
+            Comment::class,
         ];
+
         foreach ($users as $user) {
-            foreach ($clappableTypes as $type) {
-                $items = $type::inRandomOrder()->take(rand(1, 5))->get();
+            foreach ($clappableModels as $model) {
+                $items = $model::inRandomOrder()->take(rand(1, 5))->get();
                 foreach ($items as $item) {
                     $user->claps()->create([
-                        'clappable_type' => $type,
+                        'clappable_type' => $model,
                         'clappable_id' => $item->id,
-                        'count' => rand(1, 10),
+                        'count' => rand(1, 50),
                     ]);
                 }
             }

@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\Collection;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -33,10 +36,13 @@ class PostFactory extends Factory
      */
     public function configure()
     {
-        return $this->afterCreating(function (\App\Models\Post $post) {
+        return $this->afterCreating(function (Post $post) {
             // Attach random collections to the post
-            $collections = \App\Models\Collection::inRandomOrder()->take(rand(1, 5))->pluck('id');
+            $collections = Collection::inRandomOrder()->take(rand(1, 5))->pluck('id');
             $post->collections()->attach($collections);
+            // Attach random tags to the post
+            $tags = Tag::inRandomOrder()->take(rand(1, 5))->pluck('id');
+            $post->tags()->attach($tags);
         });
     }
 }
