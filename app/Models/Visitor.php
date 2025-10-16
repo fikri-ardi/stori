@@ -14,6 +14,14 @@ class Visitor extends Model
         'data',
     ];
 
+    /** Get the attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'data' => 'array',
+    ];
+
     /**
      * Get the parent visitable model (user, post, etc.).
      */

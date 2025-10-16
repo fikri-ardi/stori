@@ -13,6 +13,19 @@ class VisitorSeeder extends Seeder
      */
     public function run(): void
     {
-        Visitor::factory()->count(rand(500, 5000))->create();
+        $visitableModels = [
+            \App\Models\Post::class,
+            \App\Models\User::class,
+        ];
+
+        foreach ($visitableModels as $model) {
+            $instances = $model::all();
+            foreach ($instances as $instance) {
+                Visitor::factory()->count(rand(10, 100))->create([
+                    'visitable_type' => $model,
+                    'visitable_id' => $instance->id,
+                ]);
+            }
+        }
     }
 }

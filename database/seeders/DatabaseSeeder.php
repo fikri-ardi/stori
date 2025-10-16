@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         Post::factory()->count(500)->create();
         Comment::factory()->count(200)->create();
         $this->call(ClapSeeder::class);
+        $this->call(VisitorSeeder::class);
     }
 }
