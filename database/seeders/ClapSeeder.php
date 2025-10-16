@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
 use App\Models\User;
-use App\Models\Comment;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -17,8 +15,8 @@ class ClapSeeder extends Seeder
     {
         $users = User::all();
         $clappableModels = [
-            Post::class,
-            Comment::class,
+            \App\Models\Post::class,
+            \App\Models\Comment::class,
         ];
 
         foreach ($users as $user) {

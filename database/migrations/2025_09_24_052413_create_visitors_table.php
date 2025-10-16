@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
             $table->morphs('visitable');
-            $table->string('data');
+            $table->json('data')->nullable();
             $table->timestamps();
         });
     }

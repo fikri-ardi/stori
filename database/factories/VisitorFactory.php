@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,24 @@ class VisitorFactory extends Factory
      */
     public function definition(): array
     {
+        $visitableTypes = [
+            \App\Models\Post::class,
+            \App\Models\User::class,
+        ];
+        $data = [
+            'ip' => $this->faker->ipv4,
+            'user_agent' => $this->faker->userAgent,
+            'referrer' => $this->faker->url,
+            'user_id' => User::inRandomOrder()->first()->id,
+        ];
+
         return [
-            //
+            'visitable_type' => $this->faker->randomElement($visitableTypes),
+            'visitable_id' => function (array $attributes) {
+                $modelClass = $attributes['visitable_type'];
+                return $modelClass::inRandomOrder()->first()->id;
+            },
+            'data' => collect($data)->only(array_rand($data, rand(1, count($data))))->toArray(),
         ];
     }
 }

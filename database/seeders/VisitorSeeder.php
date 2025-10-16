@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Visitor;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class VisitorSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class VisitorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Visitor::factory()->count(rand(500, 5000))->create();
     }
 }

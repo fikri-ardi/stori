@@ -40,6 +40,7 @@ class PostFactory extends Factory
             // Attach random collections to the post
             $collections = Collection::inRandomOrder()->take(rand(1, 5))->pluck('id');
             $post->collections()->attach($collections);
+
             // Attach random tags to the post
             $tags = Tag::inRandomOrder()->take(rand(1, 5))->pluck('id');
             $post->tags()->attach($tags);
