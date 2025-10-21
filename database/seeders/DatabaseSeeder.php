@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory(50)->create();
         $this->call(CollectionSeeder::class);
         Tag::factory()->count(50)->create();
-        Post::factory()->count(500)->create();
+        Post::factory()->count(100)->create();
         Comment::factory()->count(200)->create();
         $this->call(ClapSeeder::class);
         $this->call(VisitorSeeder::class);

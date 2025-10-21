@@ -17,7 +17,9 @@ class ImageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'imageable_id' => null, // To be set when associating with a model
+            'imageable_type' => null, // To be set when associating with a model
+            'url' => $this->faker->imageUrl(),
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -55,9 +56,16 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
-            // Attach random user to others
+            // Attach the newly created user to random users
             $users = User::inRandomOrder()->take(rand(1, 5))->pluck('id');
             $user->followings()->attach($users);
+
+            // Create an avatar for the user
+            Image::factory()->create([
+                'imageable_id' => $user->id,
+                'imageable_type' => User::class,
+                'url' => "https://api.dicebear.com/9.x/initials/svg?seed=" . urlencode($user->name),
+            ]);
         });
     }
 }

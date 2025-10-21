@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
-use App\Models\Collection;
 use App\Models\Tag;
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
             'slug' => $this->faker->unique()->slug(),
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraphs(3, true),
@@ -44,6 +45,12 @@ class PostFactory extends Factory
             // Attach random tags to the post
             $tags = Tag::inRandomOrder()->take(rand(1, 5))->pluck('id');
             $post->tags()->attach($tags);
+
+            for ($i = 0; $i < rand(1, 5); $i++) {
+                $post->images()->create([
+                    'url' => "https://picsum.photos/seed/post-{$post->id}-{$i}/1200/700"
+                ]);
+            }
         });
     }
 }
