@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -61,10 +62,13 @@ class UserFactory extends Factory
             $user->followings()->attach($users);
 
             // Create an avatar for the user
+            $response = Http::get('https://randomuser.me/api/');
+            $data = $response->json()['results'][0];
+
             Image::factory()->create([
                 'imageable_id' => $user->id,
                 'imageable_type' => User::class,
-                'url' => "https://api.dicebear.com/9.x/initials/svg?seed=" . urlencode($user->name),
+                'url' => $data['picture']['large'],
             ]);
         });
     }
