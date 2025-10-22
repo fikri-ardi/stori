@@ -8,7 +8,7 @@
             
             {{-- Title --}}
             <div class="mb-3 mt-2">
-                <h1 class="text-4xl font-semibold">{{ $post->title }}</h1>
+                <h1 class="text-4xl font-semibold">{{ ucfirst($post->title) }}</h1>
             </div>
 
             {{-- Author --}}

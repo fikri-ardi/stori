@@ -1,7 +1,7 @@
 <x-layouts.app title="Posts" header="From the blog">
     <div class="flex flex-wrap justify-between space-y-10">
         @foreach ($posts as $post)
-            <article class="md:max-w-[368px] flex flex-col justify-between h-[29rem]">
+            <article class="md:max-w-[368px] flex flex-col justify-between space-y-6 min-h-[29rem]">
                 {{-- Banner --}}
                 <div class="w-full h-56">
                     <a href="{{ route('posts.show', $post->slug) }}">
@@ -16,7 +16,7 @@
                         <a class="py-2 px-3 rounded-full bg-gray-800 text-gray-300 font-semibold">{{ $post->tags->first()->name }}</a>
                     </div>
                     <a href="{{ route('posts.show', $post->slug) }}">
-                        <h2 class="text-lg font-semibold mb-4">{{ $post->title }}</h2>
+                        <h2 class="text-lg font-semibold mb-4">{{ str($post->title)->lower()->ucfirst() }}</h2>
                         <p class="text-gray-400 text-sm leading-relaxed text-justify">{{ $post->excerpt }}</p>
                     </a>
                 </div>

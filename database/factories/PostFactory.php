@@ -23,9 +23,9 @@ class PostFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'slug' => fake()->unique()->slug(),
-            'title' => fake()->sentence(),
-            'body' => fake()->paragraphs(3, true),
-            'excerpt' => fake()->sentence(),
+            'title' => cleanText(fake()->realTextBetween(10, 70)),
+            'body' => cleanText(fake()->realTextBetween(400, 1000)),
+            'excerpt' => cleanText(fake()->realTextBetween(70, 120)),
             'is_published' => fake()->boolean(80), // 80
         ];
     }
