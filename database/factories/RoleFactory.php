@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Database\Seeders\RoleSeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

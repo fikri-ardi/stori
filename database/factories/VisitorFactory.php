@@ -19,8 +19,8 @@ class VisitorFactory extends Factory
     public function definition(): array
     {
         $visitableTypes = [
-            \App\Models\Post::class,
-            \App\Models\User::class,
+            Post::class,
+            User::class,
         ];
         $data = [
             'ip' => fake()->ipv4,
@@ -33,7 +33,7 @@ class VisitorFactory extends Factory
             'visitable_type' => fake()->randomElement($visitableTypes),
             'visitable_id' => function (array $attributes) {
                 $modelClass = $attributes['visitable_type'];
-                return $modelClass::inRandomOrder()->first()->id;
+                return $modelClass::inRandomOrder()->value('id');
             },
             'data' => collect($data)->only(array_rand($data, rand(1, count($data))))->toArray(),
         ];

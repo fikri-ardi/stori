@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +20,9 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
-            'post_id' => \App\Models\Post::inRandomOrder()->first()->id,
-            'parent_id' => \App\Models\Comment::inRandomOrder()->first()->id ?? null,
+            'user_id' => User::factory(),
+            'post_id' => Post::factory(),
+            'parent_id' => Comment::inRandomOrder()->value('id') ?? null,
             'body' => fake()->realText(80),
         ];
     }

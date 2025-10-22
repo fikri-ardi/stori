@@ -21,7 +21,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => User::factory(),
             'slug' => fake()->unique()->slug(),
             'title' => cleanText(fake()->realTextBetween(10, 70)),
             'body' => cleanText(fake()->realTextBetween(400, 1000)),
