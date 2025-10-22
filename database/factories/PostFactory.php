@@ -22,11 +22,11 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'slug' => $this->faker->unique()->slug(),
-            'title' => $this->faker->sentence(),
-            'body' => $this->faker->paragraphs(3, true),
-            'excerpt' => $this->faker->sentence(),
-            'is_published' => $this->faker->boolean(80), // 80
+            'slug' => fake()->unique()->slug(),
+            'title' => fake()->sentence(),
+            'body' => fake()->paragraphs(3, true),
+            'excerpt' => fake()->sentence(),
+            'is_published' => fake()->boolean(80), // 80
         ];
     }
 

@@ -20,7 +20,7 @@ class CommentFactory extends Factory
             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
             'post_id' => \App\Models\Post::inRandomOrder()->first()->id,
             'parent_id' => \App\Models\Comment::inRandomOrder()->first()->id ?? null,
-            'body' => $this->faker->realText(80),
+            'body' => fake()->realText(80),
         ];
     }
 }

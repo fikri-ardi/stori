@@ -23,14 +23,14 @@ class VisitorFactory extends Factory
             \App\Models\User::class,
         ];
         $data = [
-            'ip' => $this->faker->ipv4,
-            'user_agent' => $this->faker->userAgent,
-            'referrer' => $this->faker->url,
+            'ip' => fake()->ipv4,
+            'user_agent' => fake()->userAgent,
+            'referrer' => fake()->url,
             'user_id' => User::inRandomOrder()->first()->id,
         ];
 
         return [
-            'visitable_type' => $this->faker->randomElement($visitableTypes),
+            'visitable_type' => fake()->randomElement($visitableTypes),
             'visitable_id' => function (array $attributes) {
                 $modelClass = $attributes['visitable_type'];
                 return $modelClass::inRandomOrder()->first()->id;
