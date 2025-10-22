@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(RoleSeeder::class);
-        $users = User::factory(5)->create();
+        $users = User::factory(25)->create();
         $tags = Tag::factory()->count(50)->create();
         $this->callWith(CollectionSeeder::class, compact('users'));
         $posts = Post::factory()->recycle($users)->count(9)->create();

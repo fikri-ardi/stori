@@ -21,8 +21,7 @@ class ClapSeeder extends Seeder
 
         foreach ($users as $user) {
             foreach ($clappableModels as $model) {
-                $instances = $model->random()->take(rand(1, 5))->get();
-                foreach ($instances as $instance) {
+                foreach ($model as $instance) {
                     $user->claps()->create([
                         'clappable_type' => get_class($instance),
                         'clappable_id' => $instance->id,
