@@ -20,6 +20,11 @@ class Post extends Model
         'is_published',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * Get all of the post's visitors.
      */
