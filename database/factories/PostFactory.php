@@ -39,12 +39,10 @@ class PostFactory extends Factory
     {
         return $this->afterCreating(function (Post $post) {
             // Attach random collections to the post
-            $collections = Collection::inRandomOrder()->take(rand(1, 5))->pluck('id');
-            $post->collections()->attach($collections);
+            $post->collections()->attach(Collection::inRandomOrder()->take(rand(1, 3))->pluck('id'));
 
             // Attach random tags to the post
-            $tags = Tag::inRandomOrder()->take(rand(1, 5))->pluck('id');
-            $post->tags()->attach($tags);
+            $post->tags()->attach(Tag::inRandomOrder()->take(rand(1, 5))->pluck('id'));
 
             for ($i = 0; $i < rand(1, 5); $i++) {
                 $post->images()->create([

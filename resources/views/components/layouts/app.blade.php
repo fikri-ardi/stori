@@ -12,7 +12,7 @@
 
 <body class="min-h-full font-inter">
     <x-navbar></x-navbar>
-    <x-header>{{ $header ?? 'Header' }}</x-header>
+    {{-- <x-header>{{ $header ?? '' }}</x-header> --}}
 
     <main class="text-gray-200 px-5">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">

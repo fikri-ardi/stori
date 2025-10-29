@@ -1,26 +1,21 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::view('/', 'home')->name('home');
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::view('/about', 'about')->name('about');
+Route::view('/contact', 'contact')->name('contact');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

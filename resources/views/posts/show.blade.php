@@ -90,7 +90,7 @@
             <div class="flex items-center space-x-2">
             @foreach ($post->tags as $tag)
             <span>
-                <a href="#" class="py-3 px-4 text-sm rounded-full bg-gray-800">{{ $tag->name }}</a>
+                <a href="{{ route('tags.show', $tag) }}" class="py-3 px-4 text-sm rounded-full bg-gray-800">{{ $tag->name }}</a>
             </span>
             @endforeach
             </div>
@@ -173,7 +173,7 @@
                             <div>{{ $post->author->followings->count() }} Following</div>
                         </div>
                         <div>
-                            <p>{{ $post->author->bio }}</p>
+                            <p class="text-sm">{{ $post->author->bio }}</p>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                 Responses ({{ $post->comments->count() }})
             </div>
 
-            <div class="flex flex-col space-y-7">
+            <div class="flex flex-col space-y-7 w-full">
             @foreach ($post->comments as $comment)
                 <div class="flex flex-col space-y-4 border-b border-gray-800 pb-6 w-full">
                     {{-- Comment Author --}}

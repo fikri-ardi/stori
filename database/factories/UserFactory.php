@@ -56,10 +56,11 @@ class UserFactory extends Factory
      */
     public function configure()
     {
-        return $this->afterCreating(function (User $user) {
+        $users = User::pluck('id');
+
+        return $this->afterCreating(function (User $user) use ($users) {
             // Attach the newly created user to random users
-            $users = User::inRandomOrder()->take(rand(1, 5))->pluck('id');
-            $user->followings()->attach($users);
+            $users ?: $user->followings()->attach($users->random(rand(1, 5)));
 
             // Create an avatar for the user
             $response = Http::get('https://randomuser.me/api/');

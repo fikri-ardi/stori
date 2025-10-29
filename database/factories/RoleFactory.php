@@ -17,8 +17,11 @@ class RoleFactory extends Factory
      */
     public function definition(): array
     {
+        $roles = ['founder', 'admin', 'author', 'user'];
+
         return [
-            //
+            'name' => fake()->randomElement($roles),
+            'description' => fake()->sentence(),
         ];
     }
 }

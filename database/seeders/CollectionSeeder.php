@@ -12,15 +12,13 @@ class CollectionSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run($users): void
+    public function run($users)
     {
         $collections = collect(['Self-Dev', 'Tech', 'Web', 'Mobile', 'Books', 'Movies', 'Series', 'Music', 'Podcasts', 'Health', 'Fitness', 'Travel', 'Food', 'Recipes', 'Art', 'Design', 'Photography', 'Science', 'History', 'Education', 'Finance', 'Business', 'Marketing', 'Productivity', 'Lifestyle', 'Gaming']);
 
-        $collections->each(function ($collection) use ($users) {
-            Collection::create([
-                'user_id' => $users->random()->id,
-                'name' => $collection,
-            ]);
-        });
+        return $collections->map(fn($name) => Collection::create([
+            'user_id' => $users->random()->id,
+            'name' => $name,
+        ]));
     }
 }

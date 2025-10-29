@@ -37,7 +37,8 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        $posts = $tag->posts;
+        return view('tags.show', compact('tag', 'posts'));
     }
 
     /**
