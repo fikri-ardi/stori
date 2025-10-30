@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
@@ -17,12 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $users = User::factory(25)->create();
-        $tags = Tag::factory()->count(50)->create();
+        $this->callWith(TagSeeder::class, compact('users'));
         $this->callWith(CollectionSeeder::class, compact('users'));
 
         $posts = Post::factory()
             ->recycle($users)
-            ->count(9)
+            ->count(20)
             ->create();
 
         $comments = Comment::factory()->recycle([$users, $posts])->count(200)->create();

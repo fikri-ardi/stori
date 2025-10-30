@@ -13,7 +13,12 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        return view(
+            'tags.index',
+            [
+                'tags' => Tag::all(),
+            ]
+        );
     }
 
     /**
@@ -37,8 +42,14 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        $posts = $tag->posts;
-        return view('tags.show', compact('tag', 'posts'));
+        return view(
+            'tags.show',
+            [
+                'tags' => Tag::all(),
+                'tag' => $tag,
+                'posts' => $tag->posts,
+            ]
+        );
     }
 
     /**

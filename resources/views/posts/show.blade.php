@@ -90,7 +90,7 @@
             <div class="flex items-center space-x-2">
             @foreach ($post->tags as $tag)
             <span>
-                <a href="{{ route('tags.show', $tag) }}" class="py-3 px-4 text-sm rounded-full bg-gray-800">{{ $tag->name }}</a>
+                <a href="{{ route('tags.show', $tag->slug) }}" class="py-3 px-4 text-sm rounded-full bg-gray-800">{{ $tag->name }}</a>
             </span>
             @endforeach
             </div>

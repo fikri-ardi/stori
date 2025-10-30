@@ -12,6 +12,7 @@ Route::view('/', 'home')->name('home');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
+Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
 Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 
 Route::view('/about', 'about')->name('about');

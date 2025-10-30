@@ -33,6 +33,20 @@
     --color-accent-foreground: var(--color-white);
 }
 
+@layer utilities {
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        /* IE dan Edge lawas */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Opera */
+    }
+}
+
 @layer theme {
     .dark {
         --color-accent: var(--color-white);

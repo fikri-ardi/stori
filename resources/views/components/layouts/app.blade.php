@@ -11,7 +11,7 @@
 </head>
 
 <body class="min-h-full font-inter">
-    <x-navbar></x-navbar>
+    <x-navbar />
     {{-- <x-header>{{ $header ?? '' }}</x-header> --}}
 
     <main class="text-gray-200 px-5">
@@ -19,6 +19,8 @@
             {{ $slot }}
         </div>
     </main>
+
+    <x-footer />
 </body>
 
 </html>
