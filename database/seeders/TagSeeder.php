@@ -13,7 +13,7 @@ class TagSeeder extends Seeder
      */
     public function run($users): void
     {
-        $tags = collect(['Self Development', 'Tech', 'Web', 'Mobile', 'Books', 'Movies', 'Series', 'Music', 'Podcasts', 'Health', 'Fitness', 'Travel', 'Food', 'Recipes', 'Art', 'Design', 'Photography', 'Science', 'History', 'Education', 'Finance', 'Business', 'Marketing', 'Productivity', 'Lifestyle', 'Gaming']);
+        $tags = collect(json_decode(file_get_contents(database_path('data/tags.json')), true));
 
         $tags->map(fn($name) => Tag::create([
             'name' => $name,

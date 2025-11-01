@@ -13,7 +13,7 @@
         <span>Explore topics</span>
     </a>
     
-    @foreach ($tags as $item)
+    @foreach ($tags->take(15) as $item)
     <a href="{{ route('tags.show', $item->slug) }}"
         class="py-2.5 px-4 text-sm rounded-full bg-gray-800{{ request()->url() == route('tags.show', $item->slug) ? ' border border-gray-200' : '' }}">
         {{ ucwords($item->name) }}

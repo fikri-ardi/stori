@@ -21,10 +21,10 @@ class DatabaseSeeder extends Seeder
 
         $posts = Post::factory()
             ->recycle($users)
-            ->count(20)
+            ->count(200)
             ->create();
 
-        $comments = Comment::factory()->recycle([$users, $posts])->count(200)->create();
+        $comments = Comment::factory()->recycle([$users, $posts])->count(400)->create();
         $this->callWith(ClapSeeder::class, compact('users', 'posts', 'comments'));
         $this->callWith(VisitorSeeder::class, compact('posts', 'users'));
     }

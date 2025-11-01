@@ -25,7 +25,7 @@ class ClapSeeder extends Seeder
                     $user->claps()->create([
                         'clappable_type' => get_class($instance),
                         'clappable_id' => $instance->id,
-                        'count' => rand(1, 50),
+                        'count' => get_class($instance) == 'App\Models\Comment' ? 1 : rand(1, 50),
                     ]);
                 }
             }
