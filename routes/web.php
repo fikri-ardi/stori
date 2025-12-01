@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\TagController;
-use App\Livewire\Settings\Appearance;
-use App\Livewire\Settings\Password;
+use App\Http\Controllers\CollectionController;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Settings\Password;
+use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 Route::view('/', 'home')->name('home');
 
@@ -13,8 +15,12 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
-Route::get('/tags/search', [TagController::class, 'search'])->name('tags.search');
+Route::get('/search', [TagController::class, 'search'])->name('tags.search');
 Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
+
+Route::get('/collections/{collection}', [CollectionController::class, 'show'])->name('collections.show');
+
+Route::get('/@{user}', [UserController::class, 'show'])->name('users.show');
 
 Route::view('/about', 'about')->name('about');
 Route::view('/contact', 'contact')->name('contact');

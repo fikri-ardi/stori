@@ -1,0 +1,99 @@
+<x-layouts.app title="About" header="About">
+    <div class="min-h-screen flex justify-center -mt-5" x-data="{ tab: 'posts' }">
+        <div class="w-full max-w-5xl">
+            <div class="flex items-center px-24">
+                {{-- User Photo Profile --}}
+                <div class="p-14 mr-8 w-4/12">
+                    <img src="{{ $user->image->url }}" alt="Avatar" class="w-40 h-40 rounded-full object-cover" />
+                </div>
+
+                {{-- User Info --}}
+                <div class="w-7/12">
+                    <!-- Header like Medium -->
+                    <div class="flex items-center mb-5">
+                        <h2 class="text-2xl mr-10 font-semibold">{{ $user->username }}</h2>
+                        <div class="flex items-center space-x-4">
+                            <button class="py-2 px-3 text-sm cursor-pointer rounded-full border border-gray-400 text-gray-300">Follow</button>
+                            <button class="fill-gray-100 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+                                    <path
+                                        d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm56-12a12,12,0,1,0,12,12A12,12,0,0,0,196,116ZM60,116a12,12,0,1,0,12,12A12,12,0,0,0,60,116Z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Profile Section like Instagram -->
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <!-- Stats like TikTok/IG -->
+                            <div class="flex text-sm text-gray-500 transition-all">
+                                <div class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
+                                    <span class="font-semibold text-gray-200 text-[16px]">{{ $user->posts->count() }}</span> Posts</div>
+                                <div class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
+                                    <span class="font-semibold text-gray-200 text-[16px]">{{ $user->followers->count() }}</span> Followers</div>
+                                <div class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
+                                    <span class="font-semibold text-gray-200 text-[16px]">{{ $user->followings->count() }}</span> Following</div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <!-- Name -->
+                    <div class="mt-4 font-semibold">
+                        <h1>{{ $user->name }}</h1>
+                    </div>
+
+                    <!-- Bio -->
+                    <div class="mt-5 text-sm leading-relaxed">
+                        <p>{{ $user->bio }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabs for Posts / Collections -->
+            <div class="flex gap-6 mb-6 text-sm font-medium border-b border-gray-800 mt-8 justify-center">
+                <div class="w-1/3 text-center">
+                    <button class="tab-btn pb-3 cursor-pointer" :class="tab === 'posts' ? 'text-white border-b-2 border-white' : 'text-gray-500'"
+                    @click="tab = 'posts'">
+                    
+                    Posts
+                </button>
+                </div>
+                <div class="w-1/3 text-center">
+                    <button class="tab-btn pb-3 cursor-pointer" :class="tab === 'collections' ? 'text-white border-b-2 border-white' : 'text-gray-500'"
+                    @click="tab = 'collections'">Collections</button>
+                </div>
+            </div>
+    
+            <!-- SLIDER WRAPPER -->
+            <div class="overflow-hidden relative w-full">
+                <div class="flex transition-transform duration-300 ease-in-out w-[200%]"
+                    :style="tab === 'posts' ? 'transform: translateX(0%)' : 'transform: translateX(-50%)'">
+    
+                    <!-- POSTS GRID -->
+                    <div class="w-full grid grid-cols-3 gap-4 pr-4">
+                        @foreach ($user->posts as $post)
+                        <x-post :$post />
+                        @endforeach
+                    </div>
+    
+                    <!-- COLLECTIONS GRID -->
+                    <div class="w-full grid grid-cols-2 gap-4 pl-4">
+                        <div class="bg-gray-200 rounded-xl h-32 p-4 flex items-end text-sm font-semibold">My Sky Shots</div>
+                        <div class="bg-gray-200 rounded-xl h-32 p-4 flex items-end text-sm font-semibold">Coding Notes</div>
+                        <div class="bg-gray-200 rounded-xl h-32 p-4 flex items-end text-sm font-semibold">Football Moments</div>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <style>
+                /* Optional smoother feel */
+                #slider-wrapper div {
+                    transition: transform 0.3s ease-in-out;
+                }
+            </style>
+        </div>
+    </div>
+</x-layouts.app>

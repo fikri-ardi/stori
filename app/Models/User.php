@@ -66,6 +66,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the route key name for Laravel Route Model Binding
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    /**
      * Get the role that owns the user.
      */
     public function role(): BelongsTo

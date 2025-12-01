@@ -10,12 +10,12 @@
             {{-- Author --}}
             <div class="flex space-x-5 items-center -mt-4">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full overflow-hidden">
+                    <a href="{{ route('users.show', $post->author) }}" class="w-10 h-10 rounded-full overflow-hidden hover:opacity-50 transition-all">
                         <img src="{{ $post->author->image->url }}" alt="Foto penulis">
-                    </div>
-                    <div class="flex text-sm text-gray-300">
+                    </a>
+                    <a href="{{ route('users.show', $post->author) }}" class="flex text-sm text-gray-300 hover:underline transition-all">
                         <div class="text-white">{{ $post->author->name }}</div>
-                    </div>
+                    </a>
                 </div>
                 
                 {{-- Follow --}}
@@ -152,15 +152,17 @@
             <div class="flex justify-between">
                 <div class="flex space-x-5">
                 {{--Avatar --}}
-                    <div class="flex space-x-3">
+                    <a href="{{ route('users.show', $post->author) }}" class="flex space-x-3 hover:opacity-50 transition-all">
                         <div class="w-12 h-12 rounded-full overflow-hidden">
                             <img src="{{ $post->author->image->url }}" alt="Foto penulis">
                         </div>
-                    </div>
+                    </a>
 
                     {{-- Author Profile --}}
                     <div class="flex flex-col justify-baseline space-y-3">
-                        <h2 class="text-xl">Written by {{ $post->author->name }}</h2>
+                        <a href="{{ route('users.show', $post->author) }}">
+                            <h2 class="text-xl">Written by {{ $post->author->name }}</h2>
+                        </a>
 
                         {{-- Followers --}}
                         <div class="flex items-center text-sm space-x-1 text-gray-400">
@@ -195,12 +197,12 @@
                 <div class="flex flex-col space-y-4 border-b border-gray-800 pb-6 w-full">
                     {{-- Comment Author --}}
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 text-sm rounded-full overflow-hidden flex items-center justify-center">
-                            <img src="{{ $comment->author->image->url }}" alt="Author Photo" class="w-full h-full object-cover">
-                        </div>
+                        <a href="{{ route('users.show', $comment->author) }}" class="w-10 h-10 text-sm rounded-full overflow-hidden flex items-center justify-center">
+                            <img src="{{ $comment->author->image->url }}" alt="Author Photo" class="w-full h-full object-cover hover:opacity-50 transition-all">
+                        </a>
                         <div class="text-sm text-gray-300 flex flex-col">
-                            <div class="text-white">{{ $comment->author->name }}</div>
-                            <div>{{ $post->created_at->format('M d') }}</div>
+                            <a href="{{ route('users.show', $comment->author) }}" class="text-white hover:underline transition-all">{{ $comment->author->name }}</a>
+                            <div>{{ $comment->created_at->format('M d') }}</div>
                         </div>
                     </div>
 

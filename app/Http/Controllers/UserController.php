@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Collection;
-use App\Http\Requests\StoreCollectionRequest;
-use App\Http\Requests\UpdateCollectionRequest;
+use Illuminate\Http\Request;
 
-class CollectionController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +26,7 @@ class CollectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCollectionRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,15 +34,15 @@ class CollectionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Collection $collection)
+    public function show(User $user)
     {
-        return view('collections.show', compact('collection'));
+        return view('users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Collection $collection)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +50,7 @@ class CollectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCollectionRequest $request, Collection $collection)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +58,7 @@ class CollectionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Collection $collection)
+    public function destroy(string $id)
     {
         //
     }
