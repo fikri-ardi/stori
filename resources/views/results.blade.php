@@ -3,7 +3,7 @@
         <div class="mb-8 my-10">
             <h1 class="text-4xl font-semibold mb-6 text-gray-400 flex items-center space-x-2">
                 <div>Results for</div>
-                <div class="text-gray-200">{{ request()->search }}</div>
+                <div class="text-gray-200">{{ request()->keywords }}</div>
             </h1>
             <div class="flex items-center border-b text-gray-400 border-gray-700 text-sm space-x-10">
                 <a href="#" class="py-4 hover:text-gray-200">Posts</a>
