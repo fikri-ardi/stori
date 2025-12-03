@@ -9,14 +9,7 @@
 
             {{-- Author --}}
             <div class="flex space-x-5 items-center -mt-4">
-                <div class="flex items-center space-x-3">
-                    <a href="{{ route('users.show', $post->author) }}" class="w-10 h-10 rounded-full overflow-hidden hover:opacity-50 transition-all">
-                        <img src="{{ $post->author->image->url }}" alt="Foto penulis">
-                    </a>
-                    <a href="{{ route('users.show', $post->author) }}" class="flex text-sm text-gray-300 hover:underline transition-all">
-                        <div class="text-white">{{ $post->author->name }}</div>
-                    </a>
-                </div>
+                <x-author :author="$post->author" />
                 
                 {{-- Follow --}}
                 <div class="flex items-center space-x-4 text-sm text-gray-300">
@@ -160,7 +153,7 @@
 
                     {{-- Author Profile --}}
                     <div class="flex flex-col justify-baseline space-y-3">
-                        <a href="{{ route('users.show', $post->author) }}">
+                        <a href="{{ route('users.show', $post->author) }}" class="hover:underline transition-all">
                             <h2 class="text-xl">Written by {{ $post->author->name }}</h2>
                         </a>
 

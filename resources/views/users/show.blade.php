@@ -1,5 +1,5 @@
 <x-layouts.app title="{{ $user->name }} | Social Media" header="About">
-    <div class="min-h-screen flex justify-center -mt-5" x-data="{ tab: 'collections' }">
+    <div class="min-h-screen flex justify-center -mt-5" x-data="{ tab: 'posts' }">
         <div class="w-full max-w-5xl">
             <div class="flex items-center px-24">
                 {{-- User Photo Profile --}}
@@ -30,13 +30,13 @@
                             <!-- Stats like TikTok/IG -->
                             <div class="flex text-sm text-gray-500 transition-all">
                                 <a href="#posts" class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
-                                    <span class="font-semibold text-gray-200 text-[16px]">{{ $user->posts->count() }}</span> Posts
+                                    <span class="font-semibold text-gray-200 text-[16px] mr-1">{{ $user->posts->count() }}</span> Posts
                                 </a>
                                 <div class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
-                                    <span class="font-semibold text-gray-200 text-[16px]">{{ $user->followers->count() }}</span> Followers
+                                    <span class="font-semibold text-gray-200 text-[16px] mr-1">{{ $user->followers->count() }}</span> Followers
                                 </div>
                                 <div class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
-                                    <span class="font-semibold text-gray-200 text-[16px]">{{ $user->followings->count() }}</span> Following
+                                    <span class="font-semibold text-gray-200 text-[16px] mr-1">{{ $user->followings->count() }}</span> Following
                                 </div>
                             </div>
                         </div>
@@ -76,20 +76,20 @@
                     :style="tab === 'posts' ? 'transform: translateX(0%)' : 'transform: translateX(-50%)'">
 
                     <!-- POSTS GRID -->
-                    <div class="w-full grid grid-cols-3 gap-4 pr-4" id="posts">
+                    <div class="w-full grid grid-cols-3 gap-4 justify-center" id="posts">
                         @foreach ($user->posts as $post)
                         <x-post :$post />
                         @endforeach
                     </div>
 
                     <!-- COLLECTIONS GRID -->
-                    <div class="w-full grid gap-20 justify-center px-20 @if ($user->collections->count() != 0) grid-cols-3 @endif" id="collections">
+                    <div class="w-full grid gap-20 justify-center @if ($user->collections->count() != 0) grid-cols-3 @endif" id="collections">
                         @forelse ($user->collections as $collection)
                         <a href="{{ route('collections.show', $collection) }}" class="relative rounded-4xl h-80 w-56 flex flex-col items-center text-sm">
-                            <div class="relative w-full h-full z-10">
+                            <div class="relative translate-x-1/6 w-full h-full z-10">
                                 <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 -translate-x-1/6 opacity-80" src="{{ $collection->posts->first()->images->first()->url }}">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl z-10 shadow-2xl" src="{{ $collection->posts->first()->images->first()->url }}">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 translate-x-1/6 opacity-80" src="{{ $collection->posts->first()->images->first()->url }}">
+                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl z-10 shadow-2xl" src="{{ $collection->posts->random()->images->first()->url }}">
+                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 translate-x-1/6 opacity-80" src="{{ $collection->posts->last()->images->first()->url }}">
                             </div>
                             <span class="mt-5 text-lg text-white">{{ $collection->name }}</span>
                             <span class="text-gray-400">{{ $user->name }}</span>

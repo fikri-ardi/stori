@@ -63,12 +63,5 @@
     </div>
 
     {{-- Author --}}
-    <a href="{{ route('users.show', $post->author) }}" class="flex items-center space-x-3">
-        <div class="w-10 h-10 text-sm rounded-full overflow-hidden flex items-center justify-center hover:opacity-55 transition">
-            <img src="{{ $post->author->image->url }}" alt="Author Photo" class="w-full h-full object-cover">
-        </div>
-        <div class="text-sm text-gray-300 flex flex-col space-y-1 hover:underline transition">
-            <div class="font-semibold text-white">{{ $post->author->name }}</div>
-        </div>
-    </a>
+    <x-author :author="$post->author" />
 </article>
