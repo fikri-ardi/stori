@@ -11,6 +11,7 @@
                         <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                         <x-nav-link href="{{ route('home') }}">Home</x-nav-link>
                         <x-nav-link href="{{ route('posts.index') }}">Posts</x-nav-link>
+                        <x-nav-link href="{{ route('tags.index') }}">Explore</x-nav-link>
                         <x-nav-link href="{{ route('about') }}">About</x-nav-link>
                         <x-nav-link href="{{ route('contact') }}">Contact</x-nav-link>
                     </div>
