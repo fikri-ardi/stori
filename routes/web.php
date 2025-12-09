@@ -8,11 +8,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Livewire\Home;
+use App\Livewire\Posts\AllPosts;
+use App\Livewire\Posts\ShowPost;
 
-Route::view('/', 'home')->name('home');
+Route::get('/', Home::class)->name('home');
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts', AllPosts::class)->name('posts.index');
+
+// Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts/{post}', ShowPost::class)->name('posts.show');
 
 Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
 Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');

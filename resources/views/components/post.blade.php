@@ -3,7 +3,7 @@
 <article class="md:max-w-[368px] flex flex-col justify-between">
     {{-- Banner --}}
     <div class="w-full h-56 mb-7">
-        <a href="{{ route('posts.show', $post->slug) }}">
+        <a wire:navigate href="{{ route('posts.show', $post->slug) }}">
             <img src="{{ $post->images->first()->url ?? '' }}" alt="Gambar Post" class="w-full h-full object-cover rounded-2xl">
         </a>
     </div>
@@ -44,7 +44,7 @@
         </div>
 
         {{-- Body --}}
-        <a href="{{ route('posts.show', $post->slug) }}">
+        <a wire:navigate href="{{ route('posts.show', $post->slug) }}">
             <h2 class="text-xl font-semibold">{{ str($post->title)->lower()->ucfirst() }}</h2>
             <p class="text-gray-400 leading-relaxed mt-5 mb-7">{{ $post->excerpt }}</p>
         </a>
