@@ -11,18 +11,21 @@ use App\Http\Controllers\UserController;
 use App\Livewire\Home;
 use App\Livewire\Posts\AllPosts;
 use App\Livewire\Posts\ShowPost;
+use App\Livewire\Search;
+use App\Livewire\Tags\AllTags;
 
 Route::get('/', Home::class)->name('home');
 
 Route::get('/posts', AllPosts::class)->name('posts.index');
 
-// Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/posts/{post}', ShowPost::class)->name('posts.show');
 
-Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+Route::get('/tags', AllTags::class)->name('tags.index');
+
 Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 
-Route::get('/search', [TagController::class, 'search'])->name('tags.search');
+// Route::get('/search', [TagController::class, 'search'])->name('tags.search');
+Route::get('/search', Search::class)->name('search');
 
 Route::get('/collections/{collection}', [CollectionController::class, 'show'])->name('collections.show');
 

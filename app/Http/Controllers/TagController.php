@@ -55,12 +55,7 @@ class TagController extends Controller
     public function search()
     {
         $tags = Tag::where('name', 'like', '%' . request('keywords') . '%')->get();
-        return view(
-            'results',
-            [
-                'tags' => $tags,
-            ]
-        );
+        return view('results', compact('tags'));
     }
 
     /**
