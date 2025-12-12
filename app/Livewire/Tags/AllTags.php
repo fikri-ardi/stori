@@ -8,7 +8,6 @@ use Livewire\Attributes\Url;
 
 class AllTags extends Component
 {
-    #[Url]
     public $keywords = '';
 
     public function search()

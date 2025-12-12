@@ -8,11 +8,15 @@ use Livewire\Attributes\Url;
 
 class Search extends Component
 {
-    #[Url]
+    #[Url(except: '')]
     public $keywords = '';
 
     public function render()
     {
+        if ($this->keywords == '') {
+            $this->redirectRoute('tags.index', navigate: true);
+        };
+
         $tags = Tag::where('name', 'like', '%' . $this->keywords . '%')->get();
 
         return view('livewire.search', compact('tags'));

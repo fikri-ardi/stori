@@ -26,7 +26,7 @@
     <div class="border-t border-gray-800 py-16 flex items-center justify-between flex-wrap">
         {{-- Header --}}
         @foreach ($tags as $tag)
-        <a href="{{ route('tags.show', $tag) }}" class="w-1/3 py-4 px-10 hover:underline">
+        <a wire:navigate href="{{ route('tags.show', $tag) }}" class="w-1/3 py-4 px-10 hover:underline">
             {{ $tag->name }}
         </a>
         @endforeach

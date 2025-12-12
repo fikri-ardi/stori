@@ -24,7 +24,6 @@ Route::get('/tags', AllTags::class)->name('tags.index');
 
 Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 
-// Route::get('/search', [TagController::class, 'search'])->name('tags.search');
 Route::get('/search', Search::class)->name('search');
 
 Route::get('/collections/{collection}', [CollectionController::class, 'show'])->name('collections.show');
