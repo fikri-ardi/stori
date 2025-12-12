@@ -18,6 +18,7 @@
                 </div>
             </div>
 
+            @auth
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6">
                     <button type="button"
@@ -38,8 +39,14 @@
                             class="cursor-pointer relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">Open user menu</span>
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt="" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+                            @if (auth()->user()->image)
+                            <img src="{{ auth()->user()->image->url }}"
+                                alt="" class="relative size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+                            @else
+                            <div class="relative z-50 text-gray-900 bg-gray-200 size-8 flex rounded-full font-semibold uppercase">
+                                <span class="m-auto">{{ auth()->user()->initials() }}</span>
+                            </div>
+                            @endif
                         </button>
 
                         <el-menu anchor="bottom end" popover
@@ -57,6 +64,9 @@
                     </el-dropdown>
                 </div>
             </div>
+            @else
+            <a wire:navigate href="{{ route('login') }}" class="bg-gray-200 text-gray-800 rounded-full px-4 py-2 text-sm font-semibold">Login</a>
+            @endauth
 
             <div class="-mr-2 flex md:hidden">
                 <!-- Mobile menu button -->
