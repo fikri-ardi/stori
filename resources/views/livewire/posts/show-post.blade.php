@@ -7,7 +7,7 @@
         </div>
 
         {{-- Author --}}
-        <div class="flex space-x-5 items-center -mt-4">
+        <div class="flex space-x-5 items-center -mt-4 mb-2">
             <x-author :author="$post->author" />
 
             {{-- Follow --}}
@@ -18,11 +18,25 @@
         </div>
 
         {{-- Action Button --}}
-        <div class="flex items-center justify-between py-4 border-t border-b border-gray-800 text-sm text-gray-400">
+        <div class="flex items-center justify-between py-4 border-t border-b border-gray-800 text-sm text-gray-500">
             <div class="flex items-center space-x-7">
                 {{-- Claps --}}
-                <button class="flex items-center space-x-2 cursor-pointer">
-                    <i class="ph-light ph-hands-clapping text-2xl"></i>
+                <button x-data="{userClaps: $wire.entangle('userClaps')}" 
+                x-on:claps.window="
+                $refs.popup.classList.remove('animate-fadein');
+                void $refs.popup.offsetWidth;
+                $refs.popup.classList.add('animate-fadein');
+                "
+                class="relative flex items-center space-x-2 cursor-pointer">
+
+                    {{-- User's Claps Popups --}}
+                    <div wire:ignore x-ref="popup"
+                        class="absolute flex bottom-full bg-white size-8 rounded-full font-semibold text-black opacity-0">
+                        <span x-text="'+'+userClaps" class="m-auto"></span>
+                    </div>
+
+                    <i wire:click="clap" class="{{ $post->claps()->where('user_id', auth()->id())->exists() ? 'ph-fill' : 'ph-light' }} ph-hands-clapping text-2xl hover:text-white transition-all active:scale-110"
+                    ></i>
                     <span>{{ number_format($post->claps->sum('count')) }}</span>
                 </button>
                 {{-- Comments --}}
@@ -68,7 +82,7 @@
         </div>
 
         {{-- Action Button --}}
-        <div class="flex items-center justify-between py-4 text-sm text-gray-400 my-5">
+        <div class="flex items-center justify-between py-4 text-sm text-gray-500 my-5">
             <div class="flex items-center space-x-7">
                 {{-- Claps --}}
                 <button class="flex items-center space-x-2 cursor-pointer">

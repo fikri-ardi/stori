@@ -1,4 +1,4 @@
-<nav class="bg-gray-800/50">
+<nav x-data class="bg-gray-800/50">
     {{-- Desktop Nav --}}
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
@@ -43,7 +43,7 @@
                             <img src="{{ auth()->user()->image->url }}"
                                 alt="" class="relative size-8 rounded-full outline -outline-offset-1 outline-white/10" />
                             @else
-                            <div class="relative z-50 text-gray-900 bg-gray-200 size-8 flex rounded-full font-semibold uppercase">
+                            <div class="relative z-50 text-gray-900 bg-white size-8 flex rounded-full font-semibold uppercase">
                                 <span class="m-auto">{{ auth()->user()->initials() }}</span>
                             </div>
                             @endif
