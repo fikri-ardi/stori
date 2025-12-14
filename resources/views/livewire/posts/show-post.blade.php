@@ -22,7 +22,7 @@
             <div class="flex items-center space-x-7">
                 {{-- Claps --}}
                 <button x-data="{userClaps: $wire.entangle('userClaps')}" 
-                x-on:claps.window="
+                x-on:post-clapped.window="
                 $refs.popup.classList.remove('animate-fadein');
                 void $refs.popup.offsetWidth;
                 $refs.popup.classList.add('animate-fadein');
@@ -35,6 +35,7 @@
                         <span x-text="'+'+userClaps" class="m-auto"></span>
                     </div>
 
+                    {{-- Clap Button --}}
                     <i wire:click="clap" class="{{ $post->claps()->where('user_id', auth()->id())->exists() ? 'ph-fill' : 'ph-light' }} ph-hands-clapping text-2xl hover:text-white transition-all active:scale-110"
                     ></i>
                     <span>{{ number_format($post->claps->sum('count')) }}</span>

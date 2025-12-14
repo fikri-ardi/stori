@@ -19,7 +19,7 @@ class ShowPost extends Component
             ->sum('count');
     }
 
-    #[On('claps')]
+    #[On('post-clapped')]
     public function refreshUserClaps()
     {
         $this->userClaps = $this->post
@@ -41,9 +41,8 @@ class ShowPost extends Component
                     ]);
                 }
             }
+            $this->dispatch('post-clapped');
         }
-
-        $this->dispatch('claps');
     }
 
     public function render()
