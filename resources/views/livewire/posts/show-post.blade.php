@@ -155,45 +155,14 @@
 
     {{-- Comment Section --}}
     <div class="flex flex-col items-start space-y-20 py-20 w-7/12">
-        <div class="text-2xl font-semibold">
+        <div x-data x-on:comment-created.window="$wire.$refresh()" class="text-2xl font-semibold mb-8">
             Responses ({{ $post->comments->count() }})
         </div>
 
-        <div class="flex flex-col space-y-7 w-full" id="comments">
-            @foreach ($post->comments as $comment)
-            <div wire:key="{{ $comment->id }}" class="flex flex-col space-y-4 border-b border-gray-800 pb-6 w-full">
-                {{-- Comment Author --}}
-                <div class="flex items-center space-x-3">
-                    <a wire:navigate href="{{ route('users.show', $comment->author) }}"
-                        class="w-10 h-10 text-sm rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{ $comment->author->image->url }}" alt="Author Photo"
-                            class="w-full h-full object-cover hover:opacity-50 transition-all">
-                    </a>
-                    <div class="text-sm text-gray-300 flex flex-col">
-                        <a wire:navigate href="{{ route('users.show', $comment->author) }}" class="text-white hover:underline transition-all">{{
-                            $comment->author->name }}</a>
-                        <div>{{ $comment->created_at->format('M d') }}</div>
-                    </div>
-                </div>
-
-                {{-- Comment Body --}}
-                <div>
-                    <p class="text-sm leading-8">{{ $comment->body }}</p>
-                </div>
-
-                {{-- Action button --}}
-                <div class="flex items-center text-sm space-x-4 text-gray-400">
-                    {{-- Claps --}}
-                    <div class="flex items-center space-x-2">
-                        <i class="ph-light ph-hands-clapping text-xl"></i>
-                        <span>{{ number_format($comment->claps->sum('count')) }}</span>
-                    </div>
-
-                    {{-- Reply --}}
-                    <a href="#" class="underline text-gray-200">Reply</a>
-                </div>
-            </div>
-            @endforeach
-        </div>
+        {{-- Comment Form --}}
+        <livewire:comments.create-comment :$post />
+        
+        {{-- Post Comments --}}
+        <livewire:comments.all-comments :$post />
     </div>
 </div>

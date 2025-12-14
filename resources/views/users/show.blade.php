@@ -4,7 +4,13 @@
             <div class="flex items-center px-24">
                 {{-- User Photo Profile --}}
                 <div class="p-14 mr-8 w-4/12">
-                    <img src="{{ $user->image->url }}" alt="Avatar" class="w-40 h-40 rounded-full object-cover" />
+                    @if ($user->image)
+                    <img src="{{ $user->image->url }}" alt="Avatar" class="size-40 rounded-full object-cover" />
+                    @else
+                    <div class="relative z-50 text-gray-900 bg-white size-40 flex rounded-full font-semibold uppercase text-5xl">
+                        <span class="m-auto">{{ auth()->user()->initials() }}</span>
+                    </div>
+                    @endif
                 </div>
 
                 {{-- User Info --}}
