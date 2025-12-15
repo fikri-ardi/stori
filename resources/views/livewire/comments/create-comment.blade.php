@@ -1,8 +1,7 @@
 <div class="w-full">
     {{-- Comment Author --}}
     <div class="flex items-center space-x-3">
-        <a wire:navigate href="{{ route('users.show', auth()->user()) }}"
-            class="w-10 h-10 text-sm rounded-full overflow-hidden flex items-center justify-center">
+        <div class="w-10 h-10 text-sm rounded-full overflow-hidden flex items-center justify-center">
             @if (auth()->user()->image)
             <img src="{{ auth()->user()->image->url }}" alt="Author Photo" class="w-full h-full object-cover hover:opacity-50 transition-all">
             @else
@@ -10,11 +9,10 @@
                 <span class="m-auto">{{ auth()->user()->initials() }}</span>
             </div>
             @endif
-        </a>
+        </div>
 
         <div class="text-sm text-gray-300 flex flex-col">
-            <a wire:navigate href="{{ route('users.show', auth()->user()) }}" class="text-white hover:underline transition-all">{{
-                auth()->user()->name }}</a>
+            <a class="text-white">{{ auth()->user()->name }}</a>
         </div>
     </div>
 

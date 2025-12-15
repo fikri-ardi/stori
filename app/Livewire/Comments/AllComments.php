@@ -17,7 +17,7 @@ class AllComments extends Component
         $this->comments = $this->post->comments->sortDesc();
     }
 
-    #[On('comment-created')]
+    #[On(['comment-created', 'comment-deleted'])]
     public function refreshComments()
     {
         $this->comments = $this->post->comments->sortDesc();
@@ -26,7 +26,7 @@ class AllComments extends Component
     public function delete(Comment $comment)
     {
         $comment->delete();
-        $this->refreshComments();
+        $this->dispatch('comment-deleted');
     }
 
     public function render()

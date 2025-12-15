@@ -83,13 +83,15 @@
     </article>
 
     {{-- Comment Section --}}
-    <div class="flex flex-col items-start space-y-20 py-20 w-7/12">
-        <div x-data x-on:comment-created.window="$wire.$refresh()" class="text-2xl font-semibold mb-8">
+    <div class="flex flex-col items-start space-y-20 py-20 w-7/12" id="comments">
+        <div x-data x-on:comment-created.window="$wire.$refresh()" x-on:comment-deleted.window="$wire.$refresh()" class="text-2xl font-semibold mb-8">
             Responses ({{ $post->comments->count() }})
         </div>
 
         {{-- Comment Form --}}
+        @auth
         <livewire:comments.create-comment :$post />
+        @endauth
         
         {{-- Post Comments --}}
         <livewire:comments.all-comments :$post />

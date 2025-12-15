@@ -23,7 +23,7 @@ class CreateComment extends Component
             'parent_id' => $this->parentId,
             'body' => $this->body,
         ]);
-
+        $this->body = '';
         $this->dispatch('comment-created');
     }
 

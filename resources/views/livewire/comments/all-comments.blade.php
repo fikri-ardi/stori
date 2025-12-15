@@ -1,4 +1,4 @@
-<div class="flex flex-col space-y-7 w-full" id="comments">
+<div class="flex flex-col space-y-7 w-full mt-8">
     @foreach ($comments as $comment)
     <div wire:key="{{ $comment->id }}" class="flex flex-col space-y-4 border-b border-gray-800 pb-6 w-full">
         {{-- Comment Author --}}
@@ -23,13 +23,16 @@
             </div>
 
             {{-- Comments three dots button --}}
-            <div x-data="{options: false, deleteModal: false}" x-on:click.outside="options = false" class="relative flex flex-col items-center cursor-pointer">
+            <div x-data="{options: false, deleteModal: false}" 
+                x-on:click.outside="options = false"
+                wire:ignore.self
+                class="relative flex flex-col items-center cursor-pointer">
                 <i x-on:click="options = 'comment{{ $comment->id }}'" class="ph-light ph-dots-three text-2xl"></i>
 
                 {{-- Comments options --}}
                 <div x-show="options == 'comment{{ $comment->id }}'" x-transition class="flex flex-col absolute top-5 bg-gray-200 text-gray-800 text-xs whitespace-nowrap rounded-2xl">
                     <button class="px-4 py-3 cursor-pointer">Edit response</button>
-                    <button  
+                    <button   
                     x-on:click="deleteModal = true"
                     class="px-4 py-3 cursor-pointer">Delete response</button>
                 </div>
@@ -42,8 +45,8 @@
                             Deleted responses are gone forever.<br>
                             Are you sure
                         </p>
-                        <div class="flex items-center mt-5 text-sm space-x-1">
-                            <button x-on:click="deleteModal = false" class="px-3 py-2 bg-white rounded-full text-gray-800 cursor-pointer">Cancel</button>
+                        <div x-on:click="deleteModal = false, options = false" class="flex items-center mt-5 text-sm space-x-1 ">
+                            <button class="px-3 py-2 bg-white rounded-full text-gray-800 cursor-pointer">Cancel</button>
                             <button wire:click="delete({{ $comment->id }})" class="px-3 py-2 bg-red-400 rounded-full text-white cursor-pointer">Delete Response</button>
                         </div>
                     </div>
@@ -57,12 +60,9 @@
         </div>
 
         {{-- Action button --}}
-        <div class="flex items-center text-sm space-x-4 text-gray-400">
+        <div wire:key="{{ $comment->id }}" class="flex items-center text-sm space-x-4 text-gray-400">
             {{-- Claps --}}
-            <div class="flex items-center space-x-2">
-                <i class="ph-light ph-hands-clapping text-xl"></i>
-                <span>{{ number_format($comment->claps->sum('count')) }}</span>
-            </div>
+            <livewire:posts.clap-button :item="$comment" wire:key="clap-comment-{{ $comment->id }}" />
 
             {{-- Reply --}}
             <a href="#" class="underline text-gray-200">Reply</a>
