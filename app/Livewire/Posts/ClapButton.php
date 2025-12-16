@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Posts;
 
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
@@ -40,7 +41,7 @@ class ClapButton extends Component
                     ]);
                 }
             }
-            $this->dispatch("clapped");
+            $this->dispatch('clapped', id: $this->item->id);
         }
     }
 
