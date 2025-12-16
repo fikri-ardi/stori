@@ -1,8 +1,16 @@
 <div class="flex flex-col space-y-7 w-full mt-8">
     @foreach ($comments as $comment)
-    <div wire:key="{{ $comment->id }}" class="flex flex-col space-y-4 border-b border-gray-800 pb-6 w-full">
+    <div 
+        wire:key="{{ $comment->id }}"
+        x-data="{options: false, deleteModal: false, editComment: false}"
+        @comment-updated="editComment = false" 
+        class="relative flex flex-col space-y-4 border-b border-gray-800 pb-6 w-full"
+        >
+
         {{-- Comment Author --}}
-        <div class="flex items-center justify-between">
+        <div
+            :class="editComment ? 'opacity-0' : ''"
+            class="flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <a wire:navigate href="{{ route('users.show', $comment->author) }}"
                     class="size-10 text-sm rounded-full overflow-hidden flex items-center justify-center">
@@ -23,18 +31,37 @@
             </div>
 
             {{-- Comments three dots button --}}
-            <div x-data="{options: false, deleteModal: false}" 
+            <div 
+                wire:key="three-dots-button{{ $comment->id }}"
                 x-on:click.outside="options = false"
                 wire:ignore.self
                 class="relative flex flex-col items-center cursor-pointer">
+
                 <i x-on:click="options = 'comment{{ $comment->id }}'" class="ph-light ph-dots-three text-2xl"></i>
 
                 {{-- Comments options --}}
-                <div x-show="options == 'comment{{ $comment->id }}'" x-transition class="flex flex-col absolute top-5 bg-gray-200 text-gray-800 text-xs whitespace-nowrap rounded-2xl">
-                    <button class="px-4 py-3 cursor-pointer">Edit response</button>
+                <div x-show="options == 'comment{{ $comment->id }}'" 
+                    x-transition
+                    class="flex flex-col absolute top-5 bg-gray-200 text-gray-800 text-sm whitespace-nowrap rounded-2xl">
+
+                    @cannot('view', $comment)
+                    <button class="px-4 py-3 cursor-pointer">Report response</button>
+                    @endcannot
+
+                    @can('delete', $comment)
+                    <button 
+                        @click="editComment = true, options = false" 
+                        class="px-4 py-3 cursor-pointer">
+                        Edit response
+                        </button>
+
+                    {{-- Delete options --}}
                     <button   
-                    x-on:click="deleteModal = true"
-                    class="px-4 py-3 cursor-pointer">Delete response</button>
+                        x-on:click="deleteModal = true"
+                        class="px-4 py-3 cursor-pointer">
+                        Delete response
+                    </button>
+                    @endcan
                 </div>
 
                 {{-- Delete comment modal --}}
@@ -55,18 +82,26 @@
         </div>
 
         {{-- Comment Body --}}
-        <div>
+        <div 
+            :class="editComment ? 'opacity-0' : ''"
+            >
             <p class="text-sm leading-8">{{ $comment->body }}</p>
         </div>
 
         {{-- Action button --}}
-        <div wire:key="{{ $comment->id }}" class="flex items-center text-sm space-x-4 text-gray-400">
+        <div 
+            wire:key="{{ $comment->id }}" 
+            :class="editComment ? 'opacity-0' : ''"
+            class="flex items-center text-sm space-x-4 text-gray-400">
             {{-- Claps --}}
             <livewire:posts.clap-button :item="$comment" wire:key="clap-comment-{{ $comment->id }}" />
 
             {{-- Reply --}}
             <a href="#" class="underline text-gray-200">Reply</a>
         </div>
+
+        {{-- Edit comments form --}}
+        <livewire:comments.edit-comments :$post :$comment wire:key="edit-comment-{{ $comment->id }}" />
     </div>
     @endforeach
 </div>

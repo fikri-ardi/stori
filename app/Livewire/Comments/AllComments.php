@@ -17,7 +17,7 @@ class AllComments extends Component
         $this->comments = $this->post->comments->sortDesc();
     }
 
-    #[On(['comment-created', 'comment-deleted'])]
+    #[On(['comment-created', 'comment-deleted', 'comment-updated'])]
     public function refreshComments()
     {
         $this->comments = $this->post->comments->sortDesc();
