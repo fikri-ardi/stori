@@ -94,7 +94,7 @@
             :class="editComment ? 'opacity-0' : ''"
             class="flex items-center text-sm space-x-4 text-gray-400">
             {{-- Claps --}}
-            <livewire:posts.clap-button :item="$comment" wire:key="clap-comment-{{ $comment->id }}" />
+            <livewire:posts.clap-button :item="$comment" :key="$comment->id.time()" />
 
             {{-- Reply --}}
             <a href="#" class="underline text-gray-200">Reply</a>
