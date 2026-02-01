@@ -10,18 +10,17 @@ use Livewire\Attributes\Validate;
 class ReplyComments extends Component
 {
     public Post $post;
-
-    public $parent;
+    public $comment;
 
     #[Validate('required|min:3')]
     public $body;
 
-    public function replyTo(Comment $parent)
+    public function replyTo(Comment $comment)
     {
         $this->validate();
-        $this->post->comments()->create([
+        $comment->replies()->create([
             'user_id' => auth()->id(),
-            'parent_id' => $parent->id,
+            'post_id' => $this->post->id,
             'body' => $this->body,
         ]);
         $this->body = '';

@@ -99,6 +99,6 @@
         @endauth
         
         {{-- Post Comments --}}
-        <livewire:comments.all-comments :$post />
+        <livewire:comments.all-comments :$post :comments="$post->comments->sortDesc()" />
     </div>
 </div>

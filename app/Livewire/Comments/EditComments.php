@@ -10,8 +10,6 @@ use Livewire\Attributes\Validate;
 class EditComments extends Component
 {
     public Comment $comment;
-    public Post $post;
-
     public $parentId;
 
     #[Validate('required|min:3')]

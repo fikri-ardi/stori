@@ -1,4 +1,4 @@
-<form wire:submit="replyTo({{ $parent->id }})" 
+<form wire:submit="replyTo({{ $comment->id }})" 
     class="w-full text-right"
     x-show="replyComment"
     >

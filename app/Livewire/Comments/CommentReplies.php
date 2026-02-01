@@ -7,15 +7,16 @@ use App\Models\Comment;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
-class AllComments extends Component
+class CommentReplies extends Component
 {
     public Post $post;
+    public $comment;
     public $comments;
 
     #[On(['comment-created', 'comment-deleted', 'comment-updated', 'comment-replied'])]
     public function refreshComments()
     {
-        $this->comments = $this->post->comments->sortDesc();
+        $this->comments = $this->comment->replies->sortDesc();
     }
 
     public function delete(Comment $comment)
@@ -26,6 +27,6 @@ class AllComments extends Component
 
     public function render()
     {
-        return view('livewire.comments.all-comments');
+        return view('livewire.comments.comment-replies');
     }
 }

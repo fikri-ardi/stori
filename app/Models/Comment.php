@@ -16,8 +16,11 @@ class Comment extends Model
     protected $fillable = [
         'user_id',
         'parent_id',
+        'post_id',
         'body',
     ];
+
+    protected $with = ['author', 'replies', 'claps'];
 
     /**
      * Get the user that authored the comment.
