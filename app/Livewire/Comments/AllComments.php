@@ -12,15 +12,10 @@ class AllComments extends Component
     public Post $post;
     public $comments;
 
+    #[On(['comment-created', 'comment-deleted', 'comment-updated', 'comment-replied'])]
     public function mount()
     {
-        $this->comments = $this->post->comments->sortDesc();
-    }
-
-    #[On(['comment-created', 'comment-deleted', 'comment-updated'])]
-    public function refreshComments()
-    {
-        $this->comments = $this->post->comments->sortDesc();
+        $this->comments = $this->post->comments->where('parent_id', '==', null)->sortDesc();
     }
 
     public function delete(Comment $comment)

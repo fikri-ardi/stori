@@ -2,11 +2,11 @@
     @foreach ($comments as $comment)
     <div 
         wire:key="{{ $comment->id }}"
-        x-data="{options: false, deleteModal: false, editComment: false}"
+        x-data="{options: false, deleteModal: false, editComment: false, replyComment: false}"
         @comment-updated="editComment = false" 
-        class="relative flex flex-col space-y-4 border-b border-gray-800 pb-6 w-full"
+        class="relative flex flex-col space-y-4 border-b border-gray-800 pb-2 w-full"
         >
-
+        
         {{-- Comment Author --}}
         <div
             :class="editComment ? 'opacity-0' : ''"
@@ -70,7 +70,7 @@
                         <div class="text-2xl">Delete</div>
                         <p class="text-xs leading-relaxed">
                             Deleted responses are gone forever.<br>
-                            Are you sure
+                            Are you sure?
                         </p>
                         <div x-on:click="deleteModal = false, options = false" class="flex items-center mt-5 text-sm space-x-1 ">
                             <button class="px-3 py-2 bg-white rounded-full text-gray-800 cursor-pointer">Cancel</button>
@@ -88,16 +88,33 @@
             <p class="text-sm leading-8">{{ $comment->body }}</p>
         </div>
 
-        {{-- Action button --}}
+        {{-- Comment Action button --}}
         <div 
             wire:key="{{ $comment->id }}" 
             :class="editComment ? 'opacity-0' : ''"
-            class="flex items-center text-sm space-x-4 text-gray-400">
+            class="flex items-center text-sm space-x-6 text-gray-400">
             {{-- Claps --}}
             <livewire:posts.clap-button :item="$comment" :key="$comment->id.time()" />
+                
+            @if ($comment->replies->count() > 0)
+                {{-- Show comment's replies --}}
+                <button class="flex items-center space-x-1 cursor-pointer hover:text-white">
+                    <i class="ph-light ph-chat-teardrop-dots text-2xl"></i>
+                    <span>{{ $comment->replies->count() }} reply</span>
+                </button>
+            @endif
+            
+            {{-- Reply comment button --}}
+            <buttton 
+            @click="replyComment = true"
+            class="underline text-gray-200 cursor-pointer">
+                Reply
+            </buttt>
+        </div>
 
-            {{-- Reply --}}
-            <a href="#" class="underline text-gray-200">Reply</a>
+        {{-- Reply comment --}}
+        <div>
+            <livewire:comments.reply-comments :$post :parent="$comment" :key="'parent-comment-'.$comment->id.time()" />
         </div>
 
         {{-- Edit comments form --}}

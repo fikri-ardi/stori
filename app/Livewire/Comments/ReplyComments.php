@@ -3,29 +3,33 @@
 namespace App\Livewire\Comments;
 
 use App\Models\Post;
+use App\Models\Comment;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 
-class CreateComment extends Component
+class ReplyComments extends Component
 {
+    public Post $post;
+
+    public $parent;
+
     #[Validate('required|min:3')]
     public $body;
 
-    public Post $post;
-
-    public function create()
+    public function replyTo(Comment $parent)
     {
         $this->validate();
         $this->post->comments()->create([
             'user_id' => auth()->id(),
+            'parent_id' => $parent->id,
             'body' => $this->body,
         ]);
         $this->body = '';
-        $this->dispatch('comment-created');
+        $this->dispatch('comment-replied');
     }
 
     public function render()
     {
-        return view('livewire.comments.create-comment');
+        return view('livewire.comments.reply-comments');
     }
 }

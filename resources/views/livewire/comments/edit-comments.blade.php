@@ -1,6 +1,6 @@
 <form 
 wire:submit="update({{ $comment->id }})" 
-class="absolute left-0 top-0 w-full text-right"
+class="absolute left-0 top-0 w-full text-right z-50"
 @click.outside="editComment = false"
 x-show="editComment"
 >
