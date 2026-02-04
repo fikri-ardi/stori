@@ -15,6 +15,13 @@ class ReplyComments extends Component
     #[Validate('required|min:3')]
     public $body;
 
+    public function authCheck()
+    {
+        if (!auth()->check()) {
+            return $this->redirect(route('login'), navigate: true);
+        }
+    }
+
     public function replyTo(Comment $comment)
     {
         $this->validate();

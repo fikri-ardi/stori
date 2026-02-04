@@ -4,6 +4,7 @@
     >
 
     <textarea 
+        wire:click='authCheck'
         wire:ignore 
         wire:model.blur="body" 
         placeholder="What do you think?" 
