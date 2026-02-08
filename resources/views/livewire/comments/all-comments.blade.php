@@ -109,7 +109,11 @@
             
             {{-- Reply comment button --}}
             <buttton 
+            @auth
             @click="replyComment = true"
+            @else
+            @click="$dispatch('show-login-modal')"
+            @endauth
             class="underline text-gray-200 cursor-pointer">
                 Reply
             </buttt>

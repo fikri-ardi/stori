@@ -18,12 +18,13 @@ class ReplyComments extends Component
     public function authCheck()
     {
         if (!auth()->check()) {
-            return $this->redirect(route('login'), navigate: true);
+            return $this->dispatch('show-login-modal');
         }
     }
 
     public function replyTo(Comment $comment)
     {
+        $this->authCheck();;
         $this->validate();
         $comment->replies()->create([
             'user_id' => auth()->id(),
