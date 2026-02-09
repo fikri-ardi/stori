@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between py-4 text-sm text-gray-500">
+<div class="flex items-center justify-between py-3 text-sm text-gray-500">
     {{-- Left --}}
     <div class="flex items-center space-x-7">
         {{-- Claps --}}
@@ -13,10 +13,8 @@
 
     {{-- Right --}}
     <div class="flex items-center space-x-7">
-        {{-- Bookmark --}}
-        <button type="button" class="cursor-pointer">
-            <i class="ph-light ph-bookmark-simple text-2xl"></i>
-        </button>
+        {{-- Collection --}}
+        <livewire:posts.collection-button :post="$post" wire:key="post-collection-button-{{ now() }}" />
 
         {{-- Share --}}
         <button type="button" class="cursor-pointer">

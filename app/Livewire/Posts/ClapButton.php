@@ -43,7 +43,7 @@ class ClapButton extends Component
             }
             $this->dispatch('clapped', id: $this->item->id);
         } else {
-            $this->dispatch('show-login-modal');
+            $this->dispatch('open-login-modal');
         }
     }
 

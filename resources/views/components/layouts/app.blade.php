@@ -12,7 +12,7 @@
 
 <body
 x-data="{ loginModal: false }"
-x-on:show-login-modal.window="loginModal = true"
+@open-login-modal.window="loginModal = true"
 class="relative min-h-full font-inter">
     <livewire:navbar />
     <x-partials.login-modal />

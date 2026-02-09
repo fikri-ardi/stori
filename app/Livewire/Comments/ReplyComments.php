@@ -18,7 +18,7 @@ class ReplyComments extends Component
     public function authCheck()
     {
         if (!auth()->check()) {
-            return $this->dispatch('show-login-modal');
+            return $this->dispatch('open-login-modal');
         }
     }
 
