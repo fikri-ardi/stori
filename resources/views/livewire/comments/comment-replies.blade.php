@@ -90,7 +90,13 @@ class="flex flex-col space-y-7 w-full mt-8">
             @endif
 
             {{-- Reply comment button --}}
-            <buttton @click="replyComment = true" class="underline text-gray-200 cursor-pointer">
+            <buttton 
+            @auth
+            @click="replyComment = true"
+            @else
+            @click="$dispatch('open-login-modal')"
+            @endauth
+            class="underline text-gray-200 cursor-pointer">
                 Reply
                 </buttt>
         </div>

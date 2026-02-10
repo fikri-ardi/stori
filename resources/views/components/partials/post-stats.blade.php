@@ -2,7 +2,7 @@
     {{-- Left --}}
     <div class="flex items-center space-x-7">
         {{-- Claps --}}
-        <livewire:posts.clap-button :item="$post" wire:key="{{ now() }}" />
+        <livewire:posts.clap-button :item="$post" wire:key="clap-button-{{ now() }}" />
 
         {{-- Comments --}}
         <a href="#comments" class="flex items-center space-x-2 cursor-pointer">
@@ -14,7 +14,7 @@
     {{-- Right --}}
     <div class="flex items-center space-x-7">
         {{-- Collection --}}
-        <livewire:posts.collection-button :post="$post" wire:key="post-collection-button-{{ now() }}" />
+        <livewire:posts.collection-button :post="$post" wire:key="user-collection-button-{{ now() }}" />
 
         {{-- Share --}}
         <button type="button" class="cursor-pointer">
