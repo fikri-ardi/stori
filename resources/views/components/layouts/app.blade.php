@@ -11,11 +11,13 @@
 </head>
 
 <body
-x-data="{ loginModal: false }"
-@open-login-modal.window="loginModal = true"
+x-data="{ loginModal: false, modalBackdrop: false}"
+@open-login-modal.window="loginModal = true, modalBackdrop = true"
 class="relative min-h-full font-inter">
+
     <livewire:navbar />
     <x-partials.login-modal />
+    <livewire:modal-backdrop />
 
     <main class="text-gray-200 px-5">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">

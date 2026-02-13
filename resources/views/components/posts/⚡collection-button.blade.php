@@ -70,7 +70,10 @@ new class extends Component
 };
 ?>
 
-<div x-data="{openUserCollectionModal: false}" class="relative">
+<div 
+x-data="{openUserCollectionModal: false, openCreateCollectionModal: true}" 
+class="relative">
+
     {{-- Post collection button --}}
     <button 
         @auth
@@ -88,28 +91,42 @@ new class extends Component
     x-transition
     class="absolute w-75 bg-black/90 backdrop-blur-lg rounded-2xl top-full mt-2 left-1/2 -translate-x-1/2">
     
-    {{-- User Collection --}}
-    @if (auth()->user() && auth()->user()->collections()->exists())
-    <div class="p-7 flex flex-col space-y-4">
-        @foreach (auth()->user()->collections->sortDesc() as $collection)
-            <div 
-            class="flex items-center text-base space-x-2 text-white">
+        {{-- User Collection List --}}
+        @if (auth()->user() && auth()->user()->collections()->exists())
+        <div class="py-7 px-8 flex flex-col space-y-4">
+            @foreach (auth()->user()->collections->sortDesc() as $collection)
+                <div 
+                class="flex items-center text-base space-x-3 text-white">
 
-                <input
-                wire:key="collection-list-{{ $collection->id.now() }}" 
-                type="checkbox" name="collection" id="{{ $collection->id }}"
-                wire:click="toggleCollection({{ $collection->id }})"
-                {{ $collection->posts->contains($postId) ? 'checked' : '' }}
-                class="w-4 h-4 text-indigo-400 bg-gray-800 border-gray-600 rounded focus:ring-indigo-500 cursor-pointer">
+                    <input
+                    wire:key="collection-list-{{ $collection->id.now() }}" 
+                    type="checkbox" name="collection" id="{{ $collection->id }}"
+                    wire:click="toggleCollection({{ $collection->id }})"
+                    {{ $collection->posts->contains($postId) ? 'checked' : '' }}
+                    class="w-4 h-4 text-indigo-400 bg-gray-800 border-gray-600 rounded focus:ring-indigo-500 cursor-pointer">
 
-                <label for="{{ $collection->id }}">{{ ucwords($collection->name) }}</label>
-            </div>
-        @endforeach
-    </div>
-    @endif
-    
-    <div class="flex items-center text-base space-x-2 text-white px-7 py-5 border-t border-gray-900 cursor-pointer">
-        <div class="text-indigo-400">Create new collection</div>
-    </div>
+                    <label for="{{ $collection->id }}">{{ ucwords($collection->name) }}</label>
+                </div>
+            @endforeach
+        </div>
+        @endif
+        
+        <div 
+        x-data="{ 
+            openCreateCollectionModal: false,
+            closeModal(){
+                this.openCreateCollectionModal = false
+                this.modalBackdrop = false
+            },
+            showModal(){
+                this.openCreateCollectionModal = true
+                this.modalBackdrop = true
+            }
+         }"
+        @click="showModal()"
+        class="flex items-center text-base space-x-2 text-white px-7 py-5 border-t border-gray-900 cursor-pointer">
+            <div class="text-indigo-400">Create new collection</div>
+            <livewire:posts.create-collection :$postId />
+        </div>
     </div>
 </div>

@@ -13,7 +13,11 @@
             @forelse ($collection->posts as $post)
             <x-post :$post />
             @empty
-            <div class="text-gray-400">No post found.</div>
+            <div class="text-gray-400 flex items-center space-x-2 border border-dashed border-white/30 p-14">
+                <span>Add your favorite stories to your list. Simply click the</span>
+                <i class="ph-light ph-bookmark-simple text-2xl"></i>
+                <span>on any Medium story to get started..</span>
+            </div>
             @endforelse
         </div>
     </div>
