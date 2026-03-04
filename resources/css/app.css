@@ -79,6 +79,65 @@
         display: none;
         /* Chrome, Safari, Opera */
     }
+
+    /* Toast */
+    .animate-slide-down {
+        animation: slide-down 5s ease-out 1;
+        transform: translateY(-200%);
+    }
+
+    @keyframes slide-down {
+        0% {
+            transform: translateY(-100%);
+            filter: blur(6px);
+        }
+
+        3% {
+            transform: translateY(20%);
+            filter: blur(3px);
+        }
+
+        5% {
+            transform: translateY(30%);
+            filter: blur(0px);
+        }
+
+        10% {
+            transform: translateY(32%);
+        }
+
+        50% {
+            transform: translateY(40%);
+            filter: blur(0px);
+        }
+
+        90% {
+            transform: translateY(40%);
+            filter: blur(0.4px);
+        }
+
+        100% {
+            transform: translateY(-200%);
+            filter: blur(20px);
+        }
+    }
+
+    .animate-slide-up {
+        animation: slide-up 300ms ease-out 1;
+        transform: translateY(-200%);
+    }
+
+    @keyframes slide-up {
+        0% {
+            transform: translateY(40%);
+            filter: blur(0.4px);
+        }
+
+        100% {
+            transform: translateY(-200%);
+            filter: blur(20px);
+        }
+    }
 }
 
 @layer theme {

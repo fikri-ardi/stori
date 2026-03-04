@@ -15,11 +15,10 @@
     <div class="flex items-center space-x-7">
         {{-- Collection --}}
         <livewire:posts.collection-button :post="$post" wire:key="user-collection-button-{{ now() }}" />
-
+        
         {{-- Share --}}
-        <button type="button" class="cursor-pointer">
-            <i class="ph-light ph-export text-2xl"></i>
-        </button>
+        
+        <livewire:posts.share-button />
 
         {{-- More Options --}}
         <button type="button" class="cursor-pointer">

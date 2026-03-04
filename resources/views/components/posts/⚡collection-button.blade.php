@@ -93,7 +93,7 @@ class="relative">
     
         {{-- User Collection List --}}
         @if (auth()->user() && auth()->user()->collections()->exists())
-        <div class="py-7 px-8 flex flex-col space-y-4">
+        <div class="py-6 px-7 flex flex-col space-y-4">
             @foreach (auth()->user()->collections->sortDesc() as $collection)
                 <div 
                 class="flex items-center text-base space-x-3 text-white">
@@ -124,7 +124,7 @@ class="relative">
             }
          }"
         @click="showModal()"
-        class="flex items-center text-base space-x-2 text-white px-7 py-5 border-t border-gray-900 cursor-pointer">
+        class="flex items-center text-base space-x-2 text-white py-5 px-7 border-t border-gray-900 cursor-pointer">
             <div class="text-indigo-400">Create new collection</div>
             <livewire:posts.create-collection :$postId />
         </div>
