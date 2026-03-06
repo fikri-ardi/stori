@@ -8,7 +8,8 @@ new class extends Component
 };
 ?>
 
-<div x-data="{
+<div 
+x-data="{
     message: '',
     showToast($event){
        $refs.toast.classList.remove('animate-slide-down','animate-slide-up' );
@@ -24,6 +25,7 @@ new class extends Component
 }" 
 @notif.window="showToast($event)"
 class="z-50 relative top-full left-0 w-full flex justify-center">
+
     <div 
     x-ref="toast"
     style="z-index: 9999;"

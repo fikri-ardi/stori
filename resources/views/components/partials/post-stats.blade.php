@@ -18,7 +18,7 @@
         
         {{-- Share --}}
         
-        <livewire:posts.share-button />
+        <livewire:posts.share-button :post="$post" />
 
         {{-- More Options --}}
         <button type="button" class="cursor-pointer">
