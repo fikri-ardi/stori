@@ -1,22 +1,22 @@
 <?php
 
 use App\Http\Controllers\CollectionController;
-use App\Livewire\Settings\Profile;
-use App\Livewire\Settings\Password;
-use App\Livewire\Settings\Appearance;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Livewire\Home;
 use App\Livewire\Posts\AllPosts;
 use App\Livewire\Posts\ShowPost;
 use App\Livewire\Search;
+use App\Livewire\Settings\Appearance;
+use App\Livewire\Settings\Password;
+use App\Livewire\Settings\Profile;
 use App\Livewire\Tags\AllTags;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', Home::class)->name('home');
 
 Route::get('/posts', AllPosts::class)->name('posts.index');
+Route::livewire('/posts/create', 'posts.create-post')->name('posts.create');
 
 Route::get('/posts/{post}', ShowPost::class)->name('posts.show');
 

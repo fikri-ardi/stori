@@ -28,7 +28,9 @@ class="relative min-h-full font-inter">
         </div>
     </main>
 
+    @if (!request()->routeIs('posts.create'))
     <x-footer />
+    @endif
 </body>
 
 </html>
