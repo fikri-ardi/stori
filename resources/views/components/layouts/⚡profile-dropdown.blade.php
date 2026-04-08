@@ -14,7 +14,7 @@ new class extends Component
         <span class="absolute -inset-1.5"></span>
         <span class="sr-only">Open user menu</span>
         @if (auth()->user()->image)
-        <img src="{{ auth()->user()->image->url }}" alt="" class="relative size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+        <img src="{{ auth()->user()->image->url }}" class="relative size-8 rounded-full outline -outline-offset-1 outline-white/10" />
         @else
         <div class="relative z-40 text-gray-900 bg-white size-8 flex rounded-full font-semibold uppercase">
             <span class="m-auto">{{ auth()->user()->initials() }}</span>

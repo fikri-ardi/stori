@@ -23,9 +23,11 @@
         </div>
 
         {{-- Banner --}}
+        @if ($post->images->isNotEmpty())
         <div class="w-full h-80">
             <img src="{{ $post->images->first()->url }}" alt="Gambar Post" class="w-full h-full rounded object-cover object-center">
         </div>
+        @endif
 
         {{-- Content --}}
         <p class="text-lg leading-10 text-gray-300 mb-5">{{ ucfirst($post->body) }}</p>
@@ -49,9 +51,13 @@
             <div class="flex space-x-5">
                 {{--Avatar --}}
                 <a wire:navigate href="{{ route('users.show', $post->author) }}" class="flex space-x-3 hover:opacity-50 transition-all">
-                    <div class="w-12 h-12 rounded-full overflow-hidden">
-                        <img src="{{ $post->author->image->url }}" alt="Foto penulis">
+                    @if (auth()->user()->image)
+                    <img src="{{ auth()->user()->image->url }}" class="relative size-12 rounded-full outline -outline-offset-1 outline-white/10" />
+                    @else
+                    <div class="relative z-40 text-xl text-gray-900 bg-white size-12 flex rounded-full font-semibold uppercase">
+                        <span class="m-auto">{{ auth()->user()->initials() }}</span>
                     </div>
+                    @endif
                 </a>
 
                 {{-- Author Profile --}}
