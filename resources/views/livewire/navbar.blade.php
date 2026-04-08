@@ -1,5 +1,5 @@
 <nav x-data class="bg-gray-800/50">
-    @if (!request()->routeIs('posts.create'))
+    @if (!request()->routeIs('posts.create') && !request()->routeIs('posts.edit'))
         {{-- Desktop Nav --}}
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
@@ -127,8 +127,9 @@
         {{-- Right --}}
         <div class="flex items-center space-x-5">
             {{-- Publish button --}}
-            <button class="text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold">Publish</button>
+            <button class="text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold" @click="$dispatch('publish')">Publish</button>
 
+            
             {{-- More actioon --}}
             <button class="ph-bold ph-dots-three text-2xl cursor-pointer"></button>
 

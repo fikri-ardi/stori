@@ -17,6 +17,7 @@ Route::get('/', Home::class)->name('home');
 
 Route::get('/posts', AllPosts::class)->name('posts.index');
 Route::livewire('/posts/create', 'posts.create-post')->name('posts.create');
+Route::livewire('/posts/{post}/edit', 'posts.edit-post')->name('posts.edit');
 
 Route::get('/posts/{post}', ShowPost::class)->name('posts.show');
 

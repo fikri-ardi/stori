@@ -28,7 +28,7 @@ class="relative min-h-full font-inter">
         </div>
     </main>
 
-    @if (!request()->routeIs('posts.create'))
+    @if (!request()->routeIs('posts.create') && !request()->routeIs('posts.edit'))
     <x-footer />
     @endif
 </body>

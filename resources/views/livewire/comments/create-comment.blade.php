@@ -20,9 +20,9 @@
     <form wire:submit="create" class="text-right">
         <textarea wire:ignore type="text" wire:model.blur="body" placeholder="What do you think?" rows="1" 
         x-data x-on:input="
-            $el.style.height = 'auto';
-            $el.style.height = $el.scrollHeight + 'px';" 
-            class="w-full block bg-gray-800 rounded-3xl px-5 py-3 mt-3 resize-none text-sm">
+        $el.style.height = 'auto';
+        $el.style.height = $el.scrollHeight + 'px';" 
+        class="w-full block bg-gray-800 rounded-3xl px-5 py-3 mt-3 resize-none text-sm">
         </textarea>
         @error('body')
         <div class="text-sm underline font-semibold text-left mt-3">{{ $message }}</div>
