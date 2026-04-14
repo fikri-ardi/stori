@@ -36,7 +36,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        return view('users.show', [
+            'posts' => $user->posts->sortDesc(),
+            'user' => $user
+        ]);
     }
 
     /**

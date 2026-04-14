@@ -25,7 +25,8 @@ new class extends Component
     public function updated($name, $value)
     {
         $this->post->update([
-        $name => $value,
+            $name => $value,
+            'excerpt' => str()->limit(strip_tags($this->body), 100, '...'),
         ]);
     }
     

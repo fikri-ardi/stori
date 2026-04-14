@@ -83,7 +83,7 @@
 
                     <!-- POSTS GRID -->
                     <div class="w-full grid grid-cols-3 gap-4 justify-center" id="posts">
-                        @foreach ($user->posts as $post)
+                        @foreach ($posts as $post)
                         <x-post :$post />
                         @endforeach
                     </div>
@@ -94,9 +94,9 @@
                         <a href="{{ route('collections.show', $collection) }}" class="relative rounded-4xl h-80 w-56 flex flex-col items-center text-sm">
                             @if ($collection->posts->count() > 0)
                             <div class="relative translate-x-1/6 w-full h-full z-10">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 -translate-x-1/6 opacity-80" src="{{ $collection->posts->first()->images->first()->url }}">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl z-10 shadow-2xl" src="{{ $collection->posts->random()->images->first()->url }}">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 translate-x-1/6 opacity-80" src="{{ $collection->posts->last()->images->first()->url }}">
+                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 -translate-x-1/6 opacity-80" src="{{ $collection->posts->first()->images->first()->url ?? "" }}">
+                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl z-10 shadow-2xl" src="{{ $collection->posts->random()->images->first()->url ?? "" }}">
+                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 translate-x-1/6 opacity-80" src="{{ $collection->posts->last()->images->first()->url ?? "" }}">
                             </div>
                             @endif
                             <span class="mt-5 text-lg text-white">{{ ucwords($collection->name) }}</span>
