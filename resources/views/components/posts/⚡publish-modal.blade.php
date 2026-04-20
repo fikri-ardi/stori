@@ -31,6 +31,7 @@ new class extends Component
 
         $this->post->update([
                 'slug' => str()->slug($this->title).'-'.$this->post->id,
+                'is_published' => true,
             ]
         );
 
