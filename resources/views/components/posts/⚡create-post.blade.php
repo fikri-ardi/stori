@@ -6,6 +6,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Traits\HandlesFileUpload;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 new class extends Component
 {
@@ -62,19 +63,17 @@ new class extends Component
     <form wire:submit="create">
         {{-- Banner input --}}
         <div class="relative flex items-center border border-dashed border-gray-500 mb-4 h-96 w-full rounded-4xl">
-            @if ($images instanceof Livewire\Features\SupportFileUploads\TemporaryUploadedFile )
+            @if ($images instanceof TemporaryUploadedFile )
                 @if ($images->getClientOriginalExtension() == "png" || "jpg")
                 <img src="{{ $images->temporaryUrl() }}" class="img-fluid rounded-4xl w-full h-96 object-cover object-center absolute">
                 @endif
-            @else
-            <img src="https://images.unsplash.com/photo-1773332589460-5a5d43c80f5b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8" class="block img-fluid rounded-lg w-full h-full object-cover object-center absolute">
             @endif
             <label for="images" class="absolute w-full text-center text-gray-500 text-sm">
                 <span class="px-3 py-2 bg-black/50 rounded-xl backdrop-blur-2xl">Add a preview image</span>
             </label>
             <input type="file" id="images" wire:model.live="images" class="focus:outline-none border-l border-gray-700 pl-4 opacity-0 size-full cursor-pointer bg-red-500">
             @error('images')
-            <span class="text-4xl">some error</span>
+            <div x-transition class="absolute top-full left-1/2 -translate-x-1/2 text-sm px-3 py-2 bg-black/50 rounded-b-lg text-nowrap">{{ $message }}</div>
             @enderror
         </div>
         

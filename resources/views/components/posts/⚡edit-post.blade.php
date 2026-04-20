@@ -41,6 +41,8 @@ new class extends Component
 
     public function updatedImageUpload()
     {
+        $this->authorize('update', $this->post);
+
         $validatedImages = $this->validateOnly('imageUpload');
 
         if (! $this->imageUpload instanceof TemporaryUploadedFile) {
@@ -64,6 +66,8 @@ new class extends Component
 
     public function updated($name, $value)
     {
+        $this->authorize('update', $this->post);
+
         if (in_array($name, ['imageUpload', 'existingImages'], true)) {
             return;
         }
