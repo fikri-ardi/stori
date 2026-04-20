@@ -20,7 +20,7 @@ class AllComments extends Component
 
     public function delete(Comment $comment)
     {
-        $this->authorize('update', $comment);
+        $this->authorize('delete', $comment);
         $comment->delete();
         $this->dispatch('comment-deleted');
     }

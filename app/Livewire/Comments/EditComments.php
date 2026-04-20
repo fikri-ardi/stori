@@ -3,7 +3,6 @@
 namespace App\Livewire\Comments;
 
 use App\Models\Comment;
-use App\Models\Post;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 
@@ -22,6 +21,7 @@ class EditComments extends Component
 
     public function update(Comment $comment)
     {
+        $this->authorize('update', $comment);
         $this->validate();
         $comment->update([
             'user_id' => auth()->id(),
