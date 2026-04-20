@@ -58,12 +58,12 @@ new class extends Component
             $el.style.height = $el.scrollHeight + 'px'; 
         }
     }"
-    x-on:livewire-upload-error="console.log('error' + $event.detail.message)"
+
     class="px-44 mt-5">
     <form wire:submit="create">
         {{-- Banner input --}}
         <div class="relative flex items-center border border-dashed border-gray-500 mb-4 h-96 w-full rounded-4xl">
-            @if ($images instanceof TemporaryUploadedFile )
+            @if ($images instanceof TemporaryUploadedFile)
                 @if ($images->getClientOriginalExtension() == "png" || "jpg")
                 <img src="{{ $images->temporaryUrl() }}" class="img-fluid rounded-4xl w-full h-96 object-cover object-center absolute">
                 @endif

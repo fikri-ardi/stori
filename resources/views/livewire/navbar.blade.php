@@ -127,7 +127,14 @@
         {{-- Right --}}
         <div class="flex items-center space-x-5">
             {{-- Publish button --}}
-            <button class="text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold" @click="$dispatch('publish')">Publish</button>
+            <button 
+                @disabled(!request()->routeIs('posts.edit')) 
+                @class([
+                    'text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold',
+                    'opacity-50 cursor-not-allowed' => !request()->routeIs('posts.edit'),
+                ])
+                @click="$dispatch('publish')"
+                class="text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold">Publish</button>
 
             
             {{-- More actioon --}}

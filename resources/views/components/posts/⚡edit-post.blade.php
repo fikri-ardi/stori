@@ -24,16 +24,12 @@ new class extends Component
 
     public $existingImages;
 
-    public $slug;
-
-    public $excerpt;
-
     public function mount(Post $post)
     {
         $this->post = $post;
 
         $this->fill(
-            $post->only('title', 'slug', 'body', 'excerpt', 'user_id')
+            $post->only('title', 'body', 'excerpt', 'user_id')
         );
 
         $this->existingImages = $post->images;
@@ -88,13 +84,14 @@ new class extends Component
         },
         uploading: false,
         progress: 0,
-        uploadError: ''
+        uploadError: '',
+        publishPostModal: false,
     }"
     class="px-48 mt-5 mb-96">
 
     <form
-        wire:submit="update"
-        @publish.window="$wire.update"
+        wire:submit="prevent.default"
+        @publish.window="publishPostModal = true, modalBackdrop = true"
         x-on:livewire-upload-start="uploading = true; progress = 0; uploadError = ''"
         x-on:livewire-upload-finish="uploading = false"
         x-on:livewire-upload-cancel="uploading = false"
@@ -160,4 +157,6 @@ new class extends Component
             </textarea>
         </div>
     </form>
+
+    <livewire:posts.publish-modal :key="$post->id.time()" :$post :$title :excerpt="str()->limit(strip_tags($this->body), 100, '...')" :$existingImages />
 </div>
