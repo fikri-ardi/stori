@@ -43,7 +43,9 @@
                         </button>
         
                         <!-- Profile dropdown toggler -->
+                        @auth
                         <livewire:layouts.profile-dropdown />
+                        @endauth
                     </div>
                 </div>
                 @else
@@ -144,7 +146,9 @@
             <button class="ph-light ph-bell-simple text-xl cursor-pointer"></button>
 
             <!-- Profile dropdown toggler -->
+            @auth
             <livewire:layouts.profile-dropdown />
+            @endauth
         </div>
     </div>
     @endif

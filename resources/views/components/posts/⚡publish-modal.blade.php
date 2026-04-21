@@ -28,7 +28,7 @@ new class extends Component
             $dispatch('notif', ['message' => 'Please fill in the required fields.']);
             return;
         }
-
+        
         $this->post->update([
                 'slug' => str()->slug($this->title).'-'.$this->post->id,
                 'is_published' => true,
