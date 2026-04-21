@@ -1,5 +1,6 @@
 <div 
 x-show="loginModal"
+@open-login-modal.window="loginModal = true, modalBackdrop = true"
 x-transition
 @click.away="loginModal = false, modalBackdrop = false"
 class="fixed left-1/2 top-1/2 -translate-1/2 h-[40rem] w-[32rem] rounded-3xl bg-black/90 text-gray-200 p-20 pt-30 z-[9999]">

@@ -14,7 +14,6 @@
 
 <body
 x-data="{ loginModal: false, modalBackdrop: false }"
-@open-login-modal.window="loginModal = true, modalBackdrop = false"
 class="relative min-h-full font-inter">
 
     <livewire:navbar />

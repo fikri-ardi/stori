@@ -17,7 +17,6 @@
         <livewire:posts.collection-button :post="$post" wire:key="user-collection-button-{{ now() }}" />
         
         {{-- Share --}}
-        
         <livewire:posts.share-button :post="$post" />
 
         {{-- More Options --}}
