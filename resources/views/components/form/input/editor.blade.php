@@ -2,7 +2,6 @@
     $wireModel = $attributes->wire('model');
     $model = $wireModel->value();
     $modifiers = $wireModel->modifiers();
-    dd($modifiers);
     $isLive = $wireModel->hasModifier('live');
     $debounceIndex = $modifiers->search('debounce');
     $debounceMs = null;

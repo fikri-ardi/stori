@@ -70,7 +70,7 @@ new class extends Component
         
         $this->post->update([
             $name => $value,
-            'excerpt' => str()->limit(strip_tags($this->body), 100, '...'),
+            'excerpt' => str()->limit(strip_tags(Str::markdown($this->body)), 100, '...'),
         ]);
     }
     

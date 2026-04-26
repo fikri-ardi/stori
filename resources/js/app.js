@@ -37,7 +37,7 @@ window.setupEditor = function ({ content, model, live = false, debounce = null }
         element: element,
         editorProps: {
           attributes: {
-            class: 'tiptap-editor p-2 min-h-60 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:outline-none',
+            class: 'tiptap-editor min-h-60 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:outline-none',
           },
         },
         extensions: [

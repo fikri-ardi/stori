@@ -3,7 +3,7 @@
         {{-- Title --}}
         <div class="mb-3 mt-2">
             <h1 class="text-4xl font-semibold">{{ ucfirst($post->title) }}</h1>
-            <p class="text-xl text-gray-400 mt-4">{{ ucfirst($post->excerpt) }}</p>
+            <p class="text-xl text-gray-400 mt-4">{!! ucfirst($post->excerpt) !!}</p>
         </div>
 
         {{-- Author --}}
