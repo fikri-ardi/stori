@@ -173,6 +173,36 @@ select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
+@layer components {
+    .tiptap-editor {
+        @apply text-sm leading-6;
+    }
+
+    .tiptap-editor h2 {
+        @apply mt-4 mb-2 text-2xl font-bold;
+    }
+
+    .tiptap-editor h3 {
+        @apply mt-4 mb-2 text-xl font-semibold;
+    }
+
+    .tiptap-editor h4 {
+        @apply mt-3 mb-2 text-lg font-semibold;
+    }
+
+    .tiptap-editor ul {
+        @apply my-3 list-disc pl-6;
+    }
+
+    .tiptap-editor ol {
+        @apply my-3 list-decimal pl-6;
+    }
+
+    .tiptap-editor li {
+        @apply my-1;
+    }
+}
+
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */

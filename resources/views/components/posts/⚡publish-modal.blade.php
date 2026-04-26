@@ -25,7 +25,7 @@ new class extends Component
         $this->authorize('update', $this->post);
 
        if (!$this->post->title || !$this->post->body) {
-            $dispatch('notif', ['message' => 'Please fill in the required fields.']);
+            $this->dispatch('notif', message: 'Judul sama konten post kamu masih kosong, dicek dulu ya ...');
             return;
         }
         

@@ -30,7 +30,9 @@
         @endif
 
         {{-- Content --}}
-        <p class="text-lg leading-10 text-gray-300 mb-5">{{ ucfirst($post->body) }}</p>
+        <div class="tiptap-editor text-lg leading-10 text-gray-300 mb-5">
+            {!! Str::markdown($post->body) !!}
+        </div>
 
         {{-- Tag --}}
         <div class="flex items-center space-x-2">

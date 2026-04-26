@@ -24,7 +24,7 @@ x-data="{
     },
 }" 
 @notif.window="showToast($event)"
-class="z-50 relative top-full left-0 w-full flex justify-center">
+class="z-[999] relative top-full left-0 w-full flex justify-center">
 
     <div 
     x-ref="toast"

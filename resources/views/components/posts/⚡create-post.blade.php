@@ -34,18 +34,18 @@ new class extends Component
         $this->validateOnly($property);
 
         if (!$this->postCreated && ($this->title || $this->body || $this->images)) {
+            $this->excerpt = str()->limit(strip_tags($this->body), 100, '...');
+            $this->slug = time();
+
+            $this->post = auth()->user()->posts()->create(
+                $this->all()
+            );
+
+            $this->upload('images', 'post', 'images/posts');
+
+            $this->postCreated = true;
             
-        $this->excerpt = str()->limit(strip_tags($this->body), 100, '...');
-        $this->slug = time();
-        $this->post = auth()->user()->posts()->create(
-            $this->all()
-        );
-
-       $this->upload('images', 'post', 'images/posts');
-
-        $this->postCreated = true;
-        
-        return $this->redirectRoute('posts.edit', $this->post, navigate: true);
+            return $this->redirectRoute('posts.edit', $this->post, navigate: true);
         }
     }
 };

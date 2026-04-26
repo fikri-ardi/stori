@@ -60,10 +60,10 @@ new class extends Component
         $this->existingImages = $this->post->images;
     }
 
-    public function updated($name, $value)
+    public function save($name, $value)
     {
         $this->authorize('update', $this->post);
-
+        
         if (in_array($name, ['imageUpload', 'existingImages'], true)) {
             return;
         }
@@ -72,6 +72,11 @@ new class extends Component
             $name => $value,
             'excerpt' => str()->limit(strip_tags($this->body), 100, '...'),
         ]);
+    }
+    
+    public function updated($name, $value)
+    {
+        $this->save($name, $value);
     }
 };
 ?>
@@ -144,17 +149,12 @@ new class extends Component
                 class="text-4xl font-semibold focus:outline-none w-full resize-none border-l border-gray-700 pl-4 leading-12">
             </textarea>
         </div>
+        <x-partials.input-error field="title" class="ml-16" />
 
         {{-- Body --}}
-        <div class="flex mt-4">
-            <textarea wire:ignore type="text" id="body" wire:model.live.debounce.1000ms="body" placeholder="Tell your story..." rows="1"
-                x-init="
-                $watch('body', () => $nextTick(() => resize($el)));
-                $nextTick(() => resize($el));
-                "
-                @input="resize($el)"
-                class="focus:outline-none w-full block resize-none ml-16 text-xl leading-8">
-            </textarea>
+        <div class="ml-16 mt-4">
+            <x-form.input.editor wire:model.live.debounce.1000ms="body" />
+            <x-partials.input-error field="body" />
         </div>
     </form>
 
