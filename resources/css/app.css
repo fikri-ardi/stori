@@ -175,7 +175,11 @@ select:focus[data-flux-control] {
 
 @layer components {
     .tiptap-editor {
-        @apply leading-10 text-xl text-gray-300;
+        @apply leading-9 text-lg text-gray-300;
+    }
+
+    .tiptap-editor p {
+        @apply my-3;
     }
 
     .tiptap-editor h2 {
