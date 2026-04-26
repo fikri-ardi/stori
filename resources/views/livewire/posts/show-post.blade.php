@@ -25,7 +25,7 @@
         {{-- Banner --}}
         @if ($post->images->isNotEmpty())
         <div class="w-full h-80">
-            <img src="{{ $post->images->first()->url }}" alt="Gambar Post" class="w-full h-full rounded object-cover object-center">
+            <img src="{{ config('app.url').$post->images->first()->url }}" alt="Gambar Post" class="w-full h-full rounded object-cover object-center">
         </div>
         @endif
 

@@ -57,7 +57,7 @@
     </div>
 
     {{-- Editor content --}}
-    <div class="border-gray-300 shadow-sm rounded-b-md dark:border-gray-700 dark:bg-slate-900 dark:text-gray-300" 
+    <div class="text-4xl border-gray-300 shadow-sm rounded-b-md dark:border-gray-700 dark:bg-slate-900 dark:text-gray-300" 
         x-ref="editor">
     </div>
 </div>
