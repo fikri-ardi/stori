@@ -62,7 +62,8 @@ new class extends Component
         </button>
 
         <div class="flex justify-between space-x-20">
-            <div class="w-full">
+            {{-- Left --}}
+            <div class="w-1/2">
                 {{-- Banner preview --}}
                 @if ($existingImages?->first())
                 <img src="{{ config('app.url').$existingImages->first()->url }}" class="img-fluid rounded-3xl w-full h-56 object-cover object-center">
@@ -77,16 +78,11 @@ new class extends Component
                 {{-- Excerpt preview --}}
                 <p class="text-gray-400">{{ $excerpt }}</p>
             </div>
-            <div class="w-full flex flex-col space-y-14">
+
+            {{-- Right --}}
+            <div class="w-1/2 flex flex-col space-y-14">
                 {{-- Tags --}}
-                <div class="flex flex-col space-y-2">
-                    <div>Tags</div>
-                    <label for="tags" class="text-sm text-gray-400">Add up to five topics to help readers find your story.</label>
-                    <input type="text" 
-                        wire:model.debounce.500ms="name"
-                        class="p-3 rounded-xl bg-white/5 w-full focus:outline-none"
-                    >
-                </div>
+               <livewire:posts.tag-selector :$post />
 
                 {{-- Publication --}}
                 <div class="flex flex-col space-y-2">
