@@ -93,10 +93,10 @@ class="relative">
     
         {{-- User Collection List --}}
         @if (auth()->user() && auth()->user()->collections()->exists())
-        <div class="py-6 px-7 flex flex-col space-y-4">
+        <div class="p-6 flex flex-col space-y-4 text-sm">
             @foreach (auth()->user()->collections->sortDesc() as $collection)
                 <div 
-                class="flex items-center text-base space-x-3 text-white">
+                class="flex items-center space-x-3 text-white">
 
                     <input
                     wire:key="collection-list-{{ $collection->id.now() }}" 
