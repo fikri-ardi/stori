@@ -23,9 +23,9 @@
                 {{-- Right nav --}}
                 @auth
                 <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
+                    <div class="ml-4 flex space-x-6 items-center md:ml-6">
                         {{-- Create post button --}}
-                        <a href="{{ route('posts.create') }}" class="flex items-center space-x-2 text-sm text-gray-300 hover:text-white mr-5">
+                        <a href="{{ route('posts.create') }}" class="flex items-center space-x-2 text-sm text-gray-300 hover:text-white">
                             <i class="ph-light ph-note-pencil text-2xl"></i>
                             <span>Write</span>
                         </a>
