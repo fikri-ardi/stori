@@ -44,6 +44,27 @@ new class extends Component
             $this->suggestions = null;
         }
     }
+
+    public function createTag()
+    {
+        $tagExists = Tag::where('name', $this->tagName)->first();
+        if ($tagExists != null) {
+            $tag = $tagExists;
+        } else {
+            $tag = Tag::create([
+                'name' => $this->tagName,
+                'slug' => str($this->tagName)->slug(),
+            ]);
+        }
+
+        if ($tag && ! $this->post->tags->contains($tag->id) && $this->post->tags()->count() < 5) {
+            $this->post->tags()->attach($tag);
+            $this->post->refresh();
+            $this->tags = $this->post->tags;
+            $this->tagName = '';
+            $this->suggestions = null;
+        }
+    }
 };
 ?>
 
@@ -68,7 +89,13 @@ new class extends Component
         @endif
 
         {{-- Tag input --}}
-        <input type="text" wire:model.live.debounce.500ms="tagName" class="w-auto focus:outline-none" placeholder="Add a tags">
+        <form wire:submit.prevent="createTag">
+            <input
+                type="text"
+                wire:model.live.debounce.500ms="tagName"
+                class="w-auto focus:outline-none"
+                placeholder="Add a tags" />
+        </form>
 
         {{-- Tag suggestions --}}
         @if ($suggestions !== null && $suggestions->isNotEmpty())
