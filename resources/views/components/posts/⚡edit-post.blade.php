@@ -90,7 +90,7 @@ new class extends Component
         uploading: false,
         progress: 0,
         uploadError: '',
-        publishPostModal: true,
+        publishPostModal: false,
     }"
     class="px-48 mt-5 mb-96">
 
