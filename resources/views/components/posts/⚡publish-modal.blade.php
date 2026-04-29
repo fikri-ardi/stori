@@ -74,9 +74,9 @@ new class extends Component
                 @endif
 
                 {{-- Title preview --}}
-                <h1 class="font-semibold my-5">{{ $title }}</h1>
+                <h1 class="font-semibold my-7 text-2xl">{{ $title }}</h1>
                 {{-- Excerpt preview --}}
-                <p class="text-gray-400">{{ $excerpt }}</p>
+                <p class="text-gray-400">{!! ucfirst($post->excerpt) !!}</p>
             </div>
 
             {{-- Right --}}
