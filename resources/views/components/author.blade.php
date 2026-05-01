@@ -1,6 +1,6 @@
 @props(['author'])
 
-<div class="flex items-center space-x-3">
+<div {{ $attributes->merge(['class' => 'flex items-center space-x-3']) }}>
     <a wire:navigate href="{{ route('users.show', $author) }}" class="w-10 h-10 rounded-full overflow-hidden hover:opacity-50 transition-all">
         {{-- <img src="{{ $author->image->url }}" alt="Foto penulis"> --}}
         @if ($author->image != null)
