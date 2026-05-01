@@ -39,9 +39,9 @@
         </div>
 
         {{-- Tag --}}
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-2 flex-wrap">
             @foreach ($post->tags as $tag)
-            <span>
+            <span class="my-3.5">
                 <a wire:navigate  href="{{ route('tags.show', $tag->slug) }}" class="py-3 px-4 text-sm rounded-full bg-gray-800">{{ $tag->name }}</a>
             </span>
             @endforeach
