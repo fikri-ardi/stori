@@ -18,6 +18,8 @@
     }"
     >
     <div class="mx-16 overflow-hidden">
+
+        {{-- Tab Header --}}
         <div class="mb-8 my-10">
             <h1 class="text-4xl font-semibold mb-6 text-gray-400 flex items-center space-x-2">
                 <div>Results for</div>
@@ -35,6 +37,8 @@
                 </div>
             </div>
         </div>
+
+        {{-- Tab Content --}}
         <div 
             x-ref="resultsContainer"
             class="w-[300%] flex -translate-x-[33.33%] transition-all ease-in-out duration-300">
@@ -67,7 +71,7 @@
                         {{-- Author Profile --}}
                         <div class="flex flex-col justify-baseline space-y-3">
                             <a wire:navigate href="{{ route('users.show', $user) }}" class="hover:underline transition-all">
-                                <h2 class="text-xl">Written by {{ $user->name }}</h2>
+                                <h2 class="text-xl">{{ $user->name }}</h2>
                             </a>
                 
                             <div>
