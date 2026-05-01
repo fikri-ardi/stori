@@ -12,6 +12,9 @@ class AllTags extends Component
 
     public function search()
     {
+        if ($this->keywords == '') {
+            return;
+        };
         $this->redirectRoute('search', ['keywords' => $this->keywords], navigate: true);
     }
 

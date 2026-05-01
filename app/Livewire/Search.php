@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\Post;
 use App\Models\Tag;
-use Livewire\Component;
+use App\Models\User;
 use Livewire\Attributes\Url;
+use Livewire\Component;
 
 class Search extends Component
 {
@@ -14,11 +16,24 @@ class Search extends Component
     public function render()
     {
         if ($this->keywords == '') {
-            $this->redirectRoute('tags.index', navigate: true);
+            return view('livewire.search', [
+                'tags' => collect(),
+                'users' => collect(),
+                'posts' => collect(),
+            ]);
         };
 
         $tags = Tag::where('name', 'like', '%' . $this->keywords . '%')->get();
 
-        return view('livewire.search', compact('tags'));
+        $users = User::where('name', 'like', '%' . $this->keywords . '%')
+            ->orWhere('username', 'like', "%$this->keywords%")
+            ->orWhere('bio', 'like', "%$this->keywords%")
+            ->get();
+
+        $posts = Post::where('title', 'like', '%' . $this->keywords . '%')
+            ->orWhere('body', 'like', "%$this->keywords%")
+            ->get();
+
+        return view('livewire.search', compact('tags', 'users', 'posts'));
     }
 }
