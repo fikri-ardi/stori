@@ -122,7 +122,9 @@
             {{-- Post status --}}
             <div class="flex items-center space-x-3 text-sm">
                 <div>Draft</div>
+                @if (request()->routeis('posts.edit'))
                 <div>Saved</div>
+                @endif
             </div>
         </div>
 
