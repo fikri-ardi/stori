@@ -32,6 +32,7 @@ class Search extends Component
 
         $posts = Post::where('title', 'like', '%' . $this->keywords . '%')
             ->orWhere('body', 'like', "%$this->keywords%")
+            ->limit(9)
             ->get();
 
         return view('livewire.search', compact('tags', 'users', 'posts'));

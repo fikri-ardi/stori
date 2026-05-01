@@ -41,12 +41,12 @@
         {{-- Tab Content --}}
         <div 
             x-ref="resultsContainer"
-            class="w-[300%] flex -translate-x-[33.33%] transition-all ease-in-out duration-300">
+            class="w-[300%] flex -translate-x-[66.66%] transition-all ease-in-out duration-300">
 
             {{-- Post result --}}
             <div class="flex flex-wrap w-1/3 gap-4">
                 @forelse ($posts as $post)
-                <a href="{{ route('posts.show', $post) }}" class="py-3 px-4 text-sm rounded-full bg-gray-800">{{ $post->name }}</a>
+                <x-post wire:key="{{ $post->id }}" :$post />
                 @empty
                 <div class="text-gray-400">No posts found.</div>
                 @endforelse

@@ -1,6 +1,6 @@
 @props(['post'])
 
-<article class="md:max-w-[362px] flex flex-col justify-between">
+<article class="md:max-w-[333px] flex flex-col justify-between">
     {{-- Banner --}}
     <div class="w-full h-56 mb-7">
         <a wire:navigate href="{{ route('posts.show', $post->slug) }}">
