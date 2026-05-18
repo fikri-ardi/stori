@@ -9,6 +9,7 @@
     <meta property="og:description" content="Social media platform for sharing posts and connecting with others.">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     <title>{{ $title ?? config('app.name') }}</title>
 </head>
 
@@ -34,6 +35,8 @@ class="relative min-h-full font-inter">
     @if (!request()->routeIs('posts.create') && !request()->routeIs('posts.edit'))
     <x-footer />
     @endif
+
+    @livewireScripts
 </body>
 
 </html>

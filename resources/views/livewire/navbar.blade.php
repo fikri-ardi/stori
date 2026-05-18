@@ -40,10 +40,10 @@
             <div class="flex h-16 items-center gap-4 px-4 sm:px-6 lg:px-8">
                 <a wire:navigate href="{{ route('home') }}" class="flex shrink-0 items-center gap-2 text-white">
                     <span class="grid size-9 place-items-center rounded-full border border-white/10 bg-white/10 text-lg font-bold shadow-lg shadow-black/20">V</span>
-                    <span class="text-xl font-semibold tracking-normal">Verse</span>
+                    <span class="hidden text-xl font-semibold tracking-normal sm:inline">Verse</span>
                 </a>
 
-                <form action="{{ route('search') }}" method="GET" class="mx-auto flex w-full max-w-xl items-center">
+                <form action="{{ route('search') }}" method="GET" class="mx-auto flex min-w-0 flex-1 items-center md:max-w-xl">
                     <label for="top-search" class="sr-only">Search</label>
                     <div class="flex h-11 w-full items-center gap-3 rounded-full border border-white/10 bg-white/[0.07] px-4 text-gray-300 shadow-lg shadow-black/10 backdrop-blur-xl transition focus-within:border-white/25 focus-within:bg-white/[0.1]">
                         <i class="ph-light ph-magnifying-glass text-xl"></i>
@@ -57,16 +57,46 @@
                         >
                     </div>
                 </form>
+
+                <div class="hidden shrink-0 items-center gap-4 md:flex">
+                    @auth
+                        <a wire:navigate href="{{ route('posts.create') }}" class="flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-gray-300 transition hover:bg-white/10 hover:text-white">
+                            <i class="ph-light ph-note-pencil text-2xl"></i>
+                            <span>Write</span>
+                        </a>
+
+                        <button
+                            type="button"
+                            class="grid size-10 cursor-pointer place-items-center rounded-full text-gray-400 transition hover:bg-white/10 hover:text-white"
+                        >
+                            <span class="sr-only">View notifications</span>
+                            <i class="ph-light ph-bell-simple text-2xl"></i>
+                        </button>
+
+                        <livewire:layouts.profile-dropdown />
+                    @else
+                        <a wire:navigate href="{{ route('login') }}" class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-950 shadow-lg shadow-black/20 transition hover:scale-105">
+                            Login
+                        </a>
+                    @endauth
+                </div>
+
+                <div class="flex shrink-0 items-center md:hidden">
+                    @auth
+                        <livewire:layouts.profile-dropdown />
+                    @endauth
+                </div>
             </div>
         </header>
 
         {{-- Medium-like fixed sidebar --}}
         <aside class="fixed left-0 top-16 bottom-0 z-40 hidden w-20 border-r border-white/10 bg-gray-950/45 backdrop-blur-2xl supports-[backdrop-filter]:bg-gray-950/25 md:flex">
-            <div class="flex w-full flex-col items-center justify-between py-5">
+            <div class="flex w-full flex-col items-center py-5">
                 <div class="flex flex-col items-center gap-2">
                     @foreach ($navItems as $item)
                         <a
                             wire:navigate
+                            wire:key="{{ $item['href'] }}"
                             href="{{ $item['href'] }}"
                             aria-current="{{ $item['active'] ? 'page' : 'false' }}"
                             class="group relative grid size-12 place-items-center rounded-2xl text-gray-400 transition hover:bg-white/10 hover:text-white {{ $item['active'] ? 'bg-white/15 text-white shadow-lg shadow-black/20' : '' }}"
@@ -77,45 +107,6 @@
                             </span>
                         </a>
                     @endforeach
-                </div>
-
-                <div class="flex flex-col items-center gap-3">
-                    @auth
-                        <a
-                            wire:navigate
-                            href="{{ route('posts.create') }}"
-                            class="group relative grid size-12 place-items-center rounded-2xl bg-white text-gray-950 shadow-lg shadow-black/20 transition hover:scale-105"
-                        >
-                            <i class="ph-light ph-note-pencil text-2xl"></i>
-                            <span class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100">
-                                Write
-                            </span>
-                        </a>
-
-                        <button
-                            type="button"
-                            class="group relative grid size-12 cursor-pointer place-items-center rounded-2xl text-gray-400 transition hover:bg-white/10 hover:text-white"
-                        >
-                            <span class="sr-only">View notifications</span>
-                            <i class="ph-light ph-bell-simple text-2xl"></i>
-                            <span class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100">
-                                Notifications
-                            </span>
-                        </button>
-
-                        <livewire:layouts.profile-dropdown />
-                    @else
-                        <a
-                            wire:navigate
-                            href="{{ route('login') }}"
-                            class="group relative grid size-12 place-items-center rounded-2xl bg-white text-gray-950 shadow-lg shadow-black/20 transition hover:scale-105"
-                        >
-                            <i class="ph-light ph-sign-in text-2xl"></i>
-                            <span class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100">
-                                Login
-                            </span>
-                        </a>
-                    @endauth
                 </div>
             </div>
         </aside>
