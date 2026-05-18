@@ -124,6 +124,7 @@
                 <div>Draft</div>
                 @if (request()->routeIs('posts.edit'))
                 <div>Saved</div>
+                <div wire:loading.class="text-2xl">Saving...</div>
                 @endif
             </div>
         </div>

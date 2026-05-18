@@ -60,6 +60,11 @@ new class extends Component
         $this->existingImages = $this->post->images;
     }
 
+    public function updatingBody()
+    {
+        $this->dispatch('body-is', message: 'updating');
+    }
+
     public function save($name, $value)
     {
         $this->authorize('update', $this->post);
