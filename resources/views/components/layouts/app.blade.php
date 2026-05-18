@@ -27,7 +27,11 @@ class="relative min-h-full font-inter">
         'pt-20 pb-24 md:pl-24 md:pb-0' => !request()->routeIs('posts.create') && !request()->routeIs('posts.edit'),
         'pt-20' => request()->routeIs('posts.create') || request()->routeIs('posts.edit'),
     ])>
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div @class([
+            'mx-auto px-4 py-6 sm:px-6 lg:px-8',
+            'max-w-[92rem]' => request()->routeIs('home'),
+            'max-w-7xl' => !request()->routeIs('home'),
+        ])>
             {{ $slot }}
         </div>
     </main>

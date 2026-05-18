@@ -1,4 +1,4 @@
-<div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_21rem]">
+<div class="mx-auto grid max-w-[88rem] gap-10 lg:grid-cols-[minmax(0,1fr)_16rem] xl:grid-cols-[minmax(0,1fr)_17rem]">
     {{-- Main post list --}}
     <section class="min-w-0">
         <div class="border-b border-white/10 pb-6">
@@ -33,7 +33,7 @@
                                             {{ $post->author->initials() }}
                                         </span>
                                     @endif
-                                    <span class="truncate text-white">{{ ucwords($post->author->name) }}</span>
+                                    <span class="truncate text-gray-200 text-sm">{{ ucwords($post->author->name) }}</span>
                                 </div>
 
                                 <h3 class="line-clamp-2 font-semibold leading-6 text-gray-200 transition group-hover:text-white">
@@ -41,7 +41,7 @@
                                 </h3>
 
                                 <div class="mt-2 flex items-center gap-3 text-xs text-gray-500">
-                                    <span class="shrink-0 text-xs text-gray-500">{{ $post->created_at->format('M d') }}</span>
+                                    <span class="shrink-0 text-sm text-gray-400">{{ $post->created_at->format('M d') }}</span>
                                 </div>
                             </div>
                         </a>
@@ -75,22 +75,29 @@
                     @endif
                 </div>
 
-                <div class="mt-5 space-y-4">
+                <div class="mt-5 space-y-5">
                     @auth
                         @if ($readingList && $readingList->posts->count() > 0)
                             @foreach ($readingList->posts as $post)
-                                <a wire:navigate href="{{ route('posts.show', $post->slug) }}" class="group block">
-                                    <div class="flex items-start gap-3">
-                                        <div class="mt-1 grid size-8 shrink-0 place-items-center rounded-full bg-white/10 text-gray-300">
-                                            <i class="ph-light ph-bookmark-simple text-lg"></i>
+                                <a wire:navigate href="{{ route('posts.show', $post->slug) }}" class="group flex gap-4">
+                                    <div class="min-w-0">
+                                        <div class="mb-2 flex min-w-0 items-center gap-2 text-xs text-gray-400">
+                                            @if ($post->author->image)
+                                                <img src="{{ $post->author->image->url }}" alt="" class="size-5 shrink-0 rounded-full object-cover">
+                                            @else
+                                                <span class="grid size-5 shrink-0 place-items-center rounded-full bg-white text-[10px] font-semibold uppercase text-gray-900">
+                                                    {{ $post->author->initials() }}
+                                                </span>
+                                            @endif
+                                            <span class="truncate text-gray-200 text-sm">{{ ucwords($post->author->name) }}</span>
                                         </div>
-                                        <div class="min-w-0">
-                                            <h3 class="line-clamp-2 text-sm font-semibold leading-6 text-gray-200 group-hover:text-white">
-                                                {{ str($post->title)->lower()->ucfirst() }}
-                                            </h3>
-                                            <p class="mt-1 truncate text-xs text-gray-500">
-                                                {{ ucwords($post->author->name) }}
-                                            </p>
+
+                                        <h3 class="line-clamp-2 text-base font-semibold leading-6 text-gray-200 transition group-hover:text-white">
+                                            {{ str($post->title)->lower()->ucfirst() }}
+                                        </h3>
+
+                                        <div class="mt-2 flex items-center gap-3 text-sm text-gray-500">
+                                            <span class="shrink-0 text-sm text-gray-400">{{ $post->created_at->format('M d') }}</span>
                                         </div>
                                     </div>
                                 </a>
