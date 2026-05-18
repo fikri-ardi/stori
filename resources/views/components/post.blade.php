@@ -65,7 +65,7 @@
         </div>
 
         {{-- Banner --}}
-        <a wire:navigate href="{{ route('posts.show', $post->slug) }}" class="block h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-white/5 sm:h-36 sm:w-52 md:w-60">
+        <a wire:navigate href="{{ route('posts.show', $post->slug) }}" class="block h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-white/5 sm:h-36 sm:w-36 md:w-48">
             @if ($post->images->first())
                 <img
                     src="{{ $post->images->first()->url }}"
