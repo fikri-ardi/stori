@@ -35,7 +35,7 @@ class="relative">
     x-show="sharePostModal" 
     @mousedown.outside="sharePostModal = false"
     x-transition 
-    class="absolute min-w-64 bg-black/90 backdrop-blur-lg rounded-2xl top-full mt-2 left-1/2 -translate-x-1/2">
+    class="absolute min-w-56 bg-black/90 backdrop-blur-lg rounded-2xl top-full mt-2 left-1/2 -translate-x-1/2">
 
         {{-- Share Post Modal --}}
         <div class="p-6 flex flex-col space-y-5 text-sm text-gray-300">
