@@ -1,5 +1,9 @@
 <div class="flex flex-col items-center">
-    <article class="w-7/12 flex flex-col gap-7">
+    <article 
+        @click="console.log('sidebarOpen')"
+        class="flex flex-col gap-7"
+        :class="sidebarOpen ? 'w-[70%]' : 'w-[65%]'"
+        >
         {{-- Title --}}
         <div class="mb-3 mt-2">
             <h1 class="text-4xl font-semibold">{{ ucfirst($post->title) }}</h1>

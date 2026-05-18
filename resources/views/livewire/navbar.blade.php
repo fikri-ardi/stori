@@ -1,17 +1,4 @@
-<nav
-    x-data="{
-        sidebarOpen: JSON.parse(localStorage.getItem('verse-sidebar-open') ?? 'false'),
-        syncSidebarOffset() {
-            document.documentElement.style.setProperty('--sidebar-offset', this.sidebarOpen ? '15rem' : '6rem')
-        },
-        toggleSidebar() {
-            this.sidebarOpen = ! this.sidebarOpen
-            localStorage.setItem('verse-sidebar-open', JSON.stringify(this.sidebarOpen))
-            this.syncSidebarOffset()
-        },
-    }"
-    x-init="syncSidebarOffset()"
->
+<nav>
     @if (!request()->routeIs('posts.create') && !request()->routeIs('posts.edit'))
         @php
             $navItems = [

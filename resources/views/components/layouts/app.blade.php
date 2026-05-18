@@ -14,8 +14,21 @@
 </head>
 
 <body
-x-data="{ loginModal: false, modalBackdrop: false }"
-class="relative min-h-full font-inter">
+    x-data="{ 
+        loginModal: false, 
+        modalBackdrop: false,
+        sidebarOpen: JSON.parse(localStorage.getItem('verse-sidebar-open') ?? 'false'),
+        syncSidebarOffset() {
+            document.documentElement.style.setProperty('--sidebar-offset', this.sidebarOpen ? '15rem' : '6rem')
+        },
+        toggleSidebar() {
+            this.sidebarOpen = ! this.sidebarOpen
+            localStorage.setItem('verse-sidebar-open', JSON.stringify(this.sidebarOpen))
+            this.syncSidebarOffset()
+        },
+    }"
+    x-init="syncSidebarOffset()"
+    class="relative min-h-full font-inter">
 
     <livewire:navbar />
     <livewire:ui.toast />
