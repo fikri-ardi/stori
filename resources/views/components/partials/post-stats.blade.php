@@ -20,8 +20,6 @@
         <livewire:posts.share-button :post="$post" />
 
         {{-- More Options --}}
-        <button type="button" class="cursor-pointer">
-            <i class="ph-light ph-dots-three text-2xl"></i>
-        </button>
+        <livewire:posts.options :post="$post" />
     </div>
 </div>
