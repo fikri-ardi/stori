@@ -10,7 +10,7 @@ use Livewire\Component;
 class Home extends Component
 {
 
-    #[Title('Verse')]
+    #[Title('Stori')]
     public function render()
     {
         $posts = Post::with(['author.image', 'images', 'claps', 'comments'])

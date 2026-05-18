@@ -2,7 +2,7 @@
     {{-- Main post list --}}
     <section class="min-w-0">
         <div class="border-b border-white/10 pb-6">
-            <p class="text-sm font-medium text-gray-400">Today on Verse</p>
+            <p class="text-sm font-medium text-gray-400">Today on Stori</p>
         </div>
 
         <div class="flex flex-col">

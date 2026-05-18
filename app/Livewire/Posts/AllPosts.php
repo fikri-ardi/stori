@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 
 class AllPosts extends Component
 {
-    #[Title('Posts - Verse')]
+    #[Title('Posts - Stori')]
     public function render()
     {
 

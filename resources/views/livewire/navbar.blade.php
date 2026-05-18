@@ -49,8 +49,8 @@
                 </button>
 
                 <a wire:navigate href="{{ route('home') }}" class="flex shrink-0 items-center gap-2 text-white">
-                    <span class="grid size-9 place-items-center rounded-full border border-white/10 bg-white/10 text-lg font-bold shadow-lg shadow-black/20">V</span>
-                    <span class="hidden text-xl font-semibold tracking-normal sm:inline">Verse</span>
+                    <span class="grid size-9 place-items-center rounded-full border border-white/10 bg-white/10 text-lg font-bold shadow-lg shadow-black/20">S</span>
+                    <span class="hidden text-xl font-semibold tracking-normal sm:inline">Stori</span>
                 </a>
 
                 <form action="{{ route('search') }}" method="GET" class="mx-auto flex min-w-0 flex-1 items-center md:max-w-xl">
@@ -71,7 +71,7 @@
                 <div class="hidden shrink-0 items-center gap-4 md:flex">
                     @auth
                         <a wire:navigate href="{{ route('posts.create') }}" class="flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-gray-300 transition hover:bg-white/10 hover:text-white">
-                            <i class="ph-light ph-note-pencil text-2xl"></i>
+                            <i class="ph-light ph-pen text-2xl"></i>
                             <span>Write</span>
                         </a>
 
@@ -180,7 +180,7 @@
             {{-- Left --}}
             <div class="flex items-center space-x-3">
                 {{-- Logo --}}
-                <a wire:navigate href="{{ route('home') }}" class="text-3xl font-bold">Verse</a>
+                <a wire:navigate href="{{ route('home') }}" class="text-3xl font-bold">Stori</a>
 
                 {{-- Post status --}}
                 <div class="flex items-center space-x-3 text-sm">

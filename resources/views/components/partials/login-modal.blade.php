@@ -8,7 +8,7 @@ class="fixed left-1/2 top-1/2 -translate-1/2 h-[40rem] w-[32rem] rounded-3xl bg-
     {{-- Header --}}
     <div>
         <h3 class="font-semibold text-xl">Welcome!</h3>
-        <p class="text-sm text-gray-400 mt-2">Login to Verse to continue your interaction!</p>
+        <p class="text-sm text-gray-400 mt-2">Login to Stori to continue your interaction!</p>
     </div>
 
     {{-- Login with Google or Apple --}}
