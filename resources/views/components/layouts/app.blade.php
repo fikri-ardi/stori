@@ -21,7 +21,11 @@ class="relative min-h-full font-inter">
     <x-partials.login-modal />
     <livewire:modal-backdrop />
 
-    <main class="text-gray-200 px-5">
+    <main @class([
+        'text-gray-200 px-5',
+        'pt-20 pb-24 md:pl-24 md:pb-0' => !request()->routeIs('posts.create') && !request()->routeIs('posts.edit'),
+        'pt-20' => request()->routeIs('posts.create') || request()->routeIs('posts.edit'),
+    ])>
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             {{ $slot }}
         </div>

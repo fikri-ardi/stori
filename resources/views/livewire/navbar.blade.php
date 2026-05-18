@@ -1,158 +1,203 @@
-<nav x-data class="bg-gray-800/50">
+<nav>
     @if (!request()->routeIs('posts.create') && !request()->routeIs('posts.edit'))
-        {{-- Desktop Nav --}}
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                {{-- Left nav --}}
-                <div class="flex items-center">
-                    <div class="shrink-0">
-                        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="size-8" />
+        @php
+            $navItems = [
+                [
+                    'label' => 'Home',
+                    'href' => route('home'),
+                    'icon' => 'ph-house',
+                    'active' => request()->routeIs('home'),
+                ],
+                [
+                    'label' => 'Posts',
+                    'href' => route('posts.index'),
+                    'icon' => 'ph-article',
+                    'active' => request()->routeIs('posts.*'),
+                ],
+                [
+                    'label' => 'Explore',
+                    'href' => route('tags.index'),
+                    'icon' => 'ph-compass',
+                    'active' => request()->routeIs('tags.*'),
+                ],
+                [
+                    'label' => 'About',
+                    'href' => route('about'),
+                    'icon' => 'ph-info',
+                    'active' => request()->routeIs('about'),
+                ],
+                [
+                    'label' => 'Contact',
+                    'href' => route('contact'),
+                    'icon' => 'ph-envelope-simple',
+                    'active' => request()->routeIs('contact'),
+                ],
+            ];
+        @endphp
+
+        {{-- Fixed top bar --}}
+        <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-gray-950/55 backdrop-blur-2xl supports-[backdrop-filter]:bg-gray-950/35">
+            <div class="flex h-16 items-center gap-4 px-4 sm:px-6 lg:px-8">
+                <a wire:navigate href="{{ route('home') }}" class="flex shrink-0 items-center gap-2 text-white">
+                    <span class="grid size-9 place-items-center rounded-full border border-white/10 bg-white/10 text-lg font-bold shadow-lg shadow-black/20">V</span>
+                    <span class="text-xl font-semibold tracking-normal">Verse</span>
+                </a>
+
+                <form action="{{ route('search') }}" method="GET" class="mx-auto flex w-full max-w-xl items-center">
+                    <label for="top-search" class="sr-only">Search</label>
+                    <div class="flex h-11 w-full items-center gap-3 rounded-full border border-white/10 bg-white/[0.07] px-4 text-gray-300 shadow-lg shadow-black/10 backdrop-blur-xl transition focus-within:border-white/25 focus-within:bg-white/[0.1]">
+                        <i class="ph-light ph-magnifying-glass text-xl"></i>
+                        <input
+                            id="top-search"
+                            name="keywords"
+                            type="search"
+                            value="{{ request('keywords') }}"
+                            placeholder="Search"
+                            class="h-full min-w-0 flex-1 bg-transparent text-sm text-white placeholder:text-gray-500 outline-none"
+                        >
                     </div>
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                            <x-nav-link href="{{ route('home') }}">Home</x-nav-link>
-                            <x-nav-link href="{{ route('posts.index') }}">Posts</x-nav-link>
-                            <x-nav-link href="{{ route('tags.index') }}">Explore</x-nav-link>
-                            <x-nav-link href="{{ route('about') }}">About</x-nav-link>
-                            <x-nav-link href="{{ route('contact') }}">Contact</x-nav-link>
-                        </div>
-                    </div>
-                </div>
-        
-                {{-- Right nav --}}
-                @auth
-                <div class="hidden md:block">
-                    <div class="ml-4 flex space-x-6 items-center md:ml-6">
-                        {{-- Create post button --}}
-                        <a href="{{ route('posts.create') }}" class="flex items-center space-x-2 text-sm text-gray-300 hover:text-white">
-                            <i class="ph-light ph-note-pencil text-2xl"></i>
-                            <span>Write</span>
+                </form>
+            </div>
+        </header>
+
+        {{-- Medium-like fixed sidebar --}}
+        <aside class="fixed left-0 top-16 bottom-0 z-40 hidden w-20 border-r border-white/10 bg-gray-950/45 backdrop-blur-2xl supports-[backdrop-filter]:bg-gray-950/25 md:flex">
+            <div class="flex w-full flex-col items-center justify-between py-5">
+                <div class="flex flex-col items-center gap-2">
+                    @foreach ($navItems as $item)
+                        <a
+                            wire:navigate
+                            href="{{ $item['href'] }}"
+                            aria-current="{{ $item['active'] ? 'page' : 'false' }}"
+                            class="group relative grid size-12 place-items-center rounded-2xl text-gray-400 transition hover:bg-white/10 hover:text-white {{ $item['active'] ? 'bg-white/15 text-white shadow-lg shadow-black/20' : '' }}"
+                        >
+                            <i class="{{ $item['active'] ? 'ph-fill' : 'ph-light' }} {{ $item['icon'] }} text-2xl"></i>
+                            <span class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100">
+                                {{ $item['label'] }}
+                            </span>
                         </a>
-        
-                        {{-- Notification button --}}
-                        <button type="button"
-                            class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                            <span class="absolute -inset-1.5"></span>
+                    @endforeach
+                </div>
+
+                <div class="flex flex-col items-center gap-3">
+                    @auth
+                        <a
+                            wire:navigate
+                            href="{{ route('posts.create') }}"
+                            class="group relative grid size-12 place-items-center rounded-2xl bg-white text-gray-950 shadow-lg shadow-black/20 transition hover:scale-105"
+                        >
+                            <i class="ph-light ph-note-pencil text-2xl"></i>
+                            <span class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100">
+                                Write
+                            </span>
+                        </a>
+
+                        <button
+                            type="button"
+                            class="group relative grid size-12 cursor-pointer place-items-center rounded-2xl text-gray-400 transition hover:bg-white/10 hover:text-white"
+                        >
                             <span class="sr-only">View notifications</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-                                <path
-                                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                            <i class="ph-light ph-bell-simple text-2xl"></i>
+                            <span class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100">
+                                Notifications
+                            </span>
                         </button>
-        
-                        <!-- Profile dropdown toggler -->
-                        @auth
+
                         <livewire:layouts.profile-dropdown />
-                        @endauth
-                    </div>
-                </div>
-                @else
-                <a wire:navigate href="{{ route('login') }}" class="bg-gray-200 text-gray-800 rounded-full px-4 py-2 text-sm font-semibold">Login</a>
-                @endauth
-        
-                {{-- Hamburger button --}}
-                <div class="-mr-2 flex md:hidden">
-                    <!-- Mobile menu button -->
-                    <button type="button" command="--toggle" commandfor="mobile-menu"
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                        <span class="absolute -inset-0.5"></span>
-                        <span class="sr-only">Open main menu</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-                            class="size-6 in-aria-expanded:hidden">
-                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-                            class="size-6 not-in-aria-expanded:hidden">
-                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
+                    @else
+                        <a
+                            wire:navigate
+                            href="{{ route('login') }}"
+                            class="group relative grid size-12 place-items-center rounded-2xl bg-white text-gray-950 shadow-lg shadow-black/20 transition hover:scale-105"
+                        >
+                            <i class="ph-light ph-sign-in text-2xl"></i>
+                            <span class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100">
+                                Login
+                            </span>
+                        </a>
+                    @endauth
                 </div>
             </div>
-        </div>
-        
-        {{-- Mobile Nav --}}
-        <el-disclosure id="mobile-menu" hidden class="block md:hidden">
-            <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-                <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                <x-nav-link href="{{ route('home') }}">Home</x-nav-link>
-                <x-nav-link href="{{ route('posts.index') }}">Posts</x-nav-link>
-                <x-nav-link href="{{ route('about') }}">About</x-nav-link>
-                <x-nav-link href="{{ route('contact') }}">Contact</x-nav-link>
-            </div>
-            <div class="border-t border-white/10 pt-4 pb-3">
-                <div class="flex items-center px-5">
-                    <div class="shrink-0">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt="" class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
-                    </div>
-                    <div class="ml-3">
-                        <div class="text-base/5 font-medium text-white">Tom Cook</div>
-                        <div class="text-sm font-medium text-gray-400">tom@example.com</div>
-                    </div>
-                    <button type="button"
-                        class="relative ml-auto shrink-0 rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">View notifications</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-                            <path
-                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="mt-3 space-y-1 px-2">
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Your
-                        profile</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Sign
-                        out</a>
-                </div>
-            </div>
-        </el-disclosure>
-        
-    @else
-    <div class="flex items-center justify-between px-32 py-4 text-gray-200">
-        {{-- Left --}}
-        <div class="flex items-center space-x-3">
-            {{-- Logo --}}
-            <a href="{{ route('home') }}" class="text-3xl font-bold">Verse</a>
+        </aside>
 
-            {{-- Post status --}}
-            <div class="flex items-center space-x-3 text-sm">
-                <div>Draft</div>
-                @if (request()->routeIs('posts.edit'))
-                <div>Saved</div>
-                <div wire:loading.class="text-2xl">Saving...</div>
-                @endif
+        {{-- Fixed mobile nav --}}
+        <div class="fixed inset-x-3 bottom-3 z-50 rounded-3xl border border-white/10 bg-gray-950/65 px-2 py-2 shadow-2xl shadow-black/40 backdrop-blur-2xl md:hidden">
+            <div class="grid grid-cols-5 gap-1">
+                @foreach ($navItems as $item)
+                    <a
+                        wire:navigate
+                        href="{{ $item['href'] }}"
+                        aria-label="{{ $item['label'] }}"
+                        aria-current="{{ $item['active'] ? 'page' : 'false' }}"
+                        class="grid h-12 place-items-center rounded-2xl text-gray-400 transition hover:bg-white/10 hover:text-white {{ $item['active'] ? 'bg-white/15 text-white' : '' }}"
+                    >
+                        <i class="{{ $item['active'] ? 'ph-fill' : 'ph-light' }} {{ $item['icon'] }} text-2xl"></i>
+                    </a>
+                @endforeach
             </div>
         </div>
 
-        {{-- Right --}}
-        <div class="flex items-center space-x-5">
-            {{-- Publish button --}}
-            <button 
-                @disabled(!request()->routeIs('posts.edit')) 
-                @class([
-                    'text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold',
-                    'opacity-50 cursor-not-allowed' => !request()->routeIs('posts.edit'),
-                ])
-                @click="$dispatch('publish')"
-                class="text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold">Publish</button>
-
-            
-            {{-- More actioon --}}
-            <button class="ph-bold ph-dots-three text-2xl cursor-pointer"></button>
-
-            {{-- Notification --}}
-            <button class="ph-light ph-bell-simple text-xl cursor-pointer"></button>
-
-            <!-- Profile dropdown toggler -->
+        <div class="fixed right-5 bottom-24 z-50 md:hidden">
             @auth
-            <livewire:layouts.profile-dropdown />
+                <a
+                    wire:navigate
+                    href="{{ route('posts.create') }}"
+                    aria-label="Write"
+                    class="grid size-12 place-items-center rounded-full bg-white text-gray-950 shadow-2xl shadow-black/40"
+                >
+                    <i class="ph-light ph-note-pencil text-2xl"></i>
+                </a>
+            @else
+                <a
+                    wire:navigate
+                    href="{{ route('login') }}"
+                    aria-label="Login"
+                    class="grid size-12 place-items-center rounded-full bg-white text-gray-950 shadow-2xl shadow-black/40"
+                >
+                    <i class="ph-light ph-sign-in text-2xl"></i>
+                </a>
             @endauth
         </div>
-    </div>
+    @else
+        <div class="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-white/10 bg-gray-950/55 px-5 py-4 text-gray-200 backdrop-blur-2xl lg:px-32">
+            {{-- Left --}}
+            <div class="flex items-center space-x-3">
+                {{-- Logo --}}
+                <a wire:navigate href="{{ route('home') }}" class="text-3xl font-bold">Verse</a>
+
+                {{-- Post status --}}
+                <div class="flex items-center space-x-3 text-sm">
+                    <div>Draft</div>
+                    @if (request()->routeIs('posts.edit'))
+                        <div>Saved</div>
+                        <div wire:loading.class="text-2xl">Saving...</div>
+                    @endif
+                </div>
+            </div>
+
+            {{-- Right --}}
+            <div class="flex items-center space-x-5">
+                {{-- Publish button --}}
+                <button
+                    @disabled(!request()->routeIs('posts.edit'))
+                    @class([
+                        'text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold',
+                        'opacity-50 cursor-not-allowed' => !request()->routeIs('posts.edit'),
+                    ])
+                    @click="$dispatch('publish')"
+                    class="text-xs bg-green-600 px-3 py-1.5 rounded-full cursor-pointer font-semibold">Publish</button>
+
+                {{-- More action --}}
+                <button class="ph-bold ph-dots-three text-2xl cursor-pointer"></button>
+
+                {{-- Notification --}}
+                <button class="ph-light ph-bell-simple text-xl cursor-pointer"></button>
+
+                <!-- Profile dropdown toggler -->
+                @auth
+                    <livewire:layouts.profile-dropdown />
+                @endauth
+            </div>
+        </div>
     @endif
 </nav>
