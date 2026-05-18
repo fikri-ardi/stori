@@ -82,7 +82,7 @@
                     :style="tab === 'posts' ? 'transform: translateX(0%)' : 'transform: translateX(-50%)'">
 
                     <!-- POSTS GRID -->
-                    <div class="w-full grid grid-cols-3 gap-4 justify-center" id="posts">
+                    <div class="w-full flex flex-col pr-4" id="posts">
                         @foreach ($posts as $post)
                         <x-post :$post />
                         @endforeach

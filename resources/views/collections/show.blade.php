@@ -9,7 +9,7 @@
                 <span>Collections</span>
             </div>
         </div>
-        <div class="flex flex-wrap gap-4">
+        <div class="mx-auto flex max-w-4xl flex-col">
             @forelse ($collection->posts as $post)
             <x-post :$post />
             @empty

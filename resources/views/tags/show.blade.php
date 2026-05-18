@@ -14,7 +14,7 @@
         <div class="border-t border-gray-800">
             {{-- Header --}}
             <div class="text-2xl font-semibold py-10">Recommended posts</div>
-            <div class="flex flex-wrap gap-9">
+            <div class="mx-auto flex max-w-4xl flex-col">
                 @foreach ($tag->posts as $post)
                     <x-post :$post />
                 @endforeach

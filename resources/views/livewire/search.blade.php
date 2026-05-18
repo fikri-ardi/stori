@@ -44,7 +44,7 @@
             class="w-[300%] flex -translate-x-[66.66%] transition-all ease-in-out duration-300">
 
             {{-- Post result --}}
-            <div class="flex flex-wrap w-1/3 gap-4">
+            <div class="flex w-1/3 flex-col">
                 @forelse ($posts as $post)
                 <x-post wire:key="{{ $post->id }}" :$post />
                 @empty
