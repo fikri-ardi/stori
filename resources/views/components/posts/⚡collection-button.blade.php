@@ -89,7 +89,7 @@ class="relative">
     x-show="openUserCollectionModal"
     @mousedown.outside="openUserCollectionModal = false" 
     x-transition
-    class="absolute w-75 bg-black/90 backdrop-blur-lg rounded-2xl top-full mt-2 left-1/2 -translate-x-1/2">
+    class="absolute min-w-60 bg-black/90 backdrop-blur-lg rounded-2xl top-full mt-2 left-1/2 -translate-x-1/2">
     
         {{-- User Collection List --}}
         @if (auth()->user() && auth()->user()->collections()->exists())
