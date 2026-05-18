@@ -24,7 +24,7 @@ class="relative min-h-full font-inter">
 
     <main @class([
         'text-gray-200 px-5',
-        'pt-20 pb-24 md:pl-24 md:pb-0' => !request()->routeIs('posts.create') && !request()->routeIs('posts.edit'),
+        'pt-20 pb-24 md:pl-[var(--sidebar-offset,6rem)] md:pb-0 md:transition-[padding-left] md:duration-300 md:ease-out' => !request()->routeIs('posts.create') && !request()->routeIs('posts.edit'),
         'pt-20' => request()->routeIs('posts.create') || request()->routeIs('posts.edit'),
     ])>
         <div @class([

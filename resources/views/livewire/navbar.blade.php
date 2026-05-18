@@ -1,4 +1,17 @@
-<nav>
+<nav
+    x-data="{
+        sidebarOpen: JSON.parse(localStorage.getItem('verse-sidebar-open') ?? 'false'),
+        syncSidebarOffset() {
+            document.documentElement.style.setProperty('--sidebar-offset', this.sidebarOpen ? '15rem' : '6rem')
+        },
+        toggleSidebar() {
+            this.sidebarOpen = ! this.sidebarOpen
+            localStorage.setItem('verse-sidebar-open', JSON.stringify(this.sidebarOpen))
+            this.syncSidebarOffset()
+        },
+    }"
+    x-init="syncSidebarOffset()"
+>
     @if (!request()->routeIs('posts.create') && !request()->routeIs('posts.edit'))
         @php
             $navItems = [
@@ -38,6 +51,16 @@
         {{-- Fixed top bar --}}
         <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-gray-950/55 backdrop-blur-2xl supports-[backdrop-filter]:bg-gray-950/35">
             <div class="flex h-16 items-center gap-4 px-4 sm:px-6 lg:px-8">
+                <button
+                    type="button"
+                    x-on:click="toggleSidebar()"
+                    :aria-expanded="sidebarOpen.toString()"
+                    class="hidden size-10 shrink-0 cursor-pointer place-items-center rounded-full text-gray-400 transition hover:bg-white/10 hover:text-white md:grid"
+                >
+                    <span class="sr-only">Toggle sidebar</span>
+                    <i class="ph-light ph-sidebar-simple text-2xl transition-transform duration-300" :class="sidebarOpen ? 'rotate-180' : ''"></i>
+                </button>
+
                 <a wire:navigate href="{{ route('home') }}" class="flex shrink-0 items-center gap-2 text-white">
                     <span class="grid size-9 place-items-center rounded-full border border-white/10 bg-white/10 text-lg font-bold shadow-lg shadow-black/20">V</span>
                     <span class="hidden text-xl font-semibold tracking-normal sm:inline">Verse</span>
@@ -90,19 +113,35 @@
         </header>
 
         {{-- Medium-like fixed sidebar --}}
-        <aside class="fixed left-0 top-16 bottom-0 z-40 hidden w-20 border-r border-white/10 bg-gray-950/45 backdrop-blur-2xl supports-[backdrop-filter]:bg-gray-950/25 md:flex">
-            <div class="flex w-full flex-col items-center py-5">
-                <div class="flex flex-col items-center gap-2">
+        <aside
+            class="fixed left-0 top-16 bottom-0 z-40 hidden border-r border-white/10 bg-gray-950/45 shadow-2xl shadow-black/20 backdrop-blur-2xl transition-[width] duration-300 ease-out supports-[backdrop-filter]:bg-gray-950/25 md:flex"
+            :class="sidebarOpen ? 'w-60' : 'w-20'"
+        >
+            <div class="flex w-full flex-col py-5">
+                <div class="flex flex-col gap-2 px-4">
                     @foreach ($navItems as $item)
                         <a
                             wire:navigate
                             wire:key="{{ $item['href'] }}"
                             href="{{ $item['href'] }}"
                             aria-current="{{ $item['active'] ? 'page' : 'false' }}"
-                            class="group relative grid size-12 place-items-center rounded-2xl text-gray-400 transition hover:bg-white/10 hover:text-white {{ $item['active'] ? 'bg-white/15 text-white shadow-lg shadow-black/20' : '' }}"
+                            class="group relative flex h-12 items-center rounded-2xl text-gray-400 transition hover:bg-white/10 hover:text-white {{ $item['active'] ? 'bg-white/15 text-white shadow-lg shadow-black/20' : '' }}"
+                            :class="sidebarOpen ? 'w-full justify-start gap-3 px-3' : 'w-12 justify-center px-0'"
                         >
-                            <i class="{{ $item['active'] ? 'ph-fill' : 'ph-light' }} {{ $item['icon'] }} text-2xl"></i>
-                            <span class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100">
+                            <i class="{{ $item['active'] ? 'ph-fill' : 'ph-light' }} {{ $item['icon'] }} shrink-0 text-2xl"></i>
+
+                            <span
+                                x-show="sidebarOpen"
+                                x-transition.opacity.duration.150ms
+                                class="min-w-0 truncate text-sm font-medium"
+                            >
+                                {{ $item['label'] }}
+                            </span>
+
+                            <span
+                                x-show="! sidebarOpen"
+                                class="pointer-events-none absolute left-15 rounded-full border border-white/10 bg-gray-950/90 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-xl shadow-black/30 backdrop-blur-xl transition group-hover:translate-x-1 group-hover:opacity-100"
+                            >
                                 {{ $item['label'] }}
                             </span>
                         </a>
