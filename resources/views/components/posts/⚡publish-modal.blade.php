@@ -50,7 +50,7 @@ new class extends Component
         @mousedown.outside="modalBackdrop = false, publishPostModal = false" 
         class="relative m-auto w-4/5 h-6/7 bg-black/90 rounded-4xl p-10">
 
-        <h3 class="text-xl mb-7">Story Preview</h3>
+        <h3 class="text-xl mb-7">Post Preview</h3>
 
         {{-- Back button --}}
         <button 
@@ -66,7 +66,7 @@ new class extends Component
             <div class="w-1/2">
                 {{-- Banner preview --}}
                 @if ($existingImages?->first())
-                <img src="{{ config('app.url').$existingImages->first()->url }}" class="img-fluid rounded-3xl w-full h-56 object-cover object-center">
+                <img src="{{ config('app.url')."/".$existingImages->first()->url }}" class="img-fluid rounded-3xl w-full h-56 object-cover object-center">
                 @else
                 <div class="flex items-center justify-content-center w-full h-56 bg-white/5 rounded-3xl">
                     <div class="text-sm p-20 leading-relaxed text-gray-400">Include a high-quality image in your story to make it more inviting to readers.</div>
