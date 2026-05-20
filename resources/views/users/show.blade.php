@@ -8,7 +8,7 @@
                     <img src="{{ $user->image->url }}" alt="Avatar" class="size-40 rounded-full object-cover" />
                     @else
                     <div class="relative z-50 text-gray-900 bg-white size-40 flex rounded-full font-semibold uppercase text-5xl">
-                        <span class="m-auto">{{ auth()->user()->initials() }}</span>
+                        <span class="m-auto">{{ $user->initials() }}</span>
                     </div>
                     @endif
                 </div>
