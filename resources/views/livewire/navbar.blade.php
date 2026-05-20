@@ -36,7 +36,7 @@
         @endphp
 
         {{-- Fixed top bar --}}
-        <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-gray-950/55 backdrop-blur-2xl supports-[backdrop-filter]:bg-gray-950/35">
+        <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 backdrop-blur-2xl">
             <div class="flex h-16 items-center gap-4 px-4 sm:px-6 lg:px-8">
                 <button
                     type="button"
@@ -101,7 +101,7 @@
 
         {{-- Medium-like fixed sidebar --}}
         <aside
-            class="fixed left-0 top-16 bottom-0 z-40 hidden border-r border-white/10 bg-gray-950/45 shadow-2xl shadow-black/20 backdrop-blur-2xl transition-[width] duration-300 ease-out supports-[backdrop-filter]:bg-gray-950/25 md:flex"
+            class="fixed left-0 top-16 bottom-0 z-40 hidden border-r border-white/10 shadow-2xl shadow-black/20 backdrop-blur-2xl transition-[width] duration-300 ease-out md:flex"
             :class="sidebarOpen ? 'w-60' : 'w-20'"
             >
             <div class="flex w-full flex-col py-5">
