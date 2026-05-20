@@ -8,7 +8,9 @@ new class extends Component
 };
 ?>
 
-<el-dropdown class="relative">
+<el-dropdown 
+    @account-updated.window="$wire.$refresh()"
+    class="relative">
     {{-- Trigger button --}}
     <button
         class="cursor-pointer relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">

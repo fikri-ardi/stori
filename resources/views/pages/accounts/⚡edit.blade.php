@@ -73,6 +73,7 @@ new class extends Component
         }
 
         $this->dispatch('notif', message: 'Profile updated successfully.');
+        $this->dispatch('account-updated');
     }
 
     private function deleteProfilePhoto(?string $url): void

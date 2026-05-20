@@ -1,4 +1,4 @@
-<nav>
+<nav
     @if (!request()->routeIs('posts.create') && !request()->routeIs('posts.edit'))
         @php
             $navItems = [
