@@ -15,6 +15,8 @@ class Register extends Component
 {
     public string $name = '';
 
+    public string $username = '';
+
     public string $email = '';
 
     public string $password = '';
@@ -33,6 +35,7 @@ class Register extends Component
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
+        $validated['username'] = str($this->name)->slug()->append(str()->random(5))->toString();
 
         event(new Registered(($user = User::create($validated))));
 
