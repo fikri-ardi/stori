@@ -62,7 +62,7 @@
                 {{--Avatar --}}
                 <a wire:navigate href="{{ route('users.show', $post->author) }}" class="flex space-x-3 hover:opacity-50 transition-all">
                     @if ($post->author->image)
-                    <img src="{{ $post->author->image->url }}" class="relative size-12 rounded-full outline -outline-offset-1 outline-white/10" />
+                    <img src="{{ $post->author->image->url }}" class="relative size-12 object-cover rounded-full outline -outline-offset-1 outline-white/10" />
                     @else
                     <div class="relative z-40 text-xl text-gray-900 bg-white size-12 flex rounded-full font-semibold uppercase">
                         <span class="m-auto">{{ $post->author->initials() }}</span>
