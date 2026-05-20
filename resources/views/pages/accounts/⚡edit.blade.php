@@ -195,18 +195,13 @@ new class extends Component
                     </div>
 
                     <div class="flex flex-col-reverse gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-                        <x-action-message on="profile-updated" class="text-sm text-green-400">
-                            Profile saved.
-                        </x-action-message>
-
                         <div class="grid grid-cols-2 gap-3 sm:flex sm:items-center sm:justify-end">
-                            <a wire:navigate href="{{ route('users.show', auth()->user()) }}" class="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium text-gray-400 transition hover:bg-white/10 hover:text-white">
+                            <a wire:navigate href="{{ route('users.show', auth()->user()) }}" class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-400 transition hover:bg-white/10 hover:text-white">
                                 Cancel
                             </a>
-                            <button type="submit" class="inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-gray-950 transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60" wire:loading.attr="disabled" wire:target="save,photo">
+                            <button type="submit" class="inline-flex cursor-pointer items-center justify-center gap-1 rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-950 transition disabled:cursor-not-allowed disabled:opacity-60" wire:loading.attr="disabled" wire:target="save,photo">
                                 <i class="ph-light ph-floppy-disk text-lg"></i>
-                                <span wire:loading.remove wire:target="save">Save changes</span>
-                                <span wire:loading wire:target="save">Saving</span>
+                                <span wire:loading.remove wire:target="save">Save</span>
                             </button>
                         </div>
                     </div>
