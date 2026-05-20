@@ -119,7 +119,7 @@ new class extends Component
                 <img src="{{ $imageUpload->temporaryUrl() }}" class="img-fluid rounded-4xl w-full h-96 object-cover object-center absolute">
                 @endif
             @elseif ($existingImages?->first())
-            <img src="{{ config('app.url').$existingImages->first()->url }}" class="block img-fluid rounded-lg w-full h-full object-cover object-center absolute">
+            <img src="{{ config('app.url') . '/' . $existingImages->first()->url }}" class="block img-fluid rounded-lg w-full h-full object-cover object-center absolute">
             @endif
 
             <label for="images" class="absolute w-full text-center text-gray-300 text-sm">
