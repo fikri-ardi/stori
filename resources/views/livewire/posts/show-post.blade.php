@@ -32,7 +32,7 @@
             @if (str($post->images->first()->url)->contains('https'))
             <img src="{{ $post->images->first()->url }}" alt="Gambar Post" class="w-full h-full rounded object-cover object-center">
             @else
-            <img src="{{ config('app.url').$post->images->first()->url }}" alt="Gambar Post" class="w-full h-full rounded object-cover object-center">
+            <img src="/{{ $post->images->first()->url }}" alt="Gambar Post" class="w-full h-full rounded object-cover object-center">
             @endif
         </div>
         @endif

@@ -58,11 +58,12 @@ new class extends Component
 
         $this->post->refresh();
         $this->existingImages = $this->post->images;
+        $this->dispatch('post-is', message: "updated");
     }
 
-    public function updatingBody()
+    public function updating()
     {
-        $this->dispatch('body-is', message: 'updating');
+        $this->dispatch('post-is', message: 'updating');
     }
 
     public function save($name, $value)
@@ -77,6 +78,8 @@ new class extends Component
             $name => $value,
             'excerpt' => str()->limit(strip_tags(Str::markdown($this->body)), 100, '...'),
         ]);
+
+        $this->dispatch('post-is', message: "updated");
     }
     
     public function updated($name, $value)

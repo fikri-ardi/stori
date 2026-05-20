@@ -103,7 +103,7 @@
         <aside
             class="fixed left-0 top-16 bottom-0 z-40 hidden border-r border-white/10 bg-gray-950/45 shadow-2xl shadow-black/20 backdrop-blur-2xl transition-[width] duration-300 ease-out supports-[backdrop-filter]:bg-gray-950/25 md:flex"
             :class="sidebarOpen ? 'w-60' : 'w-20'"
-        >
+            >
             <div class="flex w-full flex-col py-5">
                 <div class="flex flex-col gap-2 px-4">
                     @foreach ($navItems as $item)
@@ -175,7 +175,7 @@
                 </a>
             @endauth
         </div>
-    @else
+        @else
         <div class="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-white/10 bg-gray-950/55 px-5 py-4 text-gray-200 backdrop-blur-2xl lg:px-32">
             {{-- Left --}}
             <div class="flex items-center space-x-3">
@@ -183,11 +183,36 @@
                 <a wire:navigate href="{{ route('home') }}" class="text-3xl font-bold">Stori</a>
 
                 {{-- Post status --}}
-                <div class="flex items-center space-x-3 text-sm">
+                <div 
+                    x-data="{
+                        status: 'updated',
+                    }"
+                    @post-is.window="
+                        if($event.detail.message === 'updating') {
+                            status = 'updating';
+                        } else if ($event.detail.message === 'updated') {
+                            setTimeout(() => {
+                                status = 'updated';
+                            }, 1000);
+                        }
+                    "
+                    class="flex items-center space-x-8 text-sm">
                     <div>Draft</div>
                     @if (request()->routeIs('posts.edit'))
-                        <div>Saved</div>
-                        <div wire:loading.class="text-2xl">Saving...</div>
+                        <div class="relative h-4 w-24 overflow-hidden">
+                            <div 
+                                class="absolute -bottom-0.5 transition-all duration-300 ease-in-out"
+                                :class="status == 'updating' ? 'translate-y-1/2' : ''">
+                                <div class="flex items-center space-x-2">
+                                    <i class="ph-light text-lg ph-spinner-gap animate-spin inline-block"></i>
+                                    <span class="nowrap">Saving...</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="ph-light ph-cloud-check text-lg"></i>
+                                    <span>Saved</span>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                 </div>
             </div>
