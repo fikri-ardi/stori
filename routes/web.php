@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\TagController;
-use App\Http\Controllers\UserController;
 use App\Livewire\Home;
 use App\Livewire\Posts\AllPosts;
 use App\Livewire\Posts\ShowPost;
@@ -35,7 +34,7 @@ Route::get('/search', Search::class)->name('search');
 
 Route::get('/collections/{collection}', [CollectionController::class, 'show'])->name('collections.show');
 
-Route::get('/@{user}', [UserController::class, 'show'])->name('users.show');
+Route::livewire('/@{user}', 'pages::users.show-user')->name('users.show');
 
 Route::view('/about', 'about')->name('about');
 Route::view('/contact', 'contact')->name('contact');

@@ -1,4 +1,21 @@
-<x-layouts.app title="{{ $user->name }} | Social Media" header="About">
+<?php
+
+use App\Models\User;
+use Livewire\Component;
+
+new class extends Component
+{
+    public User $user;
+    public $posts;
+
+    public function mount(){
+        $this->posts = $this->user->posts()->with('images')->latest()->get();
+    }
+    
+};
+?>
+
+<div>
     <div class="min-h-screen flex justify-center -mt-5" x-data="{ tab: 'posts' }">
         <div class="w-full max-w-5xl">
             <div class="flex items-center px-24">
@@ -91,12 +108,16 @@
                     <!-- COLLECTIONS GRID -->
                     <div class="w-full grid gap-20 justify-center @if ($user->collections->count() != 0) grid-cols-3 @endif" id="collections">
                         @forelse ($user->collections as $collection)
-                        <a href="{{ route('collections.show', $collection) }}" class="relative rounded-4xl h-80 w-56 flex flex-col items-center text-sm">
+                        <a href="{{ route('collections.show', $collection) }}"
+                            class="relative rounded-4xl h-80 w-56 flex flex-col items-center text-sm">
                             @if ($collection->posts->count() > 0)
                             <div class="relative translate-x-1/6 w-full h-full z-10">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 -translate-x-1/6 opacity-80" src="{{ $collection->posts->first()->images->first()->url ?? "" }}">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl z-10 shadow-2xl" src="{{ $collection->posts->random()->images->first()->url ?? "" }}">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 translate-x-1/6 opacity-80" src="{{ $collection->posts->last()->images->first()->url ?? "" }}">
+                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 -translate-x-1/6 opacity-80"
+                                    src="{{ $collection->posts->first()->images->first()->url ?? "" }}">
+                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl z-10 shadow-2xl"
+                                    src="{{ $collection->posts->random()->images->first()->url ?? "" }}">
+                                <img class="absolute left-0 top-0 w-full h-full object-cover rounded-4xl scale-90 translate-x-1/6 opacity-80"
+                                    src="{{ $collection->posts->last()->images->first()->url ?? "" }}">
                             </div>
                             @endif
                             <span class="mt-5 text-lg text-white">{{ ucwords($collection->name) }}</span>
@@ -118,4 +139,4 @@
             </style>
         </div>
     </div>
-</x-layouts.app>
+</div>
