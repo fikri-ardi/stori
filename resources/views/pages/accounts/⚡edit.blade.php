@@ -45,7 +45,7 @@ new class extends Component
                 'string',
                 'min:3',
                 'max:32',
-                'alpha_dash',
+                'regex:/^(?!.*\.\.)(?!\.)(?!.*\.$)[a-z0-9._-]+$/',
                 Rule::unique(User::class, 'username')->ignore($user->id),
             ],
             'bio' => ['nullable', 'string', 'max:160'],
@@ -112,7 +112,7 @@ new class extends Component
             <div class="grid gap-7 lg:grid-cols-[13rem_1fr]">
                 <aside class="lg:border-r lg:border-white/10 lg:pr-6">
                     <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center lg:flex-col lg:items-start">
-                        <div class="relative size-24 shrink-0 overflow-hidden rounded-full border border-white/10 text-gray-950 shadow-lg shadow-black/20 sm:size-28">
+                        <div class="relative size-24 shrink-0 overflow-hidden rounded-full border border-black/20 bg-white text-gray-950 shadow-lg shadow-black/20 sm:size-28">
                             @if ($photo instanceof TemporaryUploadedFile)
                                 <img src="{{ $photo->temporaryUrl() }}" alt="Profile preview" class="size-full object-cover">
                             @elseif ($currentPhotoUrl)
