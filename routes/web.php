@@ -36,6 +36,8 @@ Route::get('/collections/{collection}', [CollectionController::class, 'show'])->
 
 Route::livewire('/@{user}', 'pages::users.show-user')->name('users.show');
 
+Route::livewire('/accounts/edit', 'pages::accounts.edit')->name('accounts.edit');
+
 Route::view('/about', 'about')->name('about');
 Route::view('/contact', 'contact')->name('contact');
 

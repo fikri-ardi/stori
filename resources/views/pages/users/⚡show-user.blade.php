@@ -35,15 +35,11 @@ new class extends Component
                     <!-- Header like Medium -->
                     <div class="flex items-center mb-4">
                         <h2 class="text-2xl mr-10 font-semibold">{{ $user->username }}</h2>
-                        <div class="flex items-center space-x-4">
+                        <div
+                            x-data="{ userOptions: false }"
+                            class="flex items-center space-x-4">
                             <button class="py-2 px-3 text-sm cursor-pointer rounded-full border border-gray-400 text-gray-300">Follow</button>
-                            <button class="fill-gray-100 cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
-                                    <path
-                                        d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm56-12a12,12,0,1,0,12,12A12,12,0,0,0,196,116ZM60,116a12,12,0,1,0,12,12A12,12,0,0,0,60,116Z">
-                                    </path>
-                                </svg>
-                            </button>
+                            <livewire:users.options :$user />
                         </div>
                     </div>
 

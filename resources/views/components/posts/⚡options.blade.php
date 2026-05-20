@@ -14,12 +14,12 @@ new class extends Component
     }" 
     class="relative">
 
-    {{-- Post option button --}}
+    {{-- Post option trigger button --}}
     <a @click="Options = true" class="cursor-pointer">
         <i class="ph-light ph-dots-three text-2xl"></i>
     </a>
 
-    {{-- Post option post modal --}}
+    {{-- Post option modal --}}
     <div x-show="Options" @mousedown.outside="Options = false" x-transition
         class="absolute min-w-40  bg-black/90 backdrop-blur-lg rounded-2xl top-full mt-2 left-1/2 -translate-x-1/2 text-nowrap">
 
