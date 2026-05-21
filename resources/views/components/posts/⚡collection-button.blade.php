@@ -80,7 +80,7 @@ class="relative">
         @click="openUserCollectionModal = true"
         @endauth
         wire:click="addToCollection" type="button" class="cursor-pointer">
-        <i class="{{ $isCollected ? 'ph-fill' : 'ph-light' }} ph-bookmark-simple text-2xl"></i>
+        <i class="{{ $isCollected ? 'ph-fill' : 'ph-light' }} ph-bookmark-simple text-xl"></i>
     </button>
 
     {{-- user collection modal --}}

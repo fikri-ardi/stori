@@ -15,8 +15,8 @@ new class extends Component
     class="relative">
 
     {{-- Post option trigger button --}}
-    <a @click="Options = true" class="cursor-pointer">
-        <i class="ph-light ph-dots-three text-2xl"></i>
+    <a @click="Options = true" class="cursor-pointer flex items-center hover:text-white transition">
+        <i class="ph-bold ph-dots-three text-2xl"></i>
     </a>
 
     {{-- Post option modal --}}

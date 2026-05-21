@@ -5,8 +5,8 @@
         <livewire:posts.clap-button :item="$post" wire:key="clap-button-{{ now() }}" />
 
         {{-- Comments --}}
-        <a href="#comments" class="flex items-center space-x-2 cursor-pointer">
-            <i class="ph-light ph-chat-teardrop-dots text-2xl"></i>
+        <a href="#comments" class="flex items-center space-x-2 cursor-pointer hover:text-white transition-all">
+            <i class="ph-light ph-chat-teardrop-dots text-xl"></i>
             <span>{{ number_format($post->comments->count()) }}</span>
         </a>
     </div>

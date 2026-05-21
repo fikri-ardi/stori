@@ -20,7 +20,9 @@
                     {{ ucwords($post->author->name) }}
                 </a>
 
-                <span class="size-1 shrink-0 rounded-full bg-gray-600"></span>
+                <span class="w-3 shrink-0 text-gray-500 -ml-2">
+                    <i class="ph-light ph-dot text-2xl"></i>
+                </span>
                 <span class="shrink-0 text-xs text-gray-500 sm:text-sm">{{ $post->created_at->format('M d') }}</span>
             </div>
 
@@ -57,10 +59,12 @@
                 </div>
 
                 {{-- Bookmark --}}
-                <button type="button" class="grid size-9 shrink-0 cursor-pointer place-items-center rounded-full text-gray-400 transition hover:bg-white/10 hover:text-white sm:size-10">
-                    <span class="sr-only">Save post</span>
-                    <i class="ph-light ph-bookmark-simple text-2xl"></i>
-                </button>
+                <div class="flex items-center space-x-4 text-gray-400 !text-xl">
+                    {{-- Collect post --}}
+                    <livewire:posts.collection-button :post="$post" wire:key="user-collection-button-{{ now() }}" />
+                    {{-- Options --}}
+                    <livewire:posts.options :post="$post" />
+                </div>
             </div>
         </div>
 

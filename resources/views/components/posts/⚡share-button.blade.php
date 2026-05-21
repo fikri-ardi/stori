@@ -26,8 +26,8 @@ class="relative">
     {{-- Post collection button --}}
     <a 
     @click="sharePostModal = true"
-    class="cursor-pointer">
-        <i class="ph-light ph-export text-2xl"></i>
+    class="cursor-pointer hover:text-white transition-all">
+        <i class="ph-light ph-export text-xl"></i>
     </a>
 
     {{-- user collection modal --}}
