@@ -4,7 +4,7 @@
     <a wire:navigate href="{{ route('users.show', $author) }}" class="w-10 h-10 rounded-full overflow-hidden hover:opacity-50 transition-all">
         {{-- <img src="{{ $author->image->url }}" alt="Foto penulis"> --}}
         @if ($author->image != null)
-        <img src="{{ $author->image->url }}" alt="" class="" />
+        <img src="{{ $author->image->url }}" alt="Author avatar" class="object-cover size-full" />
         @else
         <div class="relative text-gray-900 bg-white size-full flex rounded-full font-semibold uppercase text-xl">
             <span class="m-auto">{{ $author->initials() }}</span>
