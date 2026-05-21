@@ -73,6 +73,8 @@ new class extends Component
         if (in_array($name, ['imageUpload', 'existingImages'], true)) {
             return;
         }
+
+        $this->validateOnly($name);
         
         $this->post->update([
             $name => $value,
