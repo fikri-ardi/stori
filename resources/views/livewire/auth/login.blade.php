@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <p class="mt-3 text-sm leading-6 text-gray-400">Login dan lanjut nulis, baca, atau nyimpen Stori yang belum kelar.</p>
+            <p class="mt-3 text-sm leading-6 text-gray-400">Login untuk lanjut membaca, menulis, dan menyimpan Stori.</p>
         </div>
 
         <div class="px-5 py-5 sm:px-6 sm:py-6">
