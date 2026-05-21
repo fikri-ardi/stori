@@ -25,6 +25,7 @@ new class extends Component
 
         {{-- Share Post Modal --}}
         <div class="p-5 flex flex-col space-y-5 text-sm text-gray-300">
+            @if (auth()->id() == $post->author->id)
             <a 
                 wire:navigate
                 href="{{ route('posts.edit', $post) }}"
@@ -40,7 +41,23 @@ new class extends Component
                 <i class="ph-light ph-trash text-xl"></i>
                 <div>Delete post</div>
             </button>
+            @else
+            <a 
+                class="flex items-center space-x-3 hover:text-white cursor-pointer">
+                <i class="ph-light ph-user-plus text-xl"></i>
+                <div>Follow author</div>
             </a>
+            <a 
+                class="flex items-center space-x-3 hover:text-white cursor-pointer">
+                <i class="ph-light ph-file-magnifying-glass text-xl"></i>
+                <div>Post info</div>
+            </a>
+            <a 
+                class="flex items-center space-x-3 text-red-400 hover:text-red-500 cursor-pointer">
+                <i class="ph-light ph-flag text-xl"></i>
+                <div>Report post</div>
+            </a>
+            @endif
         </div>
     </div>
 </div>
