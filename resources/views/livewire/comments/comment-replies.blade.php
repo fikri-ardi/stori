@@ -35,35 +35,35 @@ class="flex flex-col space-y-7 w-full mt-8">
 
                 {{-- Comments options --}}
                 <div x-show="options == 'comment{{ $comment->id }}'" x-transition
-                    class="flex flex-col absolute top-5 bg-gray-200 text-gray-800 text-sm whitespace-nowrap rounded-2xl">
+                    class="flex flex-col absolute top-5 z-50 rounded-2xl border border-white/10 bg-[#07090d]/95 py-1 text-sm text-gray-300 shadow-2xl shadow-black/30 backdrop-blur-xl whitespace-nowrap">
 
                     @cannot('view', $comment)
-                    <button class="px-4 py-3 cursor-pointer">Report response</button>
+                    <button class="px-4 py-3 cursor-pointer transition hover:bg-white/[0.06] hover:text-white">Report response</button>
                     @endcannot
 
                     @can('delete', $comment)
-                    <button @click="editComment = true, options = false" class="px-4 py-3 cursor-pointer">
+                    <button @click="editComment = true, options = false" class="px-4 py-3 cursor-pointer transition hover:bg-white/[0.06] hover:text-white">
                         Edit response
                     </button>
 
                     {{-- Delete options --}}
-                    <button x-on:click="deleteModal = true" class="px-4 py-3 cursor-pointer">
+                    <button x-on:click="deleteModal = true" class="px-4 py-3 cursor-pointer text-red-300 transition hover:bg-red-400/10 hover:text-red-200">
                         Delete response
                     </button>
                     @endcan
                 </div>
 
                 {{-- Delete comment modal --}}
-                <div x-show="deleteModal" class="fixed flex left-0 top-0 right-0 bottom-0 bg-white/95 z-50">
-                    <div x-on:click.outside="deleteModal = false" class="text-gray-800 m-auto text-center flex flex-col space-y-2">
+                <div x-show="deleteModal" class="fixed flex left-0 top-0 right-0 bottom-0 bg-black/60 backdrop-blur-md z-50">
+                    <div x-on:click.outside="deleteModal = false" class="m-auto flex flex-col space-y-2 rounded-2xl border border-white/10 bg-[#07090d]/95 px-6 py-5 text-center text-gray-200 shadow-2xl shadow-black/40">
                         <div class="text-2xl">Delete</div>
-                        <p class="text-xs leading-relaxed">
+                        <p class="text-xs leading-relaxed text-gray-400">
                             Deleted responses are gone forever.<br>
                             Are you sure?
                         </p>
                         <div x-on:click="deleteModal = false, options = false" class="flex items-center mt-5 text-sm space-x-1 ">
-                            <button class="px-3 py-2 bg-white rounded-full text-gray-800 cursor-pointer">Cancel</button>
-                            <button wire:click="delete({{ $comment->id }})" class="px-3 py-2 bg-red-400 rounded-full text-white cursor-pointer">Delete
+                            <button class="px-3 py-2 rounded-full text-gray-300 transition hover:bg-white/[0.07] hover:text-white cursor-pointer">Cancel</button>
+                            <button wire:click="delete({{ $comment->id }})" class="px-3 py-2 bg-red-400 rounded-full text-neutral-950 font-semibold cursor-pointer transition hover:bg-red-300">Delete
                                 Response</button>
                         </div>
                     </div>

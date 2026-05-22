@@ -49,12 +49,14 @@ new class extends Component
             </button>
             <livewire:posts.delete :$post />
             @else
+            @auth
             <button
                 @mousedown="Options = false, $wire.toggleFollowUser()"
                 class="flex items-center space-x-3 hover:text-white cursor-pointer">
                 <i class="ph-light ph-user-{{ auth()->user()->isFollowing($post->author) ? 'minus' : 'plus' }} text-xl"></i>
                 <div>{{ auth()->user()->isFollowing($post->author) ? 'Unfollow' : 'Follow' }} author</div>
             </button>
+            @endauth
            <livewire:posts.info-modal :post="$post" />
             <a
                 @mousedown="Options = false, $dispatch('notif', {message: 'This post has been reported.'})"

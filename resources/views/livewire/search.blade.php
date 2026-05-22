@@ -92,7 +92,7 @@
             {{-- Tags result --}}
             <div class="flex flex-wrap w-1/3 gap-4 items-start h-fit">
                 @forelse ($tags as $tag)
-                <a href="{{ route('tags.show', $tag) }}" class="py-2 px-4 text-sm rounded-full bg-gray-800">{{ $tag->name }}</a>
+                <a href="{{ route('tags.show', $tag) }}" class="py-2 px-4 text-sm rounded-full border border-white/10 bg-white/[0.045] text-gray-300 transition hover:border-white/20 hover:bg-white/[0.075] hover:text-white">{{ $tag->name }}</a>
                 @empty
                 <div class="text-gray-400">No tags found.</div>
                 @endforelse

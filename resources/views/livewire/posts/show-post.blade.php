@@ -28,7 +28,7 @@
         </div>
 
         {{-- Post stats --}}
-        <div class="border-y border-gray-800">
+        <div class="border-y border-white/10">
             <x-partials.post-stats :$post />
         </div>
 
@@ -52,7 +52,7 @@
         <div class="flex items-center space-x-2 flex-wrap">
             @foreach ($post->tags as $tag)
             <span class="my-3.5">
-                <a wire:navigate  href="{{ route('tags.show', $tag->slug) }}" class="py-3 px-4 text-sm rounded-full bg-gray-800">{{ $tag->name }}</a>
+                <a wire:navigate  href="{{ route('tags.show', $tag->slug) }}" class="py-3 px-4 text-sm rounded-full border border-white/10 bg-white/[0.045] text-gray-300 transition hover:border-white/20 hover:bg-white/[0.075] hover:text-white">{{ $tag->name }}</a>
             </span>
             @endforeach
         </div>

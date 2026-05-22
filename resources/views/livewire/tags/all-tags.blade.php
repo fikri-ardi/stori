@@ -8,9 +8,9 @@
 
         {{-- Search Box --}}
         <form wire:submit="search" method="get"
-            class="flex items-center space-x-4 bg-gray-800 px-5 py-3 rounded-full w-1/2 text-sm">
-            <i class="ph-light ph-magnifying-glass text-2xl"></i>
-            <input wire:model.live="keywords" type="text" name="keywords" placeholder="What are you interest in?" class="w-full outline-none">
+            class="flex items-center space-x-4 rounded-full border border-white/10 bg-white/[0.045] px-5 py-3 text-sm text-gray-200 backdrop-blur-xl transition focus-within:border-white/20 focus-within:bg-white/[0.065] w-1/2">
+            <i class="ph-light ph-magnifying-glass text-2xl text-gray-500"></i>
+            <input wire:model.live="keywords" type="text" name="keywords" placeholder="What are you interest in?" class="w-full bg-transparent outline-none placeholder:text-gray-600">
         </form>
 
         <span class="text-sm flex items-center space-x-2">
@@ -23,10 +23,10 @@
     </div>
 
     {{-- Topics --}}
-    <div class="border-t border-gray-800 py-16 flex items-center justify-between flex-wrap">
+    <div class="border-t border-white/10 py-16 flex items-center justify-between flex-wrap">
         {{-- Header --}}
         @foreach ($tags as $tag)
-        <a wire:navigate href="{{ route('tags.show', $tag) }}" class="w-1/3 py-4 px-10 hover:underline">
+        <a wire:navigate href="{{ route('tags.show', $tag) }}" class="w-1/3 py-4 px-10 text-gray-300 transition hover:text-white hover:underline">
             {{ $tag->name }}
         </a>
         @endforeach
