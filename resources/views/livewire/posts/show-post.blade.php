@@ -17,7 +17,11 @@
             {{-- Follow --}}
             <div class="flex items-center space-x-4 text-sm text-gray-300">
                 <button class="py-2 px-3 cursor-pointer rounded-full border border-gray-400 text-gray-300">Follow</button>
-                <div>{{ $post->created_at->format('M d, o') }}</div>
+                <div class="flex items-center space-x-1">
+                    <div>{{ $reading_time }} min read</div>
+                    <i class="ph-light ph-dot"></i>
+                    <div>{{ $post->created_at->format('M d, o') }}</div>
+                </div>
             </div>
         </div>
 
