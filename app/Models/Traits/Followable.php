@@ -27,7 +27,7 @@ trait Followable
      */
     public function follow(User $user)
     {
-        return $this->followings()->attach($user->id);
+        $this->followings()->attach($user->id);
     }
 
     /**
@@ -35,7 +35,7 @@ trait Followable
      */
     public function unfollow(User $user)
     {
-        return $this->followings()->detach($user->id);
+        $this->followings()->detach($user->id);
     }
 
     /**

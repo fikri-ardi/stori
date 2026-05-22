@@ -15,8 +15,10 @@
             <x-author :author="$post->author" />
 
             {{-- Follow --}}
-            <div class="flex items-center space-x-4 text-sm text-gray-300">
-                <button class="py-2 px-3 cursor-pointer rounded-full border border-gray-400 text-gray-300">Follow</button>
+            <div class="flex items-center space-x-4 text-sm text-gray-400">
+                @if (auth()->id() !== $post->author->id)
+                <livewire:users.follow-button :user="$post->author" />
+                @endif
                 <div class="flex items-center space-x-1">
                     <div>{{ $reading_time }} min read</div>
                     <i class="ph-light ph-dot"></i>
