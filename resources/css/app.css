@@ -149,6 +149,10 @@
 }
 
 @layer base {
+    html,
+    body {
+        background-color: #050608;
+    }
 
     *,
     ::after,

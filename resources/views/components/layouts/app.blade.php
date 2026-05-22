@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-900 scroll-smooth">
+<html lang="en" class="h-full bg-[#050608] scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
         },
     }"
     x-init="syncSidebarOffset()"
-    class="relative min-h-full font-inter">
+    class="relative min-h-full bg-[#050608] font-inter text-gray-200 selection:bg-white/10 selection:text-white">
 
     <livewire:navbar />
     <livewire:ui.toast />

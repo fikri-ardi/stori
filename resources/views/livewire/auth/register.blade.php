@@ -1,6 +1,6 @@
 <div class="relative isolate w-full">
-    <div class="fixed inset-0 -z-10 overflow-hidden bg-neutral-950">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.055),transparent_24rem),radial-gradient(circle_at_72%_18%,rgba(45,212,191,0.055),transparent_18rem),linear-gradient(180deg,rgba(10,10,10,0),rgba(10,10,10,0.72))]"></div>
+    <div class="fixed inset-0 -z-10 overflow-hidden bg-[#050608]">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.045),transparent_24rem),radial-gradient(circle_at_72%_18%,rgba(45,212,191,0.045),transparent_18rem),linear-gradient(180deg,rgba(5,6,8,0),rgba(2,3,3,0.78))]"></div>
         <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
     </div>
 

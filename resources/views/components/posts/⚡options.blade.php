@@ -56,7 +56,8 @@ new class extends Component
                 <div>{{ auth()->user()->isFollowing($post->author) ? 'Unfollow' : 'Follow' }} author</div>
             </button>
            <livewire:posts.info-modal :post="$post" />
-            <a 
+            <a
+                @mousedown="Options = false, $dispatch('notif', {message: 'This post has been reported.'})"
                 class="flex items-center space-x-3 text-red-400 hover:text-red-500 cursor-pointer">
                 <i class="ph-light ph-flag text-xl"></i>
                 <div>Report post</div>
