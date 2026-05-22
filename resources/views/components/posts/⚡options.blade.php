@@ -14,6 +14,7 @@ new class extends Component
     {
         $message = auth()->user()->toggleFollow($this->post->author);
         $this->dispatch('notif', message: $message);
+        $this->dispatch('follow-updated');
     }
 };
 ?>

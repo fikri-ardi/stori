@@ -24,7 +24,9 @@ new class extends Component
 };
 ?>
 
-<div class="inline-flex">
+<div 
+    @follow-updated.window="$wire.$refresh()"
+    class="inline-flex">
     @if (auth()->user()->isFollowing($user))
         <button
             type="button"
