@@ -49,7 +49,7 @@ new class extends Component
             <livewire:posts.delete :$post />
             @else
             <button
-                wire:click='toggleFollowUser'
+                @mousedown="Options = false, $wire.toggleFollowUser()"
                 class="flex items-center space-x-3 hover:text-white cursor-pointer">
                 <i class="ph-light ph-user-{{ auth()->user()->isFollowing($post->author) ? 'minus' : 'plus' }} text-xl"></i>
                 <div>{{ auth()->user()->isFollowing($post->author) ? 'Unfollow' : 'Follow' }} author</div>
