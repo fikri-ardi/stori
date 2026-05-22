@@ -39,6 +39,20 @@ trait Followable
     }
 
     /**
+     * Toggle the follow status of the given user.
+     */
+    public function toggleFollow(User $user)
+    {
+        if ($this->isFollowing($user)) {
+            $this->unfollow($user);
+            return 'You are no longer following ' . $user->name;
+        } else {
+            $this->follow($user);
+            return 'You are now following ' . $user->name;
+        }
+    }
+
+    /**
      * Check if the current user is following the given user.
      */
     public function isFollowing(User $user)

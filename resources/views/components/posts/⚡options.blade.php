@@ -1,11 +1,20 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Traits\Followable;
 use Livewire\Component;
 
 new class extends Component
 {
+    use Followable;
+        
     public Post $post;
+
+    public function toggleFollowUser()
+    {
+        $message = auth()->user()->toggleFollow($this->post->author);
+        $this->dispatch('notif', message: $message);
+    }
 };
 ?>
 
@@ -39,11 +48,12 @@ new class extends Component
             </button>
             <livewire:posts.delete :$post />
             @else
-            <a 
+            <button
+                wire:click='toggleFollowUser'
                 class="flex items-center space-x-3 hover:text-white cursor-pointer">
-                <i class="ph-light ph-user-plus text-xl"></i>
-                <div>Follow author</div>
-            </a>
+                <i class="ph-light ph-user-{{ auth()->user()->isFollowing($post->author) ? 'minus' : 'plus' }} text-xl"></i>
+                <div>{{ auth()->user()->isFollowing($post->author) ? 'Unfollow' : 'Follow' }} author</div>
+            </button>
             <a 
                 class="flex items-center space-x-3 hover:text-white cursor-pointer">
                 <i class="ph-light ph-file-magnifying-glass text-xl"></i>
