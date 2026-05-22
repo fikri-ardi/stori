@@ -55,11 +55,7 @@ new class extends Component
                 <i class="ph-light ph-user-{{ auth()->user()->isFollowing($post->author) ? 'minus' : 'plus' }} text-xl"></i>
                 <div>{{ auth()->user()->isFollowing($post->author) ? 'Unfollow' : 'Follow' }} author</div>
             </button>
-            <a 
-                class="flex items-center space-x-3 hover:text-white cursor-pointer">
-                <i class="ph-light ph-file-magnifying-glass text-xl"></i>
-                <div>Post info</div>
-            </a>
+           <livewire:posts.info-modal :post="$post" />
             <a 
                 class="flex items-center space-x-3 text-red-400 hover:text-red-500 cursor-pointer">
                 <i class="ph-light ph-flag text-xl"></i>
