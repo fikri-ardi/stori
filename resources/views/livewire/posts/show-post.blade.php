@@ -99,7 +99,15 @@
             </div>
 
             <div>
-                <button class="py-2 px-3 text-sm cursor-pointer rounded-full border border-gray-400 text-gray-300">Follow</button>
+                @if (auth()->id() !== $post->author->id)
+                <livewire:users.follow-button :user="$post->author" />
+                @else
+                <a href="{{ route('accounts.edit', auth()->id()) }}">
+                    <button class="py-2 px-3 rounded-full bg-white/90 text-gray-800 text-xs cursor-pointer font-semibold flex items-center space-x-1">
+                        <span>Edit Profile</span>
+                    </button>
+                </a>
+                @endif
             </div>
         </div>
     </article>
