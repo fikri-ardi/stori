@@ -38,7 +38,15 @@ new class extends Component
                         <div
                             x-data="{ userOptions: false }"
                             class="flex items-center space-x-4">
-                            <button class="py-2 px-3 text-sm cursor-pointer rounded-full border border-gray-400 text-gray-300">Follow</button>
+                            @if (auth()->id() !== $user->id)
+                            <livewire:users.follow-button :$user />
+                            @else
+                            <a 
+                                href="{{ route('accounts.edit', $user) }}"
+                                class="inline-flex h-9 min-w-24 cursor-pointer items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 text-sm font-semibold text-gray-200 transition duration-150 hover:border-white/25 hover:bg-white/[0.08] hover:text-white active:scale-[0.98] disabled:pointer-events-none disabled:opacity-70">
+                                EditProfile
+                            </a>
+                            @endif
                             <livewire:users.options :$user />
                         </div>
                     </div>
