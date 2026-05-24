@@ -23,10 +23,13 @@ class VisitorFactory extends Factory
             User::class,
         ];
         $data = [
-            'ip' => fake()->ipv4,
-            'user_agent' => fake()->userAgent,
-            'referrer' => fake()->url,
-            'user_id' => User::inRandomOrder()->first()->id,
+            'country' => fake()->country(),
+            'city' => fake()->city(),
+            'device' => fake()->randomElement([
+                'mobile',
+                'desktop',
+                'tablet',
+            ]),
         ];
 
         return [
@@ -35,6 +38,10 @@ class VisitorFactory extends Factory
                 $modelClass = $attributes['visitable_type'];
                 return $modelClass::inRandomOrder()->value('id');
             },
+            'session_id' => fake()->uuid,
+            'ip_address' => fake()->ipv4,
+            'user_agent' => fake()->userAgent,
+            'referer' => fake()->url,
             'data' => collect($data)->only(array_rand($data, rand(1, count($data))))->toArray(),
         ];
     }
