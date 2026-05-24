@@ -12,12 +12,22 @@ new class extends Component
 
     public function followUser()
     {
+        if (! auth()->check()) {
+            $this->dispatch('open-login-modal');
+            return;
+        }
+
         auth()->user()->follow($this->user);
         $this->dispatch('notif', message: "You are now following {$this->user->name}");
     }
 
     public function unfollowUser()
     {
+        if (! auth()->check()) {
+            $this->dispatch('open-login-modal');
+            return;
+        }
+
         auth()->user()->unfollow($this->user);
         $this->dispatch('notif', message: "You are no longer following {$this->user->name}");
     }
@@ -27,7 +37,7 @@ new class extends Component
 <div 
     @follow-updated.window="$wire.$refresh()"
     class="inline-flex">
-    @if (auth()->user()->isFollowing($user))
+    @if (auth()->user()?->isFollowing($user))
         <button
             type="button"
             wire:click="unfollowUser"
