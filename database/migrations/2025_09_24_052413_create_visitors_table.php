@@ -14,6 +14,14 @@ return new class extends Migration
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
             $table->morphs('visitable');
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+            $table->string('session_id')->nullable();
+            $table->string('ip_address', 45)->nullable();
+            $table->string('user_agent')->nullable();
+            $table->string('referer')->nullable();
             $table->json('data')->nullable();
             $table->timestamps();
         });
