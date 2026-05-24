@@ -38,6 +38,7 @@ class VisitorFactory extends Factory
                 $modelClass = $attributes['visitable_type'];
                 return $modelClass::inRandomOrder()->value('id');
             },
+            'user_id' => User::inRandomOrder()->value('id'),
             'session_id' => fake()->uuid,
             'ip_address' => fake()->ipv4,
             'user_agent' => fake()->userAgent,
