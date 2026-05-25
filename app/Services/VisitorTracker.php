@@ -21,7 +21,7 @@ class VisitorTracker
                     );
                 }
             })
-            ->where('created_at', '>=', now()->subMinutes(3))
+            ->where('created_at', '>=', now()->subDay())
             ->exists();
 
         if (! $exists) {

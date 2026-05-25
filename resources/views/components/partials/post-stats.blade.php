@@ -1,6 +1,9 @@
 <div class="flex items-center justify-between py-3 text-sm text-gray-500">
     {{-- Left --}}
     <div class="flex items-center space-x-7">
+        {{-- Views --}}
+        <livewire:posts.readers :post="$post" />
+        
         {{-- Claps --}}
         <livewire:posts.clap-button :item="$post" wire:key="clap-button-{{ now() }}" />
 

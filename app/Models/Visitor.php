@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Visitor extends Model
 {
@@ -25,6 +26,14 @@ class Visitor extends Model
     protected $casts = [
         'data' => 'array',
     ];
+
+    /**
+     * Get the user behind this visit when the reader is authenticated.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get the parent visitable model (user, post, etc.).
