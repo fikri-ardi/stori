@@ -18,11 +18,11 @@ new class extends Component
 <div>
     <div class="min-h-screen flex justify-center -mt-5" x-data="{ tab: 'posts' }">
         <div class="w-full max-w-5xl">
-            <div class="flex items-center px-24">
+            <div class="flex items-center justify-center">
                 {{-- User Photo Profile --}}
-                <div class="p-14 w-4/12">
+                <div class="p-10 w-3/12">
                     @if ($user->image)
-                    <img src="{{ $user->image->url }}" alt="Avatar" class="size-40 rounded-full object-cover" />
+                    <img src="{{ $user->image->url }}" alt="Avatar" class="size-[150px] rounded-full object-cover" />
                     @else
                     <div class="relative text-gray-900 bg-white size-40 flex rounded-full font-semibold uppercase text-5xl">
                         <span class="m-auto">{{ $user->initials() }}</span>
