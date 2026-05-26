@@ -70,6 +70,21 @@
                     <livewire:posts.options :post="$post" />
                 </div>
             </div>
+
+            {{-- Recent clapper avatar group --}}
+            <div class="mt-3">
+                <x-ui.avatar-group
+                    :target="$post"
+                    :users="$post->claps()
+                    ->with('user')
+                    ->latest()
+                    ->get()
+                    ->pluck('user')
+                    ->unique('id')
+                    ->take(3)"
+                    class="mt-4"
+                />
+            </div>
         </div>
 
         {{-- Banner --}}
