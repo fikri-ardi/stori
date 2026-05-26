@@ -73,7 +73,11 @@ new class extends Component
         @click="readersModal = true; modalBackdrop = true"
         class="flex cursor-pointer items-center space-x-2 transition-all hover:text-white active:scale-95">
         <i class="ph-light ph-eye text-[1.40rem]"></i>
-        <span>{{ number_format($this->readersCount) }}</span>
+        <span>{{ 
+            $post->visitors->count() >= 1000
+            ? Number::abbreviate($post->visitors()->count(), precision: 1)
+            : $post->visitors()->count()       
+        }}</span>
     </button>
 
     {{-- Readers modal --}}

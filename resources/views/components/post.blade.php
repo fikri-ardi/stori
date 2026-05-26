@@ -42,7 +42,11 @@
                     {{-- Views --}}
                     <div class="flex items-center gap-1.5">
                         <i class="ph-light ph-eye text-xl"></i>
-                        <span>{{ number_format($post->visitors()->count()) }}</span>
+                        <span>{{
+                            $post->visitors->count() >= 1000 
+                                ? Number::abbreviate($post->visitors()->count(), precision: 1)
+                                : $post->visitors()->count()
+                            }}</span>
                     </div>
 
                     {{-- Claps --}}
