@@ -24,6 +24,6 @@
             $refs.popup{{ $item->id }}.classList.add('animate-fadein');
         }
         "
-        class="{{ $item->claps()->where('user_id', auth()->id())->exists() ? 'ph-fill' : 'ph-light' }} ph-hands-clapping text-xl hover:text-white transition-all active:scale-110"></i>
+        class="{{ $item->claps()->where('user_id', auth()->id())->exists() ? 'ph-fill' : 'ph-light' }} ph-hands-clapping text-[1.40rem] hover:text-white transition-all active:scale-110"></i>
     <span>{{ number_format($item->claps->sum('count')) }}</span>
 </div>

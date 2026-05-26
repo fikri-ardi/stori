@@ -9,7 +9,7 @@
 
         {{-- Comments --}}
         <a href="#comments" class="flex items-center space-x-2 cursor-pointer hover:text-white transition-all">
-            <i class="ph-light ph-chat-teardrop-dots text-xl"></i>
+            <i class="ph-light ph-chat-teardrop-dots text-[1.40rem]"></i>
             <span>{{ number_format($post->comments->count()) }}</span>
         </a>
     </div>

@@ -72,7 +72,7 @@ new class extends Component
         type="button"
         @click="readersModal = true; modalBackdrop = true"
         class="flex cursor-pointer items-center space-x-2 transition-all hover:text-white active:scale-95">
-        <i class="ph-light ph-eye text-xl"></i>
+        <i class="ph-light ph-eye text-[1.40rem]"></i>
         <span>{{ number_format($this->readersCount) }}</span>
     </button>
 
@@ -116,7 +116,7 @@ new class extends Component
 
                 <div class="px-5 py-3">
                     @if ($this->readers->isNotEmpty())
-                        <div class="max-h-[56vh] divide-y divide-white/[0.06] overflow-y-auto">
+                        <div class="max-h-[56vh] divide-y divide-white/[0.06] overflow-y-auto no-scrollbar">
                             @foreach ($this->readers as $visitor)
                                 <div class="group flex items-center gap-3 py-3 transition hover:bg-white/[0.025]">
                                     @if ($visitor->user)
@@ -152,7 +152,7 @@ new class extends Component
                                             <i class="ph-light {{ $this->deviceIcon($visitor) }} text-sm"></i>
                                             <span>{{ $this->deviceLabel($visitor) }}</span>
                                         </div>
-                                        <p class="mt-1">{{ $visitor->created_at->diffForHumans(null, true) }} ago</p>
+                                        <p class="mt-1">{{ $visitor->created_at->diffForHumans() }}</p>
                                     </div>
                                 </div>
                             @endforeach

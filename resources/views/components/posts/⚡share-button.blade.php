@@ -27,7 +27,7 @@ class="relative">
     <a 
     @click="sharePostModal = true"
     class="cursor-pointer hover:text-white transition-all">
-        <i class="ph-light ph-export text-xl"></i>
+        <i class="ph-light ph-export text-[1.40rem]"></i>
     </a>
 
     {{-- user collection modal --}}
