@@ -72,7 +72,7 @@
         <a wire:navigate href="{{ route('posts.show', $post->slug) }}" class="block h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-white/5 sm:h-36 sm:w-36 md:w-48">
             @if ($post->images->first())
                 <img
-                    src="{{ $post->images->first()->url }}"
+                    src="{{ str($post->images->first()->url)->contains('http') ? $post->images->first()->url : config('app.url').$post->images->first()->url }}"
                     alt="Gambar Post"
                     class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                 >
