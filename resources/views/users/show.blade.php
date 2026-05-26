@@ -35,13 +35,13 @@
                         <div class="flex-1">
                             <!-- Stats like TikTok/IG -->
                             <div class="flex text-sm text-gray-500 transition-all">
-                                <a href="#posts" class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
+                                <a href="#posts" class="hover:bg-red-500 px-4 py-3 cursor-pointer">
                                     <span class="font-semibold text-gray-200 text-[16px] mr-1">{{ $user->posts->count() }}</span> Posts
                                 </a>
-                                <div class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
+                                <div class="hover:bg-red-500 px-4 py-3 cursor-pointer">
                                     <span class="font-semibold text-gray-200 text-[16px] mr-1">{{ $user->followers->count() }}</span> Followers
                                 </div>
-                                <div class="hover:bg-gray-800 px-4 py-3 cursor-pointer">
+                                <div class="hover:bg-red-500 px-4 py-3 cursor-pointer">
                                     <span class="font-semibold text-gray-200 text-[16px] mr-1">{{ $user->followings->count() }}</span> Following
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                     <!-- POSTS GRID -->
                     <div class="w-full flex flex-col pr-4" id="posts">
                         @foreach ($posts as $post)
-                        <x-post :$post />
+                        <livewire:posts.item wire:key="{{ $post->id }}" :$post />
                         @endforeach
                     </div>
 
