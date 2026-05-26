@@ -7,7 +7,7 @@
 
         <div class="flex flex-col">
             @forelse ($posts as $post)
-                <x-post wire:key="home-post-{{ $post->id }}" :$post />
+                <livewire:posts.item wire:key="{{ $post->id }}" :$post />
             @empty
                 <div class="py-16 text-center text-gray-400">No stories yet.</div>
             @endforelse

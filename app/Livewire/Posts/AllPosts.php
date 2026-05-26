@@ -13,7 +13,7 @@ class AllPosts extends Component
     {
 
         return view('livewire.posts.all-posts', [
-            'posts' => Post::paginate(20),
+            'posts' => Post::latest()->take(20)->get(),
         ]);
     }
 }

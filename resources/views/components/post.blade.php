@@ -72,7 +72,7 @@
             </div>
 
             {{-- Recent clapper avatar group --}}
-            <div class="mt-3">
+            <div class="mt-2">
                 <x-ui.avatar-group
                     :target="$post"
                     :users="$post->claps()

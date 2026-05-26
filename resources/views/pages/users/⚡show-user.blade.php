@@ -105,11 +105,10 @@ new class extends Component
                     <!-- POSTS GRID -->
                     <div class="w-full flex flex-col pr-4" id="posts">
                         @foreach ($posts as $post)
-                        <x-post :$post />
+                        <livewire:posts.item wire:key="{{ $post->id }}" :$post />
                         @endforeach
                     </div>
 
-                    <!-- COLLECTIONS GRID -->
                     <div class="w-full grid gap-20 justify-center @if ($user->collections->count() != 0) grid-cols-3 @endif" id="collections">
                         @forelse ($user->collections as $collection)
                         <a href="{{ route('collections.show', $collection) }}"

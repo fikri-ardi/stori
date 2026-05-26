@@ -16,7 +16,7 @@
             <div class="text-2xl font-semibold py-10">Recommended posts</div>
             <div class="mx-auto flex max-w-4xl flex-col">
                 @foreach ($tag->posts as $post)
-                    <x-post :$post />
+                <livewire:posts.item wire:key="{{ $post->id }}" :$post />
                 @endforeach
             </div>
         </div>
