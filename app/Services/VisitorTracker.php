@@ -6,9 +6,9 @@ use App\Models\Visitor;
 
 class VisitorTracker
 {
-    public function track($model): void
+    public function track($model)
     {
-        $exists = Visitor::query()
+        $exist = Visitor::query()
             ->whereMorphedTo('visitable', $model)
             ->where(function ($query) {
 
@@ -21,10 +21,10 @@ class VisitorTracker
                     );
                 }
             })
-            ->where('created_at', '>=', now()->subDay())
+            ->where('created_at', '>=', now()->subMinutes(3))
             ->exists();
 
-        if (! $exists) {
+        if (!$exist) {
             $model->visitors()->create([
                 'user_id' => auth()->id(),
                 'session_id' => session()->getId(),

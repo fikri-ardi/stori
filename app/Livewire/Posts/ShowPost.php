@@ -3,9 +3,7 @@
 namespace App\Livewire\Posts;
 
 use App\Models\Post;
-use App\Models\Visitor;
 use App\Services\VisitorTracker;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ShowPost extends Component
